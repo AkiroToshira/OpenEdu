@@ -1,0 +1,12 @@
+<b>Articles</b>
+
+{% for i in list_articles %}
+<br>{{i.articles_data}}<br>
+<p><a href="detail/{{i.id}}">{{i.name}}</a></p>
+{{i.text}}<br>
+{% endfor %}
+
+{% url 'logout' as url_logout_page %}
+<p><a href="{{url_logout_page}}">Logout</a></p>
+
+{{request.user}}
