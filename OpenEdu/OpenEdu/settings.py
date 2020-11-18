@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'OpenEdu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testdb',
+        'NAME': 'db',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
@@ -112,3 +112,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
