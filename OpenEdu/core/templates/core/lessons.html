@@ -1,3 +1,2 @@
 <p> Lessons: </p> <br>
-{{get_profile}}
-{{get_profile.student_group.lessons}}
+{% for lesson in get_profile.student_group.lessons.all %}{{ lesson.name }}<br>{% endfor %}

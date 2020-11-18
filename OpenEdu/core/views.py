@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -57,6 +58,7 @@ def lessons(request):
     }
     template = 'core/lessons.html'
     return render(request, template, context)
+
 
 def logout_view(request):
     logout(request)
