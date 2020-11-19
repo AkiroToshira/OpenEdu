@@ -8,13 +8,21 @@ class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=50)
     text = models.TextField(max_length=200)
+    img = models.ImageField(upload_to='article')
 
     def __str__(self):
         return self.name
 
 
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
 class Lesson(models.Model):
     name = models.CharField(max_length=30)
+    files = models.ManyToManyField(Document)
 
     def __str__(self):
         return self.name
@@ -42,5 +50,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
 

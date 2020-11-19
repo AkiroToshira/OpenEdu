@@ -1,4 +1,4 @@
-from .models import Articles, Profile, Lesson, StudentsGroup
+from .models import Articles, Profile, Lesson, StudentsGroup, Document
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -47,16 +47,29 @@ def detail(request, id):
     return render(request, template, context)
 
 
+@login_required(login_url='login/')
 def lessons(request):
     get_profile = Profile.objects.get(id = request.user.id)
     get_group = StudentsGroup.objects.all()
     get_lessons = Lesson.objects.all()
+    get_document = Document.objects.all()
     context = {
         'get_lesson': get_lessons,
         'get_group': get_group,
         'get_profile': get_profile,
+        'get_file': get_document,
     }
     template = 'core/lessons.html'
+    return render(request, template, context)
+
+
+@login_required(login_url='login/')
+def lesson(request, id):
+    get_lessons = Lesson.objects.get(id=id)
+    context = {
+        'get_lesson': get_lessons,
+    }
+    template = 'core/lesson.html'
     return render(request, template, context)
 
 
