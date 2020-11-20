@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from PIL import Image
 
 class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
@@ -33,7 +33,7 @@ class Document(models.Model):
 
 class StudentsGroup(models.Model):
     name = models.CharField(max_length=10)
-    lessons = models.ManyToManyField(Lesson)
+    lessons = models.ManyToManyField(Lesson, blank=True)
 
     def __str__(self):
         return self.name
@@ -53,6 +53,18 @@ class Deadlines(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student_group = models.ForeignKey(StudentsGroup, blank=True, null=True, on_delete=models.SET_NULL)
+    github = models.CharField(max_length=30, blank=True)
+    numberphone = models.CharField(max_length=13, blank=True)
+    img = models.ImageField(upload_to='profile_img', blank=True)
+
+    def save(self):
+        super().save()
+        img = Image.open(self.img.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.img.path)
 
 
 @receiver(post_save, sender=User)

@@ -75,6 +75,16 @@ def lesson(request, id):
     return render(request, template, context)
 
 
+@login_required(login_url='login/')
+def profile(request):
+    get_user = User.objects.get(id=request.user.id)
+    context = {
+        'get_user': get_user
+    }
+    template = 'accounts/profile.html'
+    return render(request, template, context)
+
+
 def logout_view(request):
     logout(request)
     return redirect('login/')
