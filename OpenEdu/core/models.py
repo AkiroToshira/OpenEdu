@@ -14,23 +14,37 @@ class Articles(models.Model):
         return self.name
 
 
-class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-
 class Lesson(models.Model):
     name = models.CharField(max_length=30)
-    files = models.ManyToManyField(Document)
+    description = models.TextField(max_length=30, blank=True)
 
     def __str__(self):
         return self.name
 
 
+class Document(models.Model):
+    description = models.CharField(max_length=20, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.description
+
+
 class StudentsGroup(models.Model):
     name = models.CharField(max_length=10)
     lessons = models.ManyToManyField(Lesson)
+
+    def __str__(self):
+        return self.name
+
+
+class Deadlines(models.Model):
+    name = models.CharField(max_length=20)
+    deadline_time = models.DateTimeField(blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    files = models.ManyToManyField(Document, blank=True)
+    groups = models.ForeignKey(StudentsGroup, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

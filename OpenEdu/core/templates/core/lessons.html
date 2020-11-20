@@ -1,4 +1,10 @@
 <p> Lessons: </p> <br>
-{% for lesson in get_lesson.all %}
+{% for lesson in get_profile.student_group.lessons.all %}
 <p><a href="lesson/{{lesson.id}}">{{ lesson.name }}</a></p>
 {% endfor %}
+{{ get_profile.student_group }}<br>
+{{ get_deadlines }}
+
+
+
+<p><a href="../">Back</a></p>
