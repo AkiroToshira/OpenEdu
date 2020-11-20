@@ -2,66 +2,66 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
     <title>Home</title>
-  </head>
-  <body>
-    <div class="wrapper">
-    <div class="header">
-      <div>
-        <a href="#default" class="logo">Openedflix</a>
-      </div>
-      <div class="header-center">
-        <a class="active" href="#home">Головна</a>
-        <a href="#contact">Предмети</a>
-      </div>
-      <div class="header-right">
-        <a href="#default" class="h">Вийти атсюда,</a>
-        <a href="#default" class="h rounded">Розбійник</a>
-      </div>
+</head>
+<body>
+<div class="header">
+    <div>
+        <a href="#default" class="logo">OpenEdu</a>
     </div>
+    <div class="header-center">
+        <a class="active" href="#home">Домівка</a>
+        <a href="#contact">Предмети</a>
+        <a href="#about">Новини</a>
+    </div>
+    <div class="header-right">
+        <a href="#default" class="h rounded"><i class="fas fa-user-graduate"></i>Marian</a>
+        <a href="#default" class="h">Вийти</a>
+    </div>
+</div>
 
-    <div class="main"> 
-        <div class="bigNews">
-          <div class="bigNewsWrapper">
+<div class="main">
+    <div class="bigNews">
+        <div class="bigNewsWrapper">
             <div>
-              <h3>Новина дня</h3>
-            </br>
-              <h1>Карантин продовжено до 31 грудня</h1>
+                <h3>Новина дня</h3>
+                </br>
+                <h1>Карантин продовжено до 31 грудня</h1>
             </div>
             <p class="bigNewsDescription">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Veritatis ipsa culpa veniam laborum, vero, sint maiores
-              consequuntur, molestias voluptatibus animi atque perferendis
-              corporis beatae et! Voluptas eum voluptatibus ullam minus.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Veritatis ipsa culpa veniam laborum, vero, sint maiores
+                consequuntur, molestias voluptatibus animi atque perferendis
+                corporis beatae et! Voluptas eum voluptatibus ullam minus.
             </p>
             <span class="statsBigNews">
               <ul>
                 <li>225 Вподобань</li>
                 <li>1000 Переглядів</li>
-                <li>більше</li>
+                <li><a href="detail/{{i.id}}">Детальніше</a></li>
               </ul>
             </span>
-          </div>
         </div>
-        
-        <div class="smallNews">
-          <h1>Популярні новини</h1>
-          <div class="news_block_cards">
-            {% for i in '012112342343'|make_list %}
+    </div>
+
+    <div class="smallNews">
+        <h1>Популярні новини</h1>
+        <div class="news_block_cards">
+            {% for i in list_articles %}
             <div class="news_card">
-              <div class="news_card_title">
-                <h3>Сьогодні ректок універсинету ..</h3>
-              </div>
+
+                <div class="news_card_title">
+                    <h3> {{i.name}} </h3>
+                </div>
             </div>
             {% endfor %}
-          </div>
         </div>
-        
-      </div>
     </div>
-  </body>
+</div>
+</div>
+</body>
 </html>

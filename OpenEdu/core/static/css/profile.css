@@ -148,14 +148,13 @@
   display: flex;
   width: 100%;
   min-height: 300px;
-  background-color: rgb(83, 77, 67);
   align-items: center;
+  border-bottom: 4px solid black;
 }
 
 .profile_img {
   width: 200px;
   height: 200px;
-  background-color: chocolate;
   border-radius: 100%;
   margin-left: 100px;
 }
@@ -166,7 +165,6 @@
   height: 200px;
   margin-right: 100px;
   margin-left: 100px;
-  background-color: cornflowerblue;
 }
 
 .profile_name_id {

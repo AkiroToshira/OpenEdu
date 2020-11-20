@@ -1,0 +1,36 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <title>Document</title>
+   </head>
+<body>
+
+  <div class="box">
+
+    <div class="selected">
+      <div class="logo-name"><span>LVIV POLITEX</span></div>
+
+
+      <input type="text" placeholder="username">
+      <input type="password" placeholder="password">
+
+      <div class="rememberme-checkbox">
+        <input type="checkbox" id="savepassword" name="happy" value="yes">
+        <label for="savepassword">Remember me</label>
+      </div>
+      <button type="button" name="button">Submit</button>
+      <div><span>password recovery</span></div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

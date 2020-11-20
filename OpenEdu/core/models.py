@@ -4,19 +4,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 
+
 class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=50)
     text = models.TextField(max_length=200)
-    img = models.ImageField(upload_to='article')
-
-    def __str__(self):
-        return self.name
-
-
-class Lesson(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.TextField(max_length=30, blank=True)
+    img = models.ImageField(upload_to='article', blank=True)
 
     def __str__(self):
         return self.name
@@ -29,6 +22,15 @@ class Document(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Lesson(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField(max_length=30, blank=True)
+    files = models.ManyToManyField(Document, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class StudentsGroup(models.Model):
@@ -61,8 +63,8 @@ class Profile(models.Model):
         super().save()
         img = Image.open(self.img.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
+        if img.height > 200 or img.width > 200:
+            output_size = (200, 200)
             img.thumbnail(output_size)
             img.save(self.img.path)
 

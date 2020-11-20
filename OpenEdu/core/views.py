@@ -89,7 +89,7 @@ def profile(request):
     context = {
         'get_user': get_user
     }
-    template = 'accounts/profile.html'
+    template = 'pages/profile.html'
     return render(request, template, context)
 
 

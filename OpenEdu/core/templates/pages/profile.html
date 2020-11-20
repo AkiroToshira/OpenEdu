@@ -2,54 +2,48 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Сторінка профілю</title>
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-    <!-- <link rel="stylesheet" href="../../static/css/profile.css" /> -->
-  </head>
-  <body>
-    <div class="header">
-      <div>
-        <a href="#default" class="logo">Openedflix</a>
-      </div>
-      <div class="header-center">
-        <a class="active" href="#home">Головна</a>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+</head>
+<body>
+<div class="header">
+    <div>
+        <a href="#default" class="logo">OpenEdu</a>
+    </div>
+    <div class="header-center">
+        <a class="active" href="#home">Домівка</a>
         <a href="#contact">Предмети</a>
-      </div>
-      <div class="header-right">
-        <a href="#default" class="h">Вийти атсюда,</a>
-        <a href="#default" class="h rounded">Розбійник</a>
-      </div>
+        <a href="#about">Новини</a>
     </div>
+    <div class="header-right">
+        <a href="#default" class="h rounded"><i class="fas fa-user-graduate"></i>Marian</a>
+        <a href="#default" class="h">Вийти</a>
+    </div>
+</div>
+</div>
 
-    <div class="profile_block">
-      <div class="profile_img"></div>
-      <div class="profile_info">
-        <!-- <ul>
-          <li>ім'я: {{ get_user.first_name }} {{ get_user.last_name }}</li>
-          <li>id: {{ get_user.id}}</li>
-          <li>група: {{ get_user.profile.student_group }}</li>
-          <li>емейл: {{ get_user.email }}</li>
-          <li>номер телефону: {{ get_user.profile.numberphone }}</li>
-        </ul> -->
+<div class="profile_block">
+    <div class="profile_img"><img src="{{ get_user.profile.img.url }}"></div>
+    <div class="profile_info">
         <div class="profile_name_id">
-          <div class="profile_name">Ростик Лукавий</div>
-          <div class="profile_id">id: 84345</div>
+            <div class="profile_name">{{ get_user.first_name }} {{ get_user.last_name }}</div>
         </div>
-        <div>група: КН-215</div>
-        <div>емейл: example@gmail.com</div>
-        <div>номер телефону: 0945184782</div>
-      </div>
+        <div>Group: {{ get_user.profile.student_group }}</div>
+        <div>Email: {{ get_user.email }}</div>
+        <div>Number phone:{{ get_user.profile.numberphone }}</div>
+        <div> GitHub: {{ get_user.profile.github }}</div>
     </div>
-  </body>
+</div>
+</body>
 </html>

@@ -3,7 +3,10 @@
 <p><a href="lesson/{{lesson.id}}">{{ lesson.name }}</a></p>
 {% endfor %}
 {{ get_profile.student_group }}<br>
-{{ get_deadlines }}
+<p>Dead lines</p> <br>
+{% for i in get_deadlines.all %}
+ {{i.name}} {{i.deadline_time}} {{i.lesson}} <br>
+{% endfor %}
 
 
 
