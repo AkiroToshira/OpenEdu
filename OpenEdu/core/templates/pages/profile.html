@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Сторінка профілю</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <!-- <link rel="stylesheet" href="../../static/css/profile.css" /> -->
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <a href="#default" class="logo">Openedflix</a>
+      </div>
+      <div class="header-center">
+        <a class="active" href="#home">Головна</a>
+        <a href="#contact">Предмети</a>
+      </div>
+      <div class="header-right">
+        <a href="#default" class="h">Вийти атсюда,</a>
+        <a href="#default" class="h rounded">Розбійник</a>
+      </div>
+    </div>
+
+    <div class="profile_block">
+      <div class="profile_img"></div>
+      <div class="profile_info">
+        <!-- <ul>
+          <li>ім'я: {{ get_user.first_name }} {{ get_user.last_name }}</li>
+          <li>id: {{ get_user.id}}</li>
+          <li>група: {{ get_user.profile.student_group }}</li>
+          <li>емейл: {{ get_user.email }}</li>
+          <li>номер телефону: {{ get_user.profile.numberphone }}</li>
+        </ul> -->
+        <div class="profile_name_id">
+          <div class="profile_name">Ростик Лукавий</div>
+          <div class="profile_id">id: 84345</div>
+        </div>
+        <div>група: КН-215</div>
+        <div>емейл: example@gmail.com</div>
+        <div>номер телефону: 0945184782</div>
+      </div>
+    </div>
+  </body>
+</html>
