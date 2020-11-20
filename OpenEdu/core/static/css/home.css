@@ -1,0 +1,247 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Open Sans";
+}
+
+:root {
+  --backgroundColor: #525252;
+  --textColor: #fbfbfb;
+  --sideBarsBG: #737373;
+  --usePadding: 20px;
+}
+
+.wrapper {
+  background-color: #596275;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #596275;
+}
+
+.bigNews {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  background-color: #34495e;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--textColor);
+  overflow: hidden;
+}
+
+.bigNewsWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 60%;
+  height: 250px;
+  padding: 20px;
+}
+
+.bigNewsWrapper > h1 {
+  font-size: 3em;
+  width: 65%;
+}
+
+.bigNewsWrapper > p,
+.bigNewsWrapper > span {
+  color: #1e272e;
+  font-size: 14px;
+}
+
+.statsBigNews > ul {
+  margin-top: 10px;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
+.smallNews {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--textColor);
+  padding: 20px;
+}
+
+.smallNews > h1 {
+  color: black;
+  margin-bottom: 10px;
+}
+
+.smallNews > .news_block_cards > .news_card {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 150px;
+  min-width: 300px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #485460;
+}
+
+.news_card_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news_block_cards {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+}
+
+/* MARJAN CODE */
+
+.header {
+  font-family: "Open Sans", sans-serif;
+  overflow: hidden;
+  background-color: #343d46;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.header a {
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 50px;
+  border-radius: 4px;
+  margin-left: 25px;
+  text-transform: uppercase;
+}
+
+.header a.logo {
+  font-size: 2em;
+  font-weight: bold;
+  box-shadow: none;
+}
+
+.header div .logo:hover,
+.header div .logo:focus {
+  border-radius: 0 !important;
+  box-shadow: 0 !important;
+  background-color: none;
+  box-shadow: 0px 0px 0 0px rgba(0, 0, 0, 0);
+}
+
+.header a:hover {
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.16);
+}
+.header a:not(:first-child):focus {
+  background-color: rgb(50, 74, 77);
+  color: white;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.46);
+  border-radius: 20px;
+}
+.header-right a:focus {
+  background-color: rgb(50, 74, 77);
+  color: white;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.46);
+  border-radius: 20px;
+}
+
+.header-right a:focus {
+  background-color: rgb(50, 74, 77);
+  color: white;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.46);
+  border-radius: 20px;
+}
+
+.header-center .active:focus {
+  background-color: rgb(50, 74, 77);
+  color: white;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.46);
+  border-radius: 20px;
+}
+
+.header-right a:first-child {
+  padding: 5px 10px;
+}
+
+.header-right .rounded {
+  border-radius: 20px;
+  padding: 5px 15px;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.16);
+}
+.fa-user-graduate {
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 630px) {
+  .header a {
+    float: none;
+    margin-left: 0;
+    text-transform: none;
+  }
+  .header a.logo {
+    font-size: 2em;
+    font-weight: none;
+    padding: 0;
+  }
+
+  .header-right .rounded {
+    border: 2px solid rgb(50, 74, 77);
+    border-radius: 4px;
+
+    margin-top: 2px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .fa,
+  .fab,
+  .fad,
+  .fal,
+  .far,
+  .fas {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .header a {
+    line-height: 40px;
+    text-transform: none;
+  }
+
+  .header a.logo {
+    line-height: 150px;
+  }
+  .header-center,
+  .header-right {
+    display: flex;
+    flex-direction: column;
+  }
+  .header-right {
+    border: none;
+  }
+
+  .fa,
+  .fab,
+  .fad,
+  .fal,
+  .far,
+  .fas {
+    display: none !important;
+  }
+}
