@@ -13,5 +13,6 @@ urlpatterns = [
     path('lessons/', views.lessons, name='lessons'),
     path('lessons/lesson/<int:id>', views.lesson, name='lesson'),
     path('', views.redir, name='redir'),
-    path('mains/profile', views.profile, name ='profile')
+    path('mains/profile', views.profile, name='profile'),
+    path('schedule', views.schedule, name='schedule'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

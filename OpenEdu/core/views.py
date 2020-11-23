@@ -1,4 +1,4 @@
-from .models import Articles, Profile, Lesson, StudentsGroup, Document, Deadlines
+from .models import Articles, Profile, Lesson, StudentsGroup, Document, Deadlines, Schedule
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -62,6 +62,18 @@ def lessons(request):
         'get_deadlines': get_deadlines,
     }
     template = 'core/lessons.html'
+    return render(request, template, context)
+
+
+def schedule(request):
+    get_profile = Profile.objects.get(id=request.user.id)
+    get_schedule = Schedule.objects.all().filter(group_id=get_profile.student_group.id)
+    get_lessons = Lesson.objects.all().filter(studentsgroup=get_profile.student_group.id)
+    context = {
+        'get_schedule': get_schedule,
+        'get_lessons': get_lessons,
+    }
+    template = 'core/schedule.html'
     return render(request, template, context)
 
 

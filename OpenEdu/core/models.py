@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from PIL import Image
+
 
 class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
@@ -50,21 +50,32 @@ class Deadlines(models.Model):
         return self.name
 
 
+class Schedule(models.Model):
+    SUBGROUP_CHOICE = (
+        ('First', 'First'),
+        ('Second', 'Second'),
+        ('Both', 'Both')
+    )
+    WEEK_DAY_CHOICES = (
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+    )
+    group_id = models.ForeignKey(StudentsGroup, on_delete=models.CASCADE)
+    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
+    week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
+    time = models.IntegerField()
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student_group = models.ForeignKey(StudentsGroup, blank=True, null=True, on_delete=models.SET_NULL)
     github = models.CharField(max_length=30, blank=True)
     numberphone = models.CharField(max_length=13, blank=True)
     img = models.ImageField(upload_to='profile_img', blank=True)
-
-    def save(self):
-        super().save()
-        img = Image.open(self.img.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.img.path)
 
 
 @receiver(post_save, sender=User)
