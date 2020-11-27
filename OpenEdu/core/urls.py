@@ -3,8 +3,10 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as authViews
 
-
+urlpatterns = [
+]
 urlpatterns = [
     path('mains/', views.core, name='core'),
     path('mains/detail/<int:id>', views.detail, name='detail'),
@@ -15,4 +17,5 @@ urlpatterns = [
     path('', views.redir, name='redir'),
     path('mains/profile', views.profile, name='profile'),
     path('schedule', views.schedule, name='schedule'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

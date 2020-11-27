@@ -1,0 +1,152 @@
+{% extends 'core/header.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/shedule.css' %}"/>
+<body>
+<div class="schedual">
+    <div class="schedual_title">Розклад</div>
+    <div class="schedual_block_wrapper">
+        <div class="schedual_block">
+            <div class="schedual_block_title">
+                <div class="schedual_block_title_wrapper">
+                    Понеділок
+                    <div class="schedual_block_title_undeline"></div>
+                </div>
+                <div class="schedual_day">21 Листопада</div>
+            </div>
+            <div class="schedual_block_info">
+                <div class="schedual_list">
+                    {% for x in schedule_monday%}
+                    <div class="schedual_list_item_block">
+                        <div class="item_time">{{ x.time }}</div>
+                        <div class="schedual_list_items">
+                            <div class="schedual_list_item">
+                                <div class="item_wrapper">
+                                    <div class="left-line"></div>
+                                    <div class="subject">{{ x.lesson_id }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="schedual_block">
+            <div class="schedual_block_title">
+                <div class="schedual_block_title_wrapper">
+                    Вівторок
+                    <div
+                            class="schedual_block_title_undeline undeline_color_purplemountain"
+                    ></div>
+                </div>
+                <div class="schedual_day">21 Листопада</div>
+            </div>
+            <div class="schedual_block_info">
+                <div class="schedual_list">
+                    {% for x in schedule_monday%}
+                    <div class="schedual_list_item_block">
+                        <div class="item_time">{{ x.time }}</div>
+                        <div class="schedual_list_items">
+                            <div class="schedual_list_item">
+                                <div class="item_wrapper">
+                                    <div class="left-line"></div>
+                                    <div class="subject">{{ x.lesson_id }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="schedual_block">
+            <div class="schedual_block_title">
+                <div class="schedual_block_title_wrapper">
+                    Середа
+                    <div
+                            class="schedual_block_title_undeline undeline_color_summertime"
+                    ></div>
+                </div>
+                <div class="schedual_day">26 Січня</div>
+            </div>
+            <div class="schedual_block_info">
+                <div class="schedual_list">
+                    {% for x in schedule_monday%}
+                    <div class="schedual_list_item_block">
+                        <div class="item_time">{{ x.time }}</div>
+                        <div class="schedual_list_items">
+                            <div class="schedual_list_item">
+                                <div class="item_wrapper">
+                                    <div class="left-line"></div>
+                                    <div class="subject">{{ x.lesson_id }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+        <div class="schedual_block">
+            <div class="schedual_block_title">
+                <div class="schedual_block_title_wrapper">
+                    Четвер
+                    <div
+                            class="schedual_block_title_undeline undeline_color_squeky"
+                    ></div>
+                </div>
+                <div class="schedual_day">31 Вересня</div>
+            </div>
+            <div class="schedual_block_info">
+                <div class="schedual_list">
+                    {% for x in schedule_monday%}
+                    <div class="schedual_list_item_block">
+                        <div class="item_time">{{ x.time }}</div>
+                        <div class="schedual_list_items">
+                            <div class="schedual_list_item">
+                                <div class="item_wrapper">
+                                    <div class="left-line"></div>
+                                    <div class="subject">{{ x.lesson_id }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="schedual_block">
+            <div class="schedual_block_title">
+                <div class="schedual_block_title_wrapper">
+                    П'ятниця
+                    <div
+                            class="schedual_block_title_undeline undeline_color_tigerlily"
+                    ></div>
+                </div>
+                <div class="schedual_day">12 Серпня</div>
+            </div>
+            <div class="schedual_block_info">
+                <div class="schedual_list">
+                    {% for x in schedule_monday%}
+                    <div class="schedual_list_item_block">
+                        <div class="item_time">{{ x.time }}</div>
+                        <div class="schedual_list_items">
+                            <div class="schedual_list_item">
+                                <div class="item_wrapper">
+                                    <div class="left-line"></div>
+                                    <div class="subject">{{ x.lesson_id }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock content %}

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7f9;
+
+}
+.box {
+  margin: 25px auto;
+  display: flex;
+  align-items: flex-start;
+  height: 500px;
+  max-width: 450px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,.3);
+
+}
+
+.box .selected {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input[type="text"],input[type="password"] {
+  background-color : #f5f5f5;
+  margin-bottom: 1.2rem;
+  padding: 1rem 9rem 1rem 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  font-size: 20px;
+}
+
+input[type="radio"]{
+  margin: 3px 3px 3px 4px;
+}
+
+button {
+  background-color: rgb(30, 156, 132);
+  border: none;
+  color: white;
+  /* padding: 2.5rem 3rem; */
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+  margin: .75rem 0;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.selected .logo-name{
+  text-align: center;
+  margin-bottom: 3.5rem;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(30, 156, 132);
+
+}
+
+ input[type=checkbox]:checked {
+  background-color: #a77e2d !important;
+  color: #ffffff !important;
+}
+
+.user-container input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 2px rgba(0,0,0,.3);
+}
+
+.user-png {
+  background-color: #eaeaea;
+  width: 27px;
+  height: 27px;
+  padding: 1rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  box-shadow: 0 0 2px rgba(0,0,0,.3);
+}
+
+label:not(:last-child) {
+  font-size: 1.2em;
+  margin-bottom: 0.5rem;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: row;
+}

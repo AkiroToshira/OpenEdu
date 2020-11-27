@@ -1,0 +1,37 @@
+{% extends 'core/header.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/class.css' %}"/>
+<body>
+<div class="container">
+    <div class="first-section">
+
+        {% for i in get_chapter %}
+        <div class="col">
+            <div class="title">
+                <span>{{ i.name }}</span>
+            </div>
+            <div class="description">
+                <span>{{ i.description }}</span>
+            </div>
+            <div class="title pdf">
+                <a href="{{ i.document.url }}" download>pdf file</a>
+                <img src="../../media/page/pdf.svg" alt="" class="user-png">
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="second-section">
+        <div class="col col-teacher-info">
+            <div class="teacher-img" style="margin: 0 auto;"></div>
+            <div class="whois">
+                <span>Викладач:</span>
+                <span>Мочурад Л. І.</span>
+            </div>
+            <div class="teacher-info"><p>{{ get_lesson.description }}</p></div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock content %}

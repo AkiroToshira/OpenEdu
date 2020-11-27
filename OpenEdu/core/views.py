@@ -1,4 +1,4 @@
-from .models import Articles, Profile, Lesson, StudentsGroup, Document, Deadlines, Schedule
+from .models import Articles, Profile, Lesson, Deadlines, Schedule, Chapter
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -24,20 +24,20 @@ def user_login(request):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'core/login.html', {'form': form})
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def core(request):
     list_articles = Articles.objects.all()
     context = {
         'list_articles': list_articles
     }
-    template = 'core/core.html'
+    template = 'core/news.html'
     return render(request, template, context)
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def detail(request, id):
     get_articles = Articles.objects.get(id=id)
     context = {
@@ -47,60 +47,65 @@ def detail(request, id):
     return render(request, template, context)
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def lessons(request):
     get_profile = Profile.objects.get(id=request.user.id)
-    get_group = StudentsGroup.objects.all()
-    get_lessons = Lesson.objects.all()
-    get_document = Document.objects.all()
+    get_lessons = get_profile.student_group.lessons.all()
     get_deadlines = Deadlines.objects.all().filter(groups_id=get_profile.student_group.id)
     context = {
         'get_lesson': get_lessons,
-        'get_group': get_group,
-        'get_profile': get_profile,
-        'get_file': get_document,
         'get_deadlines': get_deadlines,
+        'get_profile': get_profile,
     }
-    template = 'core/lessons.html'
+    template = 'core/classes.html'
     return render(request, template, context)
 
 
+@login_required(login_url='/login')
 def schedule(request):
     get_profile = Profile.objects.get(id=request.user.id)
-    get_schedule = Schedule.objects.all().filter(group_id=get_profile.student_group.id)
-    get_lessons = Lesson.objects.all().filter(studentsgroup=get_profile.student_group.id)
+    schedule_monday = Schedule.objects.all().filter(group_id=get_profile.student_group.id, week_day='Monday')
+    schedule_tuesday = Schedule.objects.all().filter(group_id=get_profile.student_group.id, week_day='Tuesday')
+    schedule_wednesday = Schedule.objects.all().filter(group_id=get_profile.student_group.id, week_day='Wednesday')
+    schedule_thursday = Schedule.objects.all().filter(group_id=get_profile.student_group.id, week_day='Thursday')
+    schedule_friday = Schedule.objects.all().filter(group_id=get_profile.student_group.id, week_day='Friday')
     context = {
-        'get_schedule': get_schedule,
-        'get_lessons': get_lessons,
+        'schedule_monday': schedule_monday,
+        'schedule_tuesday': schedule_tuesday,
+        'schedule_wednesday': schedule_wednesday,
+        'schedule_thursday': schedule_thursday,
+        'schedule_friday': schedule_friday,
     }
-    template = 'core/schedule.html'
+    template = 'core/shedule.html'
     return render(request, template, context)
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def lesson(request, id):
     get_lessons = Lesson.objects.get(id=id)
+    get_chapter = Chapter.objects.all().filter(lesson=id)
     context = {
         'get_lesson': get_lessons,
+        'get_chapter': get_chapter,
     }
-    template = 'core/lesson.html'
+    template = 'core/class.html'
     return render(request, template, context)
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/login')
 def profile(request):
     get_user = User.objects.get(id=request.user.id)
     context = {
         'get_user': get_user
     }
-    template = 'accounts/profile.html'
+    template = 'core/profile.html'
     return render(request, template, context)
 
 
 def logout_view(request):
     logout(request)
-    return redirect('login/')
+    return redirect('/login')
 
 
 def redir(request):
-    return redirect('login/')
+    return redirect('/login')

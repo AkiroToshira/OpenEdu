@@ -8,7 +8,7 @@ class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=50)
     text = models.TextField(max_length=200)
-    img = models.ImageField(upload_to='article')
+    img = models.ImageField(upload_to='article', blank=True)
 
     def __str__(self):
         return self.name
@@ -17,6 +17,16 @@ class Articles(models.Model):
 class Lesson(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=30, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Chapter(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField(max_length=30, blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    document = models.FileField(upload_to='document/', blank=True)
 
     def __str__(self):
         return self.name
@@ -71,8 +81,15 @@ class Schedule(models.Model):
 
 
 class Profile(models.Model):
+    PERMISSION_CHOISE = (
+        ('Student', 'Student'),
+        ('Teacher', 'Teacher'),
+        ('Admin', 'Admin'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account_permission = models.CharField(max_length=7, choices=PERMISSION_CHOISE, default='Student')
     student_group = models.ForeignKey(StudentsGroup, blank=True, null=True, on_delete=models.SET_NULL)
+    teacher_lesson = models.ManyToManyField(Lesson, blank=True)
     github = models.CharField(max_length=30, blank=True)
     numberphone = models.CharField(max_length=13, blank=True)
     img = models.ImageField(upload_to='profile_img', blank=True)
@@ -87,4 +104,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
