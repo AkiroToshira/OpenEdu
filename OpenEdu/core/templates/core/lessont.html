@@ -30,6 +30,7 @@
                 <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>
                 <img src="../../media/page/pdf.svg" alt="" class="user-png">
             </div>
+            <a href="{% url 'deletechapter' i.id %}">Delete</a>
         </div>
         {% endfor %}
 

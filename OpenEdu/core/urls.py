@@ -18,5 +18,6 @@ urlpatterns = [
     path('mains/profile', views.profile, name='profile'),
     path('schedule', views.schedule, name='schedule'),
     path('lessont/lesson/<int:id>', views.lessont, name='lessont'),
-    path('lessont/lesson/add/<int:id>', views.addchapter, name='addchapter')
+    path('lessont/lesson/add/<int:id>', views.addchapter, name='addchapter'),
+    path('lessont/lesson/delete/<int:id>', views.deletechapter, name='deletechapter'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

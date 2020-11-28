@@ -155,3 +155,8 @@ def addchapter(request, id):
     }
     template = 'core/addchapter.html'
     return render(request, template, context)
+
+
+def deletechapter(request, id):
+    Chapter.objects.get(id=id).delete()
+    return redirect('/lessont/lesson/')
