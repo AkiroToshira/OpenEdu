@@ -24,12 +24,13 @@
     </div>
     <div class="second-section">
         <div class="col col-teacher-info">
-            <div class="teacher-img" style="margin: 0 auto;"></div>
-            <div class="whois">
-                <span>Викладач:</span>
-                <span>Мочурад Л. І.</span>
-            </div>
             <div class="teacher-info"><p>{{ get_lesson.description }}</p></div>
+            <div class="whois">
+                <span>Групи:</span>
+                {% for i in get_group %}
+                <span>{{ i }}</span>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

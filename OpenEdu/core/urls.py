@@ -17,5 +17,6 @@ urlpatterns = [
     path('', views.redir, name='redir'),
     path('mains/profile', views.profile, name='profile'),
     path('schedule', views.schedule, name='schedule'),
-
+    path('lessont/lesson/<int:id>', views.lessont, name='lessont'),
+    path('lessont/lesson/add/<int:id>', views.addchapter, name='addchapter')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

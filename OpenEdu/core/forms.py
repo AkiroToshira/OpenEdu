@@ -1,11 +1,10 @@
 from django import forms
-from .models import Document
 
 
-class DocumentForm(forms.ModelForm):
-    class Meta:
-        model = Document
-        fields = ('description', 'document', )
+class ChapterForm(forms.Form):
+    name = forms.CharField(max_length=30)
+    description = forms.CharField(required=False, widget=forms.Textarea())
+    document = forms.FileField(required=False)
 
 
 class LoginForm(forms.Form):
