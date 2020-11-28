@@ -113,13 +113,25 @@ def redir(request):
 
 @login_required(login_url='/login')
 def lessont(request, id):
+    if request.method == 'POST':
+        form = ChapterForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_chapter = Chapter.objects.create(lesson_id=id)
+            new_chapter.name = form.cleaned_data['name']
+            new_chapter.description = form.cleaned_data['description']
+            new_chapter.document = form.cleaned_data['document']
+            print(new_chapter)
+            new_chapter.save()
+            return redirect('/lessont/lesson/<int:id>')
     get_lessons = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
     get_group = StudentsGroup.objects.all().filter(lessons=id)
+    form = ChapterForm()
     context = {
         'get_lesson': get_lessons,
         'get_chapter': get_chapter,
         'get_group': get_group,
+        'form': form,
     }
     template = 'core/lessont.html'
     return render(request, template, context)
