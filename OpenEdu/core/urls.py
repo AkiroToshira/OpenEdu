@@ -20,4 +20,6 @@ urlpatterns = [
     path('lessont/lesson/<int:id>', views.lessont, name='lessont'),
     path('lessont/lesson/add/<int:id>', views.addchapter, name='addchapter'),
     path('lessont/lesson/delete/<int:id>', views.deletechapter, name='deletechapter'),
+    path('lessonst/', views.lessonst, name='lessonst'),
+    path('schedulet', views.schedulet, name='schedulet'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

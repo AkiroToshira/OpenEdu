@@ -10,3 +10,10 @@ class ChapterForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class DeadLinesForm(forms.Form):
+    name = forms.CharField(max_length=20)
+    deadline_time = forms.DateTimeField()
+    lesson = ['lessons']
+    groups = ['groups']
