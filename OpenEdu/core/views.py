@@ -155,7 +155,7 @@ def lessont(request, id):
             new_chapter.description = form.cleaned_data['description']
             new_chapter.document = form.cleaned_data['document']
             new_chapter.save()
-            return redirect('/lessont/lesson/<int:id>')
+            return redirect('/lessonst/lesson/' + str(id))
     get_lessons = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
     get_group = StudentsGroup.objects.all().filter(lessons=id)
@@ -180,6 +180,7 @@ def editchapter(request, id):
             form = ChapterForm(request.POST, request.FILES)
             if form.is_valid():
                 update_chapter = Chapter.objects.get(id=id)
+                current_lesson_id = update_chapter.lesson_id
                 update_chapter.name = form.cleaned_data['name']
                 update_chapter.description = form.cleaned_data['description']
                 if form.cleaned_data['document'] != None:
@@ -187,7 +188,7 @@ def editchapter(request, id):
                 else:
                     update_chapter.document = get_chapter.document
                 update_chapter.save()
-                return redirect('../../')
+                return redirect('/lessonst/lesson/' + str(current_lesson_id)) #redirect to lessonst//
     form = ChapterForm(initial={'name': get_chapter.name,
                                 'description': get_chapter.description,
                                 'document': get_chapter.document})
@@ -209,7 +210,8 @@ def addchapter(request, id):
             new_chapter.document = form.cleaned_data['document']
             print(new_chapter)
             new_chapter.save()
-            return redirect('/lessont/lesson/',1)
+            #return redirect('/lessont/lesson/',1) - old redirect
+            return redirect('/lessonst/lesson/' + str(id))
     else:
         form = ChapterForm()
     context = {
@@ -218,8 +220,8 @@ def addchapter(request, id):
     template = 'core/addchapter.html'
     return render(request, template, context)
 
-
 def deletechapter(request, id):
     Chapter.objects.get(id=id).delete()
     print(id)
-    return redirect('/lessont/lesson/')
+    #return redirect('/lessont/lesson/') - old redirect
+    return redirect('/lessonst')
