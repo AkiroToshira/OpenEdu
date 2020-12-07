@@ -31,6 +31,8 @@ class Chapter(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'lessont/lesson/{self.lesson}'
 
 class Document(models.Model):
     description = models.CharField(max_length=20, blank=True)

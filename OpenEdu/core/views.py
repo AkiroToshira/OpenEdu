@@ -96,8 +96,6 @@ def schedulet(request):
         'schedule_thursday': schedule_thursday,
         'schedule_friday': schedule_friday,
     }
-    print(get_lessons)
-    print(schedule_monday)
     template = 'core/shedule.html'
     return render(request, template, context)
 
@@ -173,6 +171,31 @@ def lessont(request, id):
         'refactor_id': refactor_id,
     }
     template = 'core/lessont.html'
+    return render(request, template, context)
+
+
+def editchapter(request, id):
+    get_chapter = Chapter.objects.get(id=id)
+    if request.method == 'POST':
+            form = ChapterForm(request.POST, request.FILES)
+            if form.is_valid():
+                update_chapter = Chapter.objects.get(id=id)
+                update_chapter.name = form.cleaned_data['name']
+                update_chapter.description = form.cleaned_data['description']
+                if form.cleaned_data['document'] != None:
+                    update_chapter.document = form.cleaned_data['document']
+                else:
+                    update_chapter.document = get_chapter.document
+                update_chapter.save()
+                return redirect('../../')
+    form = ChapterForm(initial={'name': get_chapter.name,
+                                'description': get_chapter.description,
+                                'document': get_chapter.document})
+    context = {
+        'get_chapter': get_chapter,
+        'form': form
+    }
+    template = 'core/editchapter.html'
     return render(request, template, context)
 
 

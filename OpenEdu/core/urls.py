@@ -22,4 +22,5 @@ urlpatterns = [
     path('lessont/lesson/delete/<int:id>', views.deletechapter, name='deletechapter'),
     path('lessonst/', views.lessonst, name='lessonst'),
     path('schedulet', views.schedulet, name='schedulet'),
+    path('lessont/lesson/editchapter/<int:id>', views.editchapter, name='editchapter'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

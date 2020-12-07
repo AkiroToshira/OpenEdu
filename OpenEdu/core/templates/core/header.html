@@ -25,7 +25,7 @@
     </div>
     <div class="header-right">
         {% url 'profile' as url_profile_page %}
-        <a href="{{ url_profile_page }}" class="h rounded">{{request.user.first_name}}</a>
+        <a href="{{ url_profile_page }}" class="h rounded">{{request.user.profile.account_permission }}</a>
         {% url 'logout' as url_logout_page %}
         <a href="{{ url_logout_page }}">Logout</a>
     </div>
