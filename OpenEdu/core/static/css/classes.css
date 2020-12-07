@@ -1,40 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
-
-* {
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-}
 
 
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #f5f7f9;
 }
 
 .container {
   display: flex;
-  width: 80%;
-  margin: 25px auto 0 auto;
+  width: 940px;
+  margin: 0 auto 0 auto;
   flex-wrap: wrap;
   justify-content: flex-start;
+  font-family: 'Open Sans', sans-serif;
   align-items: center;
   background-color: white;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
 }
 
 .deadline-container {
-  width: 80%;
-  margin: 0 auto 25px auto;
+  width: 940px;
+  margin: 0 auto 0 auto;
   background-color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  box-shadow: 0 2px 2px rgba(85, 104, 123, .3);
-
 }
 
 .col {
@@ -42,20 +30,45 @@ body {
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 250px;
-  height: 180px;
-  margin: 15px;
+  width: 248px;
+  height: 160px;
   text-align: center;
   font-size: 20px;
-  max-width: 450px;
-  border-radius: 10px;
+  max-width: 248px;
+  border-radius: 6px;
+  padding: 20px;
   color: black;
+  margin: 8px;
   text-decoration: none;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .08);
+  border: 1px solid #e4e4e4;
+}
+
+.icon-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.08);
+  background-repeat: no-repeat;
+  background-color: #ea6167;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.icon-container img {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 50px;
 }
 
 .col:hover {
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03);
+  transition: all 0.2s ease;
 }
 
 .my-classes {
@@ -71,52 +84,65 @@ body {
   font-size: 15px;
 }
 
-.inner-information span:first-child {
-  font-size: 22px;
+.inner-information span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b0b0b;
+  margin: 12px 0 0;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.subjet-title {
+  margin: 20px auto 5px auto;
+}
+
+.subjet-title span{
+  font-size: 30px;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .content-table {
-  border-collapse: collapse;
-  margin: 25px auto;
+  /* border-collapse: collapse; */
+  margin: 10px auto;
   font-size: 20px;
   max-width: 78%;
-  border-radius: 5px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 0 2px rgba(85, 104, 123, .3);
 }
 
 .content-table thead tr {
-  background-color: white;
   text-align: center;
-  border-bottom: 4px solid #d9e8f3;
+  border-bottom: 4px solid rgb(30, 156, 132);
 }
 
 .content-table th {
   padding: 15px;
-  color: #55687b;
+  color: #fff;
+  background-color: rgb(30, 156, 132);
+  border-radius: 6px;
 }
 
 th {
   font-weight: normal;
-  background-color: white;
   color: #919da9;
 }
 
 td {
   text-align: center;
   vertical-align: middle;
-  color: #919da9;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
 }
 
 .content-table td:hover {
-  background-color: #d9e8f3;
+    background-color: rgb(21, 185, 153);
+ }
 
-}
 
 td,
 th {
@@ -127,7 +153,7 @@ th {
 
 @media screen and (max-width: 1400px) {
   .container {
-    width: 100%;
+    width: 85%;
     position: relative;
     top: 0;
     left: 0;
@@ -138,13 +164,23 @@ th {
   }
 
   .deadline-container {
-    width: 100%;
-    box-shadow: 0 0 5px rgba(85, 104, 123, .3);
+    width: 85%;
+
 
   }
 }
 
 @media screen and (max-width: 680px) {
+  .container {
+    width: 85%;
+    position: relative;
+    top: 0;
+    left: 0;
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+    justify-content: center;
+    box-shadow: 0 0 0 rgba(85, 104, 123, .3);
+  }
   .col {
     width: 200px;
     height: 120px;
@@ -159,9 +195,17 @@ th {
     margin: 15px;
   }
 }
+@media only screen and (max-width: 760px){
 
+.col {
+  width: 200px;
+  height: 120px;
+  margin: 15px;
+}
+}
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px) {
+
 
   table,
   thead,

@@ -18,6 +18,7 @@ class Lesson(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=30, blank=True)
 
+
     def __str__(self):
         return self.name
 

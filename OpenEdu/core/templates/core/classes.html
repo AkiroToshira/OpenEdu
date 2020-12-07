@@ -1,10 +1,14 @@
 {% extends 'core/header.html' %}
 {% block content %}
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/classes.css' %}"/>
 <body>
+<link rel="stylesheet" href="">
 <script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
 <div class="main-container">
+
+  <div class="subjet-title"><span>Предмети</span></div>
     <div class="container">
         {% for lesson in get_profile.student_group.lessons.all %}
         <a href="lesson/{{ lesson.id }}" class="col">
@@ -16,7 +20,6 @@
         <table class="content-table">
             <thead>
             <tr>
-                <th>Статус</th>
                 <th>Назва предмату</th>
                 <th>Назва задачі</th>
                 <th>Дедлайн</th>
@@ -26,7 +29,6 @@
             <tbody>
             {% for x in get_deadlines %}
             <tr>
-                <td class="checkbox"><input type="checkbox" name="myTextEditBox" value="checked"/></td>
                 <td>{{ x.lesson }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>

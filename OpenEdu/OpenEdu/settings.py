@@ -65,11 +65,11 @@ WSGI_APPLICATION = 'OpenEdu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db',
+        'NAME': 'new_schema',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '4132',
+        'PASSWORD': '529234Popqasef23',
     }
 }
 

@@ -1,4 +1,6 @@
 <!doctype html>
+
+
 {% load static %}
 <html lang="en">
 <head>
@@ -13,11 +15,17 @@
 
 <div class="header">
     <div>
-        <a href="" class="logo">OpenEdu</a>
+        <a href="" class="logo">OpendEdu</a>
     </div>
     <div class="header-center">
+
+        {%if request.user.profile.account_permission == 'Student'%}
         {% url 'lessons' as url_lessons_page %}
-        <a href="{{ url_lessons_page }}">Предмети</a>
+        <a href="{{ url_lessons_page }}">Предмет</a>
+        {%else%}
+        {% url '#' as gyrnal %}
+        <a href="{{ gyrnal }}">Журнал</a>
+        {%endif%}
         {% url 'schedule' as url_schedule_page %}
         <a href="{{ url_schedule_page }}">Розклад</a>
         {% url 'core' as url_news_page %}
@@ -27,7 +35,7 @@
         {% url 'profile' as url_profile_page %}
         <a href="{{ url_profile_page }}" class="h rounded">{{request.user.first_name}}</a>
         {% url 'logout' as url_logout_page %}
-        <a href="{{ url_logout_page }}">Logout</a>
+        <a href="{{ url_logout_page }}" class="h logout">Logout</a>
     </div>
 </div>
 {% block content %}
