@@ -42,11 +42,8 @@
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>
                 <td>{{ x.groups }}</td>
-                <td><!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-xid="{{x}}" data-toggle="modal"
-                            data-target="#myModal"
-                            data-content="Содержимое 1...">Открыть модальное окно с содержимым 1
-                    </button>
+                <td>
+                    <a href="{% url 'deletedeadlines' x.id %}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -90,6 +87,7 @@
                             <div class="modal-footer">
                                 <button type="submit" name="button">Add</button>
                             </div>
+                        </th>
                 </form>
             </div>
         </div>

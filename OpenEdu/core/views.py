@@ -237,5 +237,9 @@ def editdeadline(request, id):
 
 def deletechapter(request, id):
     Chapter.objects.get(id=id).delete()
-    print(id)
     return redirect('/lessont/lesson/')
+
+
+def deletedeadlines(requset, id):
+    Deadlines.objects.get(id=id).delete()
+    return redirect('/lessonst/')
