@@ -1,1 +1,1 @@
-# OpenEdu
+# OpenEdu Project
