@@ -4,14 +4,12 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/classes.css' %}"/>
 <body>
 <script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
+<link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
 <div class="main-container">
     <div class="container">
@@ -21,7 +19,10 @@
         </a>
         {% endfor %}
     </div>
-        Perm : {{ get_profile.account_permission }}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Додати дедлайн
+    </button>
     <div class="deadline-container">
         <table class="content-table">
             <thead>
@@ -41,40 +42,89 @@
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>
                 <td>{{ x.groups }}</td>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Редактувати
-                </button>
+                <td><!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-xid="{{x}}" data-toggle="modal"
+                            data-target="#myModal"
+                            data-content="Содержимое 1...">Открыть модальное окно с содержимым 1
+                    </button>
+                </td>
             </tr>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form enctype="multipart/form-data" action="" method="post">
-                                {{ x.name }}
-                                <button type="submit" name="button">Add</button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" action="" method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <th>
+                            <label for="id_name">Name:</label>
+                            <input type="text" name="name" maxlength="20" required id="id_name"><br>
+                            <label for="id_deadline_time">Deadline time:</label>
+                            <input type="date" name="deadline_time" required id="id_deadline_time"><br>
+                            <label for="id_lesson">Lesson:</label>
+                            <select name="lesson" required id="id_lesson">
+                                {% for lesson in get_lesson %}
+                                <option value="{{ lesson.id}}">{{ lesson.name }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <label for="id_group">Group:</label>
+                            <select name="group" required id="id_group">
+                                {% for group in get_group %}
+                                <option value="{{ lesson.id}}">{{ group.name }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <div class="modal-footer">
+                                <button type="submit" name="button">Add</button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <h4 class="modal-title">Заголовок модального окна</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    // при открытии модального окна
+    $('#myModal').on('show.bs.modal', event => {
+        // получить кнопку, которая его открыло
+        let button = $(event.relatedTarget)
+        // извлечь информацию из атрибута data-content
+        let content = button.data('xid')
+        console.log(content)
+        // вывести эту информацию в элемент, имеющий id="content"
+        $('.modal-body > #content').text(content);
+    })
+</script>
 {% endblock content %}
+

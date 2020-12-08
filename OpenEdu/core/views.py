@@ -133,13 +133,30 @@ def redir(request):
 
 @login_required(login_url='/login')
 def lessonst(request):
+    if request.method == 'POST':
+        form = DeadLinesForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['is_edit']:
+                print('Is edit')
+            else:
+                new_deadlines = Deadlines()
+                new_deadlines.name = form.cleaned_data['name']
+                new_deadlines.deadline_time = form.cleaned_data['deadline_time']
+                new_deadlines.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
+                new_deadlines.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
+                new_deadlines.save()
+                return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
     get_lessons = get_profile.teacher_lesson.all()
-    get_deadlines = Deadlines.objects.all().filter(lesson__in=get_lessons)
+    get_deadlines = Deadlines.objects.all().filter(lesson__in=get_lessons).order_by('deadline_time')
+    get_group = StudentsGroup.objects.all().filter(lessons__in=get_lessons).distinct()
+    form = DeadLinesForm()
     context = {
         'get_lesson': get_lessons,
         'get_profile': get_profile,
         'get_deadlines': get_deadlines,
+        'form': form,
+        'get_group': get_group,
     }
     template = 'core/classest.html'
     return render(request, template, context)
@@ -155,20 +172,16 @@ def lessont(request, id):
             new_chapter.description = form.cleaned_data['description']
             new_chapter.document = form.cleaned_data['document']
             new_chapter.save()
-            return redirect('/lessonst/lesson/' + str(id))
+            return redirect('/lessont/lesson/<int:id>')
     get_lessons = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
     get_group = StudentsGroup.objects.all().filter(lessons=id)
     form = ChapterForm()
-    refactor = False
-    refactor_id = 0
     context = {
         'get_lesson': get_lessons,
         'get_chapter': get_chapter,
         'get_group': get_group,
         'form': form,
-        'refactor': refactor,
-        'refactor_id': refactor_id,
     }
     template = 'core/lessont.html'
     return render(request, template, context)
@@ -177,18 +190,17 @@ def lessont(request, id):
 def editchapter(request, id):
     get_chapter = Chapter.objects.get(id=id)
     if request.method == 'POST':
-            form = ChapterForm(request.POST, request.FILES)
-            if form.is_valid():
-                update_chapter = Chapter.objects.get(id=id)
-                current_lesson_id = update_chapter.lesson_id
-                update_chapter.name = form.cleaned_data['name']
-                update_chapter.description = form.cleaned_data['description']
-                if form.cleaned_data['document'] != None:
-                    update_chapter.document = form.cleaned_data['document']
-                else:
-                    update_chapter.document = get_chapter.document
-                update_chapter.save()
-                return redirect('/lessonst/lesson/' + str(current_lesson_id)) #redirect to lessonst//
+        form = ChapterForm(request.POST, request.FILES)
+        if form.is_valid():
+            update_chapter = Chapter.objects.get(id=id)
+            update_chapter.name = form.cleaned_data['name']
+            update_chapter.description = form.cleaned_data['description']
+            if form.cleaned_data['document'] != None:
+                update_chapter.document = form.cleaned_data['document']
+            else:
+                update_chapter.document = get_chapter.document
+            update_chapter.save()
+            return redirect('../../')
     form = ChapterForm(initial={'name': get_chapter.name,
                                 'description': get_chapter.description,
                                 'document': get_chapter.document})
@@ -200,28 +212,30 @@ def editchapter(request, id):
     return render(request, template, context)
 
 
-def addchapter(request, id):
+def editdeadline(request, id):
     if request.method == 'POST':
         form = ChapterForm(request.POST, request.FILES)
         if form.is_valid():
-            new_chapter = Chapter.objects.create(lesson_id=id)
-            new_chapter.name = form.cleaned_data['name']
-            new_chapter.description = form.cleaned_data['description']
-            new_chapter.document = form.cleaned_data['document']
-            print(new_chapter)
-            new_chapter.save()
-            #return redirect('/lessont/lesson/',1) - old redirect
-            return redirect('/lessonst/lesson/' + str(id))
-    else:
-        form = ChapterForm()
+            update_chapter = Chapter.objects.get(id=id)
+            update_chapter.name = form.cleaned_data['name']
+            update_chapter.description = form.cleaned_data['description']
+            update_chapter.document = form.cleaned_data['document']
+            update_chapter.save()
+    get_profile = Profile.objects.get(id=request.user.id)
+    get_lesson = get_profile.teacher_lesson.all()
+    get_deadlines = Deadlines.objects.get(id=id)
+    get_group = StudentsGroup.objects.all().filter(lessons__in=get_lesson).distinct()
+    form = ChapterForm(initial=get_deadlines)
     context = {
         'form': form,
+        'get_lesson': get_lesson,
+        'get_group': get_group,
     }
-    template = 'core/addchapter.html'
+    template = 'core/editdeadlines.html'
     return render(request, template, context)
+
 
 def deletechapter(request, id):
     Chapter.objects.get(id=id).delete()
     print(id)
-    #return redirect('/lessont/lesson/') - old redirect
-    return redirect('/lessonst')
+    return redirect('/lessont/lesson/')

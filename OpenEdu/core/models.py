@@ -34,6 +34,7 @@ class Chapter(models.Model):
     def get_absolute_url(self):
         return f'lessont/lesson/{self.lesson}'
 
+
 class Document(models.Model):
     description = models.CharField(max_length=20, blank=True)
     document = models.FileField(upload_to='documents/')

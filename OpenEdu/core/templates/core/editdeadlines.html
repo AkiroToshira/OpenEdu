@@ -1,0 +1,27 @@
+<form enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    <tr>
+        <th>
+            <label for="id_name">Name:</label>
+            <input type="text" name="name" maxlength="20" required id="id_name"><br>
+            <label for="id_deadline_time">Deadline time:</label>
+            <input type="date" name="deadline_time" required id="id_deadline_time"><br>
+            <label for="id_lesson">Lesson:</label>
+            <select name="lesson" required id="id_lesson">
+                {% for lesson in get_lesson %}
+                <option value="{{ lesson.id}}">{{ lesson.name }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="id_group">Group:</label>
+            <select name="group" required id="id_group">
+                {% for group in get_group %}
+                <option value="{{ lesson.id}}">{{ group.name }}</option>
+                {% endfor %}
+            </select><br>
+            <div class="modal-footer">
+                <button type="submit" name="button">Add</button>
+            </div>
+        </th>
+    </tr>
+</form>
+{{get_group}}
