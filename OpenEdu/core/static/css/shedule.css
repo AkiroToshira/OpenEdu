@@ -130,8 +130,7 @@
 }
 
 .schedual_list_items {
-  padding: 5px 10px;
-  /* background-color: blue; */
+  padding: 5px 0;
 }
 
 .item_time {
@@ -141,12 +140,36 @@
   padding-left: 10px;
 }
 
-.item_wrapper {
+.item_wrapper_info {
   display: flex;
   align-items: center;
+  padding-left: 5px;
+  border-radius: 9990px;
+  transition: background-color .4s;
+
+}
+.item_wrapper_info:hover {
+  background-color: lightblue;
+  cursor: pointer;
+  border-radius: 9990px;
 }
 
-.item_wrapper > .left-line {
+.item_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.additional_info {
+  display: none;
+  flex-direction: column;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(99, 205, 218, 0.2);
+  border-radius: 5px;
+}
+
+.item_wrapper_info > .left-line {
   margin-right: 20px;
   width: 30px;
   height: 4px;

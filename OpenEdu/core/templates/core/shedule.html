@@ -2,6 +2,8 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/shedule.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <body>
 <div class="schedual">
     <div class="schedual_title">Розклад</div>
@@ -16,14 +18,50 @@
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
+<!--                    <div class="schedual_list_item_block">-->
+<!--                        <div class="item_time">8:30</div>-->
+<!--                        <div class="schedual_list_items">-->
+<!--                            <div class="schedual_list_item">-->
+<!--                                <div class="item_wrapper">-->
+<!--                                    <div class="item_wrapper_info">-->
+<!--                                        <div class="left-line"></div>-->
+<!--                                        <div class="subject">1</div>-->
+<!--                                    </div>-->
+<!--                                    <div class="additional_info">-->
+<!--                                        <div class="">Група: {{group}}</div>-->
+<!--                                        <div class="">Посилання: {{link}}</div>-->
+<!--                                        <div class="">Дод. інформація: {{additional_info}}</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="item_wrapper">-->
+<!--                                    <div class="item_wrapper_info">-->
+<!--                                        <div class="left-line"></div>-->
+<!--                                        <div class="subject">1</div>-->
+<!--                                    </div>-->
+<!--                                    <div class="additional_info">-->
+<!--                                        <div class="">Група: {{group}}</div>-->
+<!--                                        <div class="">Посилання: {{link}}</div>-->
+<!--                                        <div class="">Дод. інформація: {{additional_info}}</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     {% for x in schedule_monday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
                             <div class="schedual_list_item">
                                 <div class="item_wrapper">
-                                    <div class="left-line"></div>
-                                    <div class="subject">{{ x.lesson_id }}</div>
+                                    <div class="item_wrapper_info">
+                                        <div class="left-line"></div>
+                                        <div class="subject">{{ x.lesson_id }}</div>
+                                    </div>
+                                    <div class="additional_info">
+                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Посилання: {{link}}</div>
+                                        <div class="">Дод. інформація: {{additional_info}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -45,14 +83,22 @@
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
+
                     {% for x in schedule_monday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
                             <div class="schedual_list_item">
                                 <div class="item_wrapper">
-                                    <div class="left-line"></div>
-                                    <div class="subject">{{ x.lesson_id }}</div>
+                                    <div class="item_wrapper_info">
+                                        <div class="left-line"></div>
+                                        <div class="subject">{{ x.lesson_id }}</div>
+                                    </div>
+                                    <div class="additional_info">
+                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Посилання: {{link}}</div>
+                                        <div class="">Дод. інформація: {{additional_info}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +125,15 @@
                         <div class="schedual_list_items">
                             <div class="schedual_list_item">
                                 <div class="item_wrapper">
-                                    <div class="left-line"></div>
-                                    <div class="subject">{{ x.lesson_id }}</div>
+                                    <div class="item_wrapper_info">
+                                        <div class="left-line"></div>
+                                        <div class="subject">{{ x.lesson_id }}</div>
+                                    </div>
+                                    <div class="additional_info">
+                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Посилання: {{link}}</div>
+                                        <div class="">Дод. інформація: {{additional_info}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -108,8 +161,15 @@
                         <div class="schedual_list_items">
                             <div class="schedual_list_item">
                                 <div class="item_wrapper">
-                                    <div class="left-line"></div>
-                                    <div class="subject">{{ x.lesson_id }}</div>
+                                    <div class="item_wrapper_info">
+                                        <div class="left-line"></div>
+                                        <div class="subject">{{ x.lesson_id }}</div>
+                                    </div>
+                                    <div class="additional_info">
+                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Посилання: {{link}}</div>
+                                        <div class="">Дод. інформація: {{additional_info}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,8 +196,15 @@
                         <div class="schedual_list_items">
                             <div class="schedual_list_item">
                                 <div class="item_wrapper">
-                                    <div class="left-line"></div>
-                                    <div class="subject">{{ x.lesson_id }}</div>
+                                    <div class="item_wrapper_info">
+                                        <div class="left-line"></div>
+                                        <div class="subject">{{ x.lesson_id }}</div>
+                                    </div>
+                                    <div class="additional_info">
+                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Посилання: {{link}}</div>
+                                        <div class="">Дод. інформація: {{additional_info}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -149,4 +216,14 @@
     </div>
 </div>
 </body>
+
+<script>
+    $(document).ready(() => {
+        $(".item_wrapper").click(function () {
+            var index = $(".item_wrapper").index(this);
+            $('.additional_info').eq(index).slideToggle();
+        });
+    })
+</script>
+
 {% endblock content %}
