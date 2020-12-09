@@ -219,6 +219,7 @@
 
 <script>
     $(document).ready(() => {
+        $('.additional_info').hide();
         $(".item_wrapper").click(function () {
             var index = $(".item_wrapper").index(this);
             $('.additional_info').eq(index).slideToggle();
