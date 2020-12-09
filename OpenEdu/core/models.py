@@ -76,11 +76,21 @@ class Schedule(models.Model):
         ('Thursday', 'Thursday'),
         ('Friday', 'Friday'),
     )
+    TIME_CHOICE = (
+        ('8:30 − 10:05', 1),
+        ('10:20 − 11:55', 2),
+        ('12:10 − 13:45', 3),
+        ('14:15 − 15:50', 4),
+        ('16:00 − 17:35', 5),
+        ('17:40 − 19:15', 6),
+        ('19:20 − 20:55', 7),
+        ('21:00 − 22:35', 8),
+    )
     group_id = models.ForeignKey(StudentsGroup, on_delete=models.CASCADE)
     lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
-    time = models.IntegerField()
+    time =models.CharField(max_length=13, choices=TIME_CHOICE)
 
 
 class Profile(models.Model):
