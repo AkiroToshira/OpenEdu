@@ -167,6 +167,11 @@
   margin-bottom: 10px;
   background-color: rgba(99, 205, 218, 0.2);
   border-radius: 5px;
+  width: 100%;
+}
+
+.additional_info > div {
+  width: 100%;
 }
 
 .item_wrapper_info > .left-line {
