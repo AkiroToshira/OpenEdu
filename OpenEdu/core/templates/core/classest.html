@@ -42,9 +42,8 @@
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>
                 <td>{{ x.groups }}</td>
-                <td>
-                    <a href="{% url 'deletedeadlines' x.id %}">Delete</a>
-                </td>
+                <td><a href="{% url 'deletedeadlines' x.id %}">Delete</a>
+                 <a href="{% url 'editdeadline' x.id %}">Edit</a></td>
             </tr>
             {% endfor %}
             </tbody>
