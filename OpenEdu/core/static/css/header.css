@@ -31,6 +31,10 @@ body {
   line-height: 16px;
 }
 
+.header a:hover {
+  cursor: pointer;
+}
+
 .header-center a {
   cursor: default;
 }
