@@ -52,10 +52,13 @@
 .schedual_block_title_wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .schedual_block_title_undeline {
+  position: absolute;
   width: 250%;
+  bottom: -10px;
   margin-top: 10px;
   height: 7px;
   border-radius: 10px;
