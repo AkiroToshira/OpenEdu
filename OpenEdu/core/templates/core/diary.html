@@ -1,0 +1,559 @@
+{% extends 'core/teacher_header.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/diary.css' %}"/>
+<body>
+<div class="main_page">
+    <div class="diary">
+        <div class="dropdown_menu_diary">
+
+            <div class="choose_group">Виберіть свою групу</div>
+            <div class="dropdown">
+                 <button class="dropbtn">Групи</button>
+                <div class="dropdown-content group_content">
+                    <a href="#215">КН-215</a>
+                    <a href="#214">КН-214</a>
+                    <a href="#213">КН-213</a>
+                    <a href="#212">КН-212</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn group_name">Предмети</button>
+                <div class="dropdown-content">
+                    <a href="#">ОС</a>
+                    <a href="#">ПП</a>
+                    <a href="#">ТЙ</a>
+                    <a href="#">ТІ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-fixed-column-outter">
+            <div class="table-fixed-column-inner">
+                <table class="table-fixed-column table-fixed-column table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="students">Студенти</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                        <th>13</th>
+                        <th>14</th>
+                        <th>15</th>
+                        <th>16</th>
+                        <th>17</th>
+                        <th>18</th>
+                        <th>19</th>
+                        <th>20</th>
+                        <th>21</th>
+                        <th>23</th>
+                        <th>24</th>
+                        <th>25</th>
+                        <th>26</th>
+                        <th>27</th>
+                        <th>28</th>
+                        <th>29</th>
+                        <th>30</th>
+                        <th>31</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Лукавий Мар'ян Дмитрович</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>2.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>н</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>2.5</td>
+                        <td>3</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>3.5</td>
+                        <td>0</td>
+                        <td>4</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // let button = document.querySelectorAll("a");
+    document.querySelectorAll('.dropdown-content > a').forEach(item => {
+        item.addEventListener('click', e => {
+            if (document.querySelector('.dropdown-content a.active') !== null) {
+                document.querySelector('.dropdown-content a.active').classList.remove('active');
+            }
+            if (e.target.parentElement.className.split(' ')[1] === 'group_content') {
+                document.querySelectorAll('.dropbtn')[0].innerText = e.target.innerHTML;
+            } else {
+                document.querySelectorAll('.dropbtn')[1].innerText = e.target.innerHTML;
+            }
+            // document.querySelectorAll('group_number').innerText = e.target.innerHTML;
+            // document.querySelector(' .header-usr').innerText = e.target.innerHTML;
+            // console.log(e)
+            e.target.className = "active";
+        })
+    })
+</script>
+</body>
+{% endblock content %}
