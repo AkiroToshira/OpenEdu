@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.dropbtn {
+
+    /*background-color: #3e8e41;*/
+    color: black;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    height: 60px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.dropdown_menu_diary {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choose_group {
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+
+    align-items: center;
+    background-color: #eceaea60;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.table-fixed-column-outter {
+    position: relative;
+    margin: 2rem auto;
+    max-width: 78%;
+}
+
+.table-fixed-column-inner {
+    overflow-x: scroll;
+    overflow-y: visible;
+    margin-left: 200px;
+}
+
+.table-fixed-column-inner .table {
+    margin-bottom: 0.25rem;
+}
+
+.table.table-fixed-column {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table td,
+.table th {
+    width: 60px;
+    padding: 10px 0;
+    height: 40px;
+    text-align: center;
+    /* border: 1px solid #ddd; */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.table tr td:hover {
+    cursor: pointer;
+    /*background-color: red;*/
+    transition: all 0.7s ease;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, .5);
+}
+
+.table tr td:first-child:hover {
+    box-shadow: 0 0 0 rgba(0, 0, 0, .08);
+}
+
+.table tr th {
+    background-color: #eceaea60;
+}
+
+th {
+    position: sticky;
+}
+
+
+.table tr td {
+    color: rgb(89, 94, 97);
+}
+
+.table th:first-child,
+.table tr td:first-child {
+    position: absolute;
+    left: 0;
+    width: 200px;
+}
+
+.table tr td:first-child {
+    color: rgb(37, 43, 47);
+    font-size: 1rem;
+    font-weight: 300;
+    background-color: #eceaea60;
+}
+
+thead tr th {
+    line-height: 40px;
+    color: rgb(37, 43, 47);
+    font-size: 1.325rem;
+    font-weight: 500;
+}
+
+.students {
+    background-color: #eaeaea;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+}
+
+table {
+    overflow: hidden;
+}
+
+td, th {
+    position: relative;
+}
+
+td:hover::after {
+    background-color: #eceaea60;
+    content: '';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+
+td:first-child:hover::after {
+    background-color: white;
+    content: '';
+    height: 0;
+    left: 0;
+    top: 0;
+    width: 0;
+    z-index: 1;
+}
+
+td:first-child:hover::before {
+    background-color: white;
+    content: '';
+    height: 0px;
+    left: 0;
+    position: none;
+    top: 0;
+    width: 0;
+    z-index: 0;
+}
+
+td:hover::before {
+    background-color: #eceaea60;
+    content: '';
+    height: 100%;
+    left: -5000px;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: -2;
+}
