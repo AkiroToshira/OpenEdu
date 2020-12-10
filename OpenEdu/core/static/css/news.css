@@ -54,7 +54,7 @@ body {
     content: "";
     position: absolute;
     bottom: 0;
-    height: 60%;
+    height: 70%;
     width: 100%;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -65,7 +65,7 @@ body {
 
 
 .main_news_text_wrapper {
-    padding: 5px;
+    padding: 10px;
     font-family: 'Oswald', sans-serif;
     color: white;
     position: absolute;
@@ -86,6 +86,7 @@ body {
 
 .short_description {
     font-weight: 300;
+    border-top: 1px solid #f4f7f9;
 }
 
 
