@@ -43,7 +43,7 @@
                 <td>{{ x.deadline_time }}</td>
                 <td>{{ x.groups }}</td>
                 <td><a href="{% url 'deletedeadlines' x.id %}">Delete</a>
-                 <a href="{% url 'editdeadline' x.id %}">Edit</a></td>
+                    <a href="{% url 'editdeadline' x.id %}">Edit</a></td>
             </tr>
             {% endfor %}
             </tbody>
@@ -64,64 +64,37 @@
             </div>
             <div class="modal-body">
                 <form enctype="multipart/form-data" action="" method="post">
-                    {% csrf_token %}
                     <tr>
                         <th>
+                            {% csrf_token %}
                             <label for="id_name">Name:</label>
                             <input type="text" name="name" maxlength="20" required id="id_name"><br>
                             <label for="id_deadline_time">Deadline time:</label>
-                            <input type="date" name="deadline_time" required id="id_deadline_time"><br>
+                            <input type="date" name="deadline_time" required id="id_deadline_time""><br>
                             <label for="id_lesson">Lesson:</label>
                             <select name="lesson" required id="id_lesson">
+                                <option disabled>Виберіть предмет</option>
                                 {% for lesson in get_lesson %}
-                                <option value="{{ lesson.id}}">{{ lesson.name }}</option>
+                                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
                                 {% endfor %}
                             </select><br>
                             <label for="id_group">Group:</label>
                             <select name="group" required id="id_group">
+                                <option disabled>Виберіть групу</option>
                                 {% for group in get_group %}
-                                <option value="{{ lesson.id}}">{{ group.name }}</option>
+                                <option value="{{ group.id }}">{{ group.name }}</option>
                                 {% endfor %}
                             </select><br>
                             <div class="modal-footer">
                                 <button type="submit" name="button">Add</button>
                             </div>
                         </th>
+                    </tr>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                <h4 class="modal-title">Заголовок модального окна</h4>
-            </div>
-            <div class="modal-body">
-                <p id="content"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-<script>
-    // при открытии модального окна
-    $('#myModal').on('show.bs.modal', event => {
-        // получить кнопку, которая его открыло
-        let button = $(event.relatedTarget)
-        // извлечь информацию из атрибута data-content
-        let content = button.data('xid')
-        console.log(content)
-        // вывести эту информацию в элемент, имеющий id="content"
-        $('.modal-body > #content').text(content);
-    })
-</script>
 {% endblock content %}
 

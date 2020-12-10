@@ -1,21 +1,23 @@
 <form enctype="multipart/form-data" action="" method="post">
-    {% csrf_token %}
     <tr>
         <th>
+            {% csrf_token %}
             <label for="id_name">Name:</label>
-            <input type="text" name="name" maxlength="20" required id="id_name"><br>
+            <input type="text" name="name" maxlength="20" required id="id_name" value="{{update_deadline.name}}"><br>
             <label for="id_deadline_time">Deadline time:</label>
-            <input type="date" name="deadline_time" required id="id_deadline_time"><br>
+            <input type="date" name="deadline_time" required id="id_deadline_time" value="{{update_deadline.deadline_time}}"><br>
             <label for="id_lesson">Lesson:</label>
             <select name="lesson" required id="id_lesson">
+                <option disabled>Виберіть предмет</option>
                 {% for lesson in get_lesson %}
-                <option value="{{ lesson.id}}">{{ lesson.name }}</option>
+                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
                 {% endfor %}
             </select><br>
             <label for="id_group">Group:</label>
             <select name="group" required id="id_group">
+                <option disabled>Виберіть групу</option>
                 {% for group in get_group %}
-                <option value="{{ lesson.id}}">{{ group.name }}</option>
+                <option value="{{ group.id }}">{{ group.name }}</option>
                 {% endfor %}
             </select><br>
             <div class="modal-footer">

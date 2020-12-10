@@ -21,4 +21,3 @@ class DeadLinesForm(forms.Form):
     deadline_time = forms.DateField(widget=DateInput)
     lesson = forms.IntegerField(required=True)
     group = forms.IntegerField(required=True)
-    is_edit = forms.BooleanField(required=False)
