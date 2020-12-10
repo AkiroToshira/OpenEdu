@@ -11,6 +11,7 @@
   background-color: #f5f7f9;
   display: flex;
   padding: 10px;
+  height: 100vh;
   flex-direction: column;
 }
 
@@ -52,10 +53,13 @@
 .schedual_block_title_wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .schedual_block_title_undeline {
+  position: absolute;
   width: 250%;
+  bottom: -12px;
   margin-top: 10px;
   height: 7px;
   border-radius: 10px;
