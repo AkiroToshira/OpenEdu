@@ -6,39 +6,124 @@
 <div class="main_page">
     <div class="main_news">
         <div class="main_news_block">
-            <div class="main_news_img"><img src="../media/news/bg.jpg" alt=""/></div>
-            <div class="main_news_wrapper">
-                <div class="main_news_date">01:12:2001</div>
-                <div class="main_news_title">Сьогодні посадили Деканата</div>
-            </div>
-            <div class="short_description_block">
-                <p class="short_description">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
-                    quae atque, dolore iure ullam, rem iste facilis maxime quod aut
-                    nostrum autem, placeat id odio nemo maiores minima esse nihil.Î
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
-                    quae atque, dolore iure ullam, rem iste facilis maxime quod aut
-                    nostrum autem, placeat id odio nemo maiores minima esse nihil.Î
-                </p>
+            <div class="main_news_img"><img src="../media/news/bg4k.jpg" alt=""/></div>
+            <div class="main_news_text_wrapper">
+                <div class="main_news_wrapper">
+                    <div class="main_news_date">01:12:2001</div>
+                    <div class="main_news_title">Сьогодні посадили Деканата</div>
+                </div>
+                <div class="short_description_block">
+                    <p class="short_description">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
+                        quae atque, dolore iure ullam, rem iste facilis maxime quod aut
+                        nostrum autem, placeat id odio nemo maiores minima esse nihil.Î
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
+                        quae atque, dolore iure ullam, rem iste facilis maxime quod aut
+                        nostrum autem, placeat id odio nemo maiores minima esse nihil.Î
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="subnews">
         <div class="subnews_list">
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+            <div class="subnews_item">
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
+                </div>
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
+            </div>
+
             {% for i in list_articles %}
             <div class="subnews_item">
-                    <div class="subnews_wrapper">
-                        <div class="subnews_date">{{i.articles_data}}</div>
-                        <div class="subnews_title">{{i.name}}</div>
-                    </div>
-                    <div class="subnews_text">
-                        {{i.text}}
-                    </div>
+                <div class="subnews_wrapper">
+                    <div class="subnews_date">{{i.articles_data}}</div>
+                    <div class="subnews_title">{{i.name}}</div>
                 </div>
-                {% endfor %}
+                <div class="subnews_text">
+                    {{i.text}}
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 </div>
 </body>
 {% endblock content %}
