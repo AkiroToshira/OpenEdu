@@ -1,100 +1,125 @@
 {% extends 'core/header.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/classes.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/classes.css' %}" />
+
 <body>
-<script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
-<link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<body>
-<div class="main-container">
-    <div class="container">
+  <script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
+
+  <body>
+    <div class="main-container">
+      <div class="subjet-title"><span>Предмети</span></div>
+
+      <div class="container">
         {% for lesson in get_lesson %}
         <a href="lesson/{{ lesson.id }}" class="col">
-            <div class="inner-information"><span>{{ lesson.name }}</span></div>
+          <div class="inner-information"><span>{{ lesson.name }}</span></div>
         </a>
         {% endfor %}
-    </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Додати дедлайн
-    </button>
-    <div class="deadline-container">
+      </div>
+      <div class="subjet-title">
+        <span>Дедлайни</span>
+      </div>
+
+      <div class="deadline-container">
         <table class="content-table">
-            <thead>
+          <thead>
             <tr>
-                <th>Статус</th>
-                <th>Назва предмату</th>
-                <th>Назва задачі</th>
-                <th>Дедлайн</th>
-                <th>Група</th>
+              <th>Назва предмату</th>
+              <th>Назва задачі</th>
+              <th>Дедлайн</th>
+              <th>Група</th>
+              <th></th>
+              <th></th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
+            <tr class="add-deadline">
+              <td colspan="6" id="myBtn">Додати дедлайн</td>
+            </tr>
+
             {% for x in get_deadlines %}
             <tr>
-                <td class="checkbox"><input type="checkbox" name="myTextEditBox" value="checked"/></td>
-                <td>{{ x.lesson }}</td>
-                <td>{{ x.name }}</td>
-                <td>{{ x.deadline_time }}</td>
-                <td>{{ x.groups }}</td>
-                <td><a href="{% url 'deletedeadlines' x.id %}">Delete</a>
-                    <a href="{% url 'editdeadline' x.id %}">Edit</a></td>
+              <td>{{ x.lesson }}</td>
+              <td>{{ x.name }}</td>
+              <td>{{ x.deadline_time }}</td>
+              <td>{{ x.groups }}</td>
+              <td class="delete"><a href="{% url 'deletedeadlines' x.id %}">Delete</a></td>
+              <td class="edit"><a href="{% url 'editdeadline' x.id %}">Edit</a></td>
+
             </tr>
             {% endfor %}
-            </tbody>
+          </tbody>
         </table>
+      </div>
     </div>
-</div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form enctype="multipart/form-data" action="" method="post">
-                    <tr>
-                        <th>
-                            {% csrf_token %}
-                            <label for="id_name">Name:</label>
-                            <input type="text" name="name" maxlength="20" required id="id_name"><br>
-                            <label for="id_deadline_time">Deadline time:</label>
-                            <input type="date" name="deadline_time" required id="id_deadline_time"><br>
-                            <label for="id_lesson">Lesson:</label>
-                            <select name="lesson" required id="id_lesson">
-                                <option disabled>Виберіть предмет</option>
-                                {% for lesson in get_lesson %}
-                                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
-                                {% endfor %}
-                            </select><br>
-                            <label for="id_group">Group:</label>
-                            <select name="group" required id="id_group">
-                                <option disabled>Виберіть групу</option>
-                                {% for group in get_group %}
-                                <option value="{{ group.id }}">{{ group.name }}</option>
-                                {% endfor %}
-                            </select><br>
-                            <div class="modal-footer">
-                                <button type="submit" name="button">Add</button>
-                            </div>
-                        </th>
-                    </tr>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-{% endblock content %}
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
 
+        <div class="modal-body">
+          <form enctype="multipart/form-data" action="" method="post">
+            {% csrf_token %}
+            <div class="subject-title">
+              <label for="id_name">Name:</label>
+              <input type="text" name="name" maxlength="20" required id="id_name" placeholder="Name">
+            </div>
+            <div class="deadline-time">
+              <label for="id_deadline_time">Deadline time:</label>
+              <input type="date" name="deadline_time" required id="id_deadline_time">
+            </div>
+            <div class="lesson-check">
+              <label for="id_lesson">Lesson:</label>
+              <select name="lesson" required id="id_lesson">
+                <option disabled>Виберіть предмет</option>
+                {% for lesson in get_lesson %}
+                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="group-check">
+              <label for="id_group">Group:</label>
+              <select name="group" required id="id_group">
+                <option disabled>Виберіть групу</option>
+                {% for group in get_group %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="modal-add">
+              <button type="submit" name="button">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+    </script>
+  </body>
+  {% endblock content %}

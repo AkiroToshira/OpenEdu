@@ -37,7 +37,7 @@
         {% url 'profile' as url_profile_page %}
         <a href="{{ url_profile_page }}" class="h rounded">{{request.user.profile.account_permission }}</a>
         {% url 'logout' as url_logout_page %}
-        <a href="{{ url_logout_page }}">Logout</a>
+        <a href="{{ url_logout_page }}" class="h logout">Logout</a>
     </div>
 </div>
 {% block content %}

@@ -50,6 +50,8 @@ body {
 }
 
 .header a:hover {
+  text-decoration: none;
+
   color: rgb(30, 156, 132);
   /* border-bottom: 3px solid rgb(30, 156, 132); */
   transition: all 0.3s ease;
