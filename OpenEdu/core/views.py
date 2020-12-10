@@ -136,16 +136,14 @@ def lessonst(request):
     if request.method == 'POST':
         form = DeadLinesForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['is_edit']:
-                print('Is edit')
-            else:
-                new_deadlines = Deadlines()
-                new_deadlines.name = form.cleaned_data['name']
-                new_deadlines.deadline_time = form.cleaned_data['deadline_time']
-                new_deadlines.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
-                new_deadlines.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
-                new_deadlines.save()
-                return redirect('/lessonst/')
+            new_deadlines = Deadlines()
+            new_deadlines.name = form.cleaned_data['name']
+            new_deadlines.deadline_time = form.cleaned_data['deadline_time']
+            new_deadlines.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
+            new_deadlines.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
+            new_deadlines.save()
+            print(new_deadlines)
+            return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
     get_lessons = get_profile.teacher_lesson.all()
     get_deadlines = Deadlines.objects.all().filter(lesson__in=get_lessons).order_by('deadline_time')
@@ -213,23 +211,25 @@ def editchapter(request, id):
 
 
 def editdeadline(request, id):
+    update_deadline = Deadlines.objects.get(id=id)
     if request.method == 'POST':
-        form = ChapterForm(request.POST, request.FILES)
+        form = DeadLinesForm(request.POST, request.FILES)
         if form.is_valid():
-            update_chapter = Chapter.objects.get(id=id)
-            update_chapter.name = form.cleaned_data['name']
-            update_chapter.description = form.cleaned_data['description']
-            update_chapter.document = form.cleaned_data['document']
-            update_chapter.save()
+            update_deadline.name = form.cleaned_data['name']
+            update_deadline.deadline_time = form.cleaned_data['deadline_time']
+            update_deadline.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
+            update_deadline.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
+            print(form)
+            update_deadline.save()
     get_profile = Profile.objects.get(id=request.user.id)
     get_lesson = get_profile.teacher_lesson.all()
-    get_deadlines = Deadlines.objects.get(id=id)
     get_group = StudentsGroup.objects.all().filter(lessons__in=get_lesson).distinct()
-    form = ChapterForm(initial=get_deadlines)
+    form = ChapterForm()
     context = {
         'form': form,
         'get_lesson': get_lesson,
         'get_group': get_group,
+        'update_deadline': update_deadline,
     }
     template = 'core/editdeadlines.html'
     return render(request, template, context)
