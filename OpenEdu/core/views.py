@@ -17,7 +17,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect("/mains/")
+                    return HttpResponseRedirect("/")
                 else:
                     return HttpResponse('Disabled account')
             else:
@@ -170,7 +170,8 @@ def lessont(request, id):
             new_chapter.description = form.cleaned_data['description']
             new_chapter.document = form.cleaned_data['document']
             new_chapter.save()
-            return redirect('/lessont/lesson/<int:id>')
+            #return redirect('/lessont/lesson/<int:id>')
+            return redirect('/lessonst/lesson/' + str(id))
     get_lessons = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
     get_group = StudentsGroup.objects.all().filter(lessons=id)
@@ -191,6 +192,7 @@ def editchapter(request, id):
         form = ChapterForm(request.POST, request.FILES)
         if form.is_valid():
             update_chapter = Chapter.objects.get(id=id)
+            current_lesson_id = update_chapter.lesson_id
             update_chapter.name = form.cleaned_data['name']
             update_chapter.description = form.cleaned_data['description']
             if form.cleaned_data['document'] != None:
@@ -198,7 +200,8 @@ def editchapter(request, id):
             else:
                 update_chapter.document = get_chapter.document
             update_chapter.save()
-            return redirect('../../')
+            #return redirect('../../')
+            return redirect('/lessonst/lesson/' + str(current_lesson_id))
     form = ChapterForm(initial={'name': get_chapter.name,
                                 'description': get_chapter.description,
                                 'document': get_chapter.document})
@@ -221,6 +224,7 @@ def editdeadline(request, id):
             update_deadline.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
             print(form)
             update_deadline.save()
+            return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
     get_lesson = get_profile.teacher_lesson.all()
     get_group = StudentsGroup.objects.all().filter(lessons__in=get_lesson).distinct()
@@ -236,8 +240,11 @@ def editdeadline(request, id):
 
 
 def deletechapter(request, id):
+    delete_chapter = Chapter.objects.get(id=id)
+    current_lesson_id = delete_chapter.lesson_id
     Chapter.objects.get(id=id).delete()
-    return redirect('/lessont/lesson/')
+    #return redirect('/lessont/lesson/')
+    return redirect('/lessonst/lesson/' + str(current_lesson_id))
 
 
 def deletedeadlines(requset, id):
