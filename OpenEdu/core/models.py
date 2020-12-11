@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 
@@ -50,6 +50,71 @@ class StudentsGroup(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=10)
+    curator = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+
+
+class StudentGroup(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @classmethod
+    def students_by_group(cls, group):
+        students = cls.objects.all().filter(group=group)
+        users = User.objects.all().filter(id__in=students)
+        return users
+
+
+class GradeBook(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+    def add_new_column(self, date):
+        new_column = BookColumn(gradebook=self, date=date)
+        new_column.save()
+
+
+class StudentGroupLesson(models.Model):
+    lesson = models.ForeignKey(Lesson, blank=False, on_delete=models.CASCADE)
+    student_group = models.ForeignKey(Group, blank=False, on_delete=models.CASCADE)
+    gradebook = models.ForeignKey(GradeBook, blank=True, null=True, on_delete=models.CASCADE)
+
+@receiver(pre_save, sender=StudentGroupLesson)
+def create_gradebook(sender, instance, **kwargs):
+    new_gradebook = GradeBook(group=instance.student_group)
+    new_gradebook.save()
+    instance.gradebook = new_gradebook
+
+
+class BookColumn(models.Model):
+    date = models.DateField(blank=False)
+    gradebook = models.ForeignKey(GradeBook, blank=True, on_delete=models.CASCADE)
+
+    @classmethod
+    def get_column_grade(cls, column_id):
+        get_column = Grade.objects.all().filter(date=column_id)
+        return get_column
+
+
+class Grade(models.Model):
+    date = models.ForeignKey(BookColumn, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.CharField(max_length=3, default='')
+
+
+
+
+
+@receiver(post_save, sender=BookColumn)
+def create_grade(sender, instance, created, **kwargs):
+    if created:
+        gradebook = instance.gradebook
+        students = StudentGroup.students_by_group(group=gradebook.group)
+        for student in students:
+            new_grade = Grade(date=instance, user=User.objects.get(id=student.id))
+            new_grade.save()
 
 
 class Deadlines(models.Model):

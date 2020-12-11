@@ -23,7 +23,7 @@
         {% if request.user.profile.account_permission == 'Student' %}
         <a href="{{ url_lessons_page }}"> Предмети</a>
         {% elif request.user.profile.account_permission == 'Teacher' %}
-        <a href="{{ url_lessonst_page }}"> Журнал</a>
+        <a href="{{ url_lessonst_page }}"> Предмети</a>
         {% elif request.user.profile.account_permission == 'Admin' %}
         <a href="{{ url_lessonst_page }}"> Предмети</a>
         {% endif %}
