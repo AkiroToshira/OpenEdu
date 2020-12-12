@@ -67,6 +67,10 @@ class StudentGroup(models.Model):
         users = User.objects.all().filter(id__in=students)
         return users
 
+    def get_grades(self):
+        get_grade = Grade.objects.all().filter(user=self)
+        return get_grade
+
 
 class GradeBook(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -75,11 +79,20 @@ class GradeBook(models.Model):
         new_column = BookColumn(gradebook=self, date=date)
         new_column.save()
 
+    def get_grades(self):
+        get_students = StudentGroup.students_by_group(self.group)
+        get_colums = BookColumn.objects.all().filter(gradebook=self)
+        grades = []
+        for student in get_students:
+            grades.append(Grade.objects.all().filter(user=student, date__in=get_colums))
+        return grades
+
 
 class StudentGroupLesson(models.Model):
     lesson = models.ForeignKey(Lesson, blank=False, on_delete=models.CASCADE)
     student_group = models.ForeignKey(Group, blank=False, on_delete=models.CASCADE)
     gradebook = models.ForeignKey(GradeBook, blank=True, null=True, on_delete=models.CASCADE)
+
 
 @receiver(pre_save, sender=StudentGroupLesson)
 def create_gradebook(sender, instance, **kwargs):
@@ -97,14 +110,15 @@ class BookColumn(models.Model):
         get_column = Grade.objects.all().filter(date=column_id)
         return get_column
 
+    def get_grade(self):
+        get_grade = Grade.objects.all().filter(date=self.id)
+        return get_grade
+
 
 class Grade(models.Model):
     date = models.ForeignKey(BookColumn, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     value = models.CharField(max_length=3, default='')
-
-
-
 
 
 @receiver(post_save, sender=BookColumn)

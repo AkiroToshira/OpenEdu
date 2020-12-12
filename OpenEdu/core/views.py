@@ -254,15 +254,14 @@ def deletedeadlines(requset, id):
 
 def gradebook(request, id):
     get_columns = BookColumn.objects.all().filter(gradebook=id)
-    colums_grade = Grade.objects.all().filter(date__in=get_columns)
-    get_student_group_lesson = StudentGroupLesson.objects.get(gradebook=id)
-    get_students = StudentGroup.students_by_group(get_student_group_lesson.student_group)
+    book = GradeBook.objects.get(id=id)
     context = {
-        'colums_grade': colums_grade,
-        'get_students': get_students,
+        'get_columns': get_columns,
+        'get_check': book.get_grades(),
     }
-    template = 'core/gradebook.html'
+    template = 'core/diary.html'
     return render(request, template, context)
+
 
 def gradebookhub(request):
     template = 'core/diary.html'
