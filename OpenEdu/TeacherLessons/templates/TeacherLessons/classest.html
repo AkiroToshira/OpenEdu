@@ -1,7 +1,7 @@
 {% extends 'core/header.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/classes.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'TeacherLessons/css/classes.css' %}" />
 
 <body>
   <script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
@@ -45,9 +45,8 @@
               <td>{{ x.name }}</td>
               <td>{{ x.deadline_time }}</td>
               <td>{{ x.groups }}</td>
-              <td class="delete"><a href="{% url 'deletedeadlines' x.id %}">Delete</a></td>
-              <td class="edit"><a href="{% url 'editdeadline' x.id %}">Edit</a></td>
-
+              <td class="delete"><a href="{% url 'DeleteDeadline' x.id %}">Delete</a></td>
+              <td class="edit"><a href="{% url 'EditDeadline' x.id %}">Edit</a></td>
             </tr>
             {% endfor %}
           </tbody>

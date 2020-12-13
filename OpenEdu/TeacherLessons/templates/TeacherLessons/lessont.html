@@ -1,7 +1,7 @@
 {% extends 'core/header.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/class.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'TeacherLessons/css/class.css' %}"/>
 
 <body>
 
@@ -21,7 +21,7 @@
                 <img src="../../media/page/pdf.svg" alt="" class="user-png">
             </div>
             <div class="inner-information">
-                <a href="{% url 'deletechapter' i.id %}">Видалити</a>
+                <a href="{% url 'DeleteChapter' i.id %}">Видалити</a>
                 <a href="editchapter/{{ i.id }}">
                     <span>Редактувати</span>
                 </a>
