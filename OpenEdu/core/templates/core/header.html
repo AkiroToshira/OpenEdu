@@ -17,24 +17,20 @@
         <a href="{{ url_news_page }}" class="logo">OpenEdu</a>
     </div>
     <div class="header-center">
-        {% url 'lessons' as url_lessons_page %}
-        {% url 'lessonst' as url_lessonst_page %}
         <!--Choose menu option according to account_permission -->
         {% if request.user.profile.account_permission == 'Student' %}
-        <a href="{{ url_lessons_page }}"> Предмети</a>
+        <a href="{% url 'StudentLessons' %}"> Предмети</a>
         {% elif request.user.profile.account_permission == 'Teacher' %}
-        <a href="{{ url_lessonst_page }}"> Предмети</a>
+        <a href="{% url 'TeacherLessons' %}"> Предмети</a>
         {% elif request.user.profile.account_permission == 'Admin' %}
         <a href="{{ url_lessonst_page }}"> Предмети</a>
         {% endif %}
 
-        {% url 'schedule' as url_schedule_page %}
-        {% url 'schedulet' as url_schedulet_page %}
          <!--Choose menu option according to account_permission -->
         {% if request.user.profile.account_permission == 'Student' %}
-        <a href="{{ url_schedule_page }}">Розклад</a>
+        <a href="{% url 'StudentShedule' %}">Розклад</a>
         {% elif request.user.profile.account_permission == 'Teacher' %}
-        <a href="{{ url_schedulet_page }}">Розклад</a>
+        <a href="{% url 'TeacherShedule' %}">Розклад</a>
         {% elif request.user.profile.account_permission == 'Admin' %}
         <a href="{{ url_schedulet_page }}">Розклад</a>
         {% endif %}

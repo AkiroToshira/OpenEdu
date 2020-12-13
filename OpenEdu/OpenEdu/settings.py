@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'core',
     'StudentLessons',
     'TeacherLessons',
+    'Shedule',
 ]
 
 MIDDLEWARE = [
