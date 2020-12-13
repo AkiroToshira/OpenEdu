@@ -6,15 +6,11 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as authViews
 
 urlpatterns = [
-]
-urlpatterns = [
     #path('mains/', views.core, name='core'),
     path('', views.core, name='core'),
     path('mains/detail/<int:id>', views.detail, name='detail'),
     url(r'^login/$', views.user_login, name='login'),
     path('logout', views.logout_view, name='logout'),
-    path('lessons/', views.lessons, name='lessons'),
-    path('lessons/lesson/<int:id>', views.lesson, name='lesson'),
     path('', views.redir, name='redir'),
     path('profile', views.profile, name='profile'),
     path('schedule', views.schedule, name='schedule'),
