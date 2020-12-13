@@ -86,13 +86,11 @@ a.logout {
   width: 113px;
 
   border-radius: 100px;
-  box-shadow: 0 0 0 1px #ccc;
 }
 
 a.logout:hover {
   border: none;
   color: rgb(35, 121, 104);
-
   box-shadow: 0 0 0 1px rgb(35, 121, 104);
 }
 
