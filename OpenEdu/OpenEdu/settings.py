@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'StudentLessons',
     'TeacherLessons',
     'Shedule',
+    'GradeBook',
+    'AdminPanel',
 ]
 
 MIDDLEWARE = [

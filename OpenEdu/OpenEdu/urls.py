@@ -7,4 +7,6 @@ urlpatterns = [
     path('lessons/', include('StudentLessons.urls')),
     path('lessonst/', include('TeacherLessons.urls')),
     path('shedule/', include('Shedule.urls')),
+    path('gradebook/', include('GradeBook.urls')),
+    path('adminpanel/', include('AdminPanel.urls')),
 ]

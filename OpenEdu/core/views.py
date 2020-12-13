@@ -64,19 +64,3 @@ def logout_view(request):
 
 def redir(request):
     return redirect('/login')
-
-
-def gradebook(request, id):
-    get_columns = BookColumn.objects.all().filter(gradebook=id)
-    book = GradeBook.objects.get(id=id)
-    context = {
-        'get_columns': get_columns,
-        'get_check': book.get_grades(),
-    }
-    template = 'core/diary.html'
-    return render(request, template, context)
-
-
-def gradebookhub(request):
-    template = 'core/diary.html'
-    return render(request, template)
