@@ -86,7 +86,6 @@
 
 .table.table-fixed-column {
     table-layout: fixed;
-    width: 100%;
 }
 
 .table td,
@@ -112,6 +111,7 @@
 
 .table tr th {
     background-color: #eceaea60;
+    width: 200px;
 }
 
 th {
