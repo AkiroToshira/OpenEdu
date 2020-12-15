@@ -4,14 +4,14 @@ from core.models import GradeBook, BookColumn
 
 
 @login_required(login_url='/login')
-def gradebook(request, id):
+def gradebookteacher(request, id):
     get_columns = BookColumn.objects.all().filter(gradebook=id)
     book = GradeBook.objects.get(id=id)
     context = {
         'get_columns': get_columns,
         'get_check': book.get_grades(),
     }
-    template = 'core/diary.html'
+    template = 'GradeBook/diary.html'
     return render(request, template, context)
 
 
@@ -25,5 +25,5 @@ def gradebookstudent(request):
     pass
 
 
-def gradebookteacher(request):
+def gradebook(request):
     pass

@@ -44,17 +44,33 @@ class Document(models.Model):
         return self.description
 
 
-class StudentsGroup(models.Model):
-    name = models.CharField(max_length=10)
-    lessons = models.ManyToManyField(Lesson, blank=True)
+class Institute(models.Model):
+    name = models.CharField(max_length=30)
 
-    def __str__(self):
-        return self.name
+
+class Faculty(models.Model):
+    name = models.CharField(max_length=30)
+    institute = models.ForeignKey(Institute, on_delete=models.CASCADE)
+
+
+class Department(models.Model):
+    name = models.CharField(max_length=30)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
 
 
 class Group(models.Model):
     name = models.CharField(max_length=10)
+    departament = models.ForeignKey(Department, on_delete=models.CASCADE)
     curator = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+
+    def get_lessons(self):
+        lessons = StudentGroupLesson.objects.all().filter(student_group=self)
+        return lessons
+
+    def get_deadlines(self):
+        deadline = GroupDeadline.objects.get(group=self)
+        deadlines = deadline.get_all_deadlines()
+        return deadlines
 
 
 class StudentGroup(models.Model):
@@ -70,6 +86,9 @@ class StudentGroup(models.Model):
     def get_grades(self):
         get_grade = Grade.objects.all().filter(user=self)
         return get_grade
+
+    def get_group(self):
+        return self.group
 
 
 class GradeBook(models.Model):
@@ -131,15 +150,31 @@ def create_grade(sender, instance, created, **kwargs):
             new_grade.save()
 
 
+class TeacherLesson(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+@receiver(post_save, sender=Group)
+def create_group_deadline(sender, instance, created, **kwargs):
+    if created:
+        new_group_deadline = GroupDeadline(group=instance)
+        new_group_deadline.save()
+
+
+class GroupDeadline(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+    def get_all_deadlines(self):
+        deadlines = Deadlines.objects.all().filter(group_deadline=self)
+        return deadlines
+
+
 class Deadlines(models.Model):
     name = models.CharField(max_length=20)
-    deadline_time = models.DateTimeField(blank=True)
+    group_deadline = models.ForeignKey(GroupDeadline, on_delete=models.CASCADE)
+    deadline_time = models.DateField(blank=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    files = models.ManyToManyField(Document, blank=True)
-    groups = models.ForeignKey(StudentsGroup, blank=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
 
 class Schedule(models.Model):
@@ -155,11 +190,20 @@ class Schedule(models.Model):
         ('Thursday', 'Thursday'),
         ('Friday', 'Friday'),
     )
-    group_id = models.ForeignKey(StudentsGroup, on_delete=models.CASCADE)
-    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    TIME_CHOICE = (
+        ('8:30 − 10:05', 1),
+        ('10:20 − 11:55', 2),
+        ('12:10 − 13:45', 3),
+        ('14:15 − 15:50', 4),
+        ('16:00 − 17:35', 5),
+        ('17:40 − 19:15', 6),
+        ('19:20 − 20:55', 7),
+        ('21:00 − 22:35', 8),
+    )
+    student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
     subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
-    time = models.IntegerField()
+    time = models.CharField(max_length=13, choices=TIME_CHOICE)
 
 
 class Profile(models.Model):
@@ -170,11 +214,32 @@ class Profile(models.Model):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     account_permission = models.CharField(max_length=7, choices=PERMISSION_CHOISE, default='Student')
-    student_group = models.ForeignKey(StudentsGroup, blank=True, null=True, on_delete=models.SET_NULL)
-    teacher_lesson = models.ManyToManyField(Lesson, blank=True)
     github = models.CharField(max_length=30, blank=True)
     numberphone = models.CharField(max_length=13, blank=True)
     img = models.ImageField(upload_to='profile_img', blank=True)
+
+    def get_student_group(self):
+        group = StudentGroup.objects.get(student=self.user).get_group()
+        return group
+
+    def get_student_lessons(self):
+        group = self.get_student_group()
+        lessons = group.get_lessons()
+        return lessons
+
+    def get_student_deadlines(self):
+        group = self.get_student_group()
+        deadlines = group.get_deadlines()
+        return deadlines
+
+    def get_teacher_lessons(self):
+        lessons = TeacherLesson.objects.all().filer(teacher=self.user)
+        return lessons
+
+    def get_teacher_lessons_groups(self):
+        lessons = self.get_teacher_lessons()
+        groups = StudentGroupLesson.objects.all().filter(lesson__in=lessons).distinct()
+        return groups
 
 
 @receiver(post_save, sender=User)

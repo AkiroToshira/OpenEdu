@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import DeadLinesForm, ChapterForm
-from core.models import Deadlines, Lesson, StudentsGroup, Profile, Chapter
+from core.models import Deadlines, Lesson, Profile, Chapter, StudentGroupLesson, Group
 
 
 @login_required(login_url='/login')
@@ -12,15 +12,17 @@ def lessonst(request):
             new_deadlines = Deadlines()
             new_deadlines.name = form.cleaned_data['name']
             new_deadlines.deadline_time = form.cleaned_data['deadline_time']
-            new_deadlines.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
-            new_deadlines.groups = StudentsGroup.objects.get(id=form.cleaned_data['group'])
+            new_deadlines.lesson_group = StudentGroupLesson.objcets.get(
+                lesson=Lesson.objects.get(id=form.cleaned_data['lesson']),
+                student_group=Group.objects.get(id=form.cleaned_data['group'])
+            )
             new_deadlines.save()
             print(new_deadlines)
             return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
     get_lessons = get_profile.teacher_lesson.all()
     get_deadlines = Deadlines.objects.all().filter(lesson__in=get_lessons).order_by('deadline_time')
-    get_group = StudentsGroup.objects.all().filter(lessons__in=get_lessons).distinct()
+    get_group = get_profile.get_teacher_lessons_groups()
     form = DeadLinesForm()
     context = {
         'get_lesson': get_lessons,
