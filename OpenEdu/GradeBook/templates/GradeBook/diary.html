@@ -33,15 +33,9 @@
                 <table class="table-fixed-column table-fixed-column table table-bordered table-striped">
                     <thead>
                     <tr id="my_head">
-                        <th class="students">Студенти</th>
                     </tr>
-
                     </thead>
                     <tbody id="my_body">
-                    <tr>
-<!--                        <td>ім'я користувача</td>-->
-                        <td></td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -52,9 +46,9 @@
     const data = {{ raw_data | safe }}
 
     function add_to_head(text) {
-        var th = document.createElement("th");
-        var text = document.createTextNode(text);
-        th.appendChild(text);
+        let th = document.createElement("th");
+        let txt = document.createTextNode(text);
+        th.appendChild(txt);
         document.getElementById("my_head").appendChild(th);
     }
 
@@ -73,6 +67,7 @@
     let merged = [...new Set([].concat.apply([], all_dates(date_to_set(data))))];
 
     function create_head() {
+        add_to_head('Студенти')
         for (let i = 0; i < merged.length; i++) {
             add_to_head(merged[i])
         }
@@ -99,7 +94,6 @@
             final_arr_with_names[i][merged.indexOf(filteredArr[i][j]['date'])] = filteredArr[i][j];
         }
     }
-   console.log(final_arr_with_names)
 
     function add_to_body(text, arr=[]) {
         let tr = document.createElement("tr");

@@ -77,7 +77,6 @@
 .table-fixed-column-inner {
     overflow-x: scroll;
     overflow-y: visible;
-    margin-left: 200px;
 }
 
 .table-fixed-column-inner .table {
@@ -125,8 +124,8 @@ th {
 
 .table th:first-child,
 .table tr td:first-child {
-    position: absolute;
-    left: 0;
+    /*position: absolute;*/
+    /*left: 0;*/
     width: 200px;
 }
 
