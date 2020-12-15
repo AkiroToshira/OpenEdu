@@ -6,9 +6,9 @@
 <div class="main-container">
   <div class="subjet-title"><span>Предмети</span></div>
     <div class="container">
-        {% for lesson in get_lessons %}
-        <a href="lesson/{{ lesson.id }}" class="col">
-            <div class="inner-information"><span>{{ lesson.lesson }}</span><span>Teacher</span></div>
+        {% for lesson in get_lesson %}
+        <a href="lesson/{{ lesson.get_lesson.id }}" class="col">
+            <div class="inner-information"><span>{{ lesson.get_lesson }}</span><span>Teacher</span></div>
         </a>
         {% endfor %}
     </div>

@@ -112,6 +112,9 @@ class StudentGroupLesson(models.Model):
     student_group = models.ForeignKey(Group, blank=False, on_delete=models.CASCADE)
     gradebook = models.ForeignKey(GradeBook, blank=True, null=True, on_delete=models.CASCADE)
 
+    def get_lesson(self):
+        return self.lesson
+
 
 @receiver(pre_save, sender=StudentGroupLesson)
 def create_gradebook(sender, instance, **kwargs):

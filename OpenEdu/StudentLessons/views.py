@@ -19,10 +19,10 @@ def lessons(request):
 
 @login_required(login_url='/login')
 def lesson(request, id):
-    get_lessons = Lesson.objects.get(id=id)
+    get_lesson = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
     context = {
-        'get_lesson': get_lessons,
+        'get_lesson': get_lesson,
         'get_chapter': get_chapter,
     }
     template = 'StudentLessons/class.html'
