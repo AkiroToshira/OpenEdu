@@ -80,7 +80,9 @@
     create_head();
     let student_grades = date_to_set(data);
 
-    const filteredArr = student_grades.map(el => el.reduce((acc, current) => {
+    console.log(student_grades.reverse())
+
+    const filteredArr = student_grades.reverse().map(el => el.reverse().reduce((acc, current) => {
         const x = acc.find(item => item.date === current.date);
         if (!x) {
             return acc.concat([current]);
@@ -105,7 +107,6 @@
         td.appendChild(document.createTextNode(text))
         tr.appendChild(td);
         for(let i = 0; i < merged.length; i++) {
-            // console.log(merged[i])
             let td_t = document.createElement("td");
             if(arr[i] != undefined) {
                 td_t.appendChild(document.createTextNode(arr[i].grades))
