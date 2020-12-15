@@ -72,6 +72,13 @@ class Group(models.Model):
         deadlines = deadline.get_all_deadlines()
         return deadlines
 
+    def get_shedule(self):
+        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        schedule = []
+        for day in days:
+            schedule.append(Schedule.objects.all().filter(group=self, week_day=day))
+        return schedule
+
 
 class StudentGroup(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -203,7 +210,8 @@ class Schedule(models.Model):
         ('19:20 − 20:55', 7),
         ('21:00 − 22:35', 8),
     )
-    student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
     time = models.CharField(max_length=13, choices=TIME_CHOICE)

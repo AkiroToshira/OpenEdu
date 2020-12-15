@@ -26,7 +26,7 @@
                                 <div class="item_wrapper">
                                     <div class="item_wrapper_info">
                                         <div class="left-line"></div>
-                                        <div class="subject">{{ x.lesson_id }}</div>
+                                        <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
                                         <div class="">Викладач: Оренчук</div>
@@ -41,7 +41,6 @@
                 </div>
             </div>
         </div>
-
         <div class="schedual_block">
             <div class="schedual_block_title">
                 <div class="schedual_block_title_wrapper">
@@ -54,7 +53,6 @@
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
-
                     {% for x in schedule_monday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
@@ -63,7 +61,7 @@
                                 <div class="item_wrapper">
                                     <div class="item_wrapper_info">
                                         <div class="left-line"></div>
-                                        <div class="subject">{{ x.lesson_id }}</div>
+                                        <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
                                         <div class="">Група: {{group}}</div>
@@ -98,7 +96,7 @@
                                 <div class="item_wrapper">
                                     <div class="item_wrapper_info">
                                         <div class="left-line"></div>
-                                        <div class="subject">{{ x.lesson_id }}</div>
+                                        <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
                                         <div class="">Група: {{group}}</div>
@@ -134,7 +132,7 @@
                                 <div class="item_wrapper">
                                     <div class="item_wrapper_info">
                                         <div class="left-line"></div>
-                                        <div class="subject">{{ x.lesson_id }}</div>
+                                        <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
                                         <div class="">Група: {{group}}</div>
@@ -169,7 +167,7 @@
                                 <div class="item_wrapper">
                                     <div class="item_wrapper_info">
                                         <div class="left-line"></div>
-                                        <div class="subject">{{ x.lesson_id }}</div>
+                                        <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
                                         <div class="">Група: {{group}}</div>
