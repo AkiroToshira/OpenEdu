@@ -20,16 +20,16 @@
 * Замінити у файлі settings.py частину коду, а саме на
     ```
    DATABASES = {
-'default': {
+	'default': {
     'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-    ``` 
+   ```
 
 * Зкомпілювати файл settings.py
 
 * Вказати в терміналі шлях до папки з файлом manage.py 
-		```
+    ```
     cd /шлях/до/папки/з/файлом/manage.py
     ```
 * Створити міграції,щоб синхронізувати базу даних: 
@@ -46,7 +46,7 @@
     ``` 
 * В терміналі заповнити усі поля для подальшого входу в проект на сайті:
     ```
-    -Username (leave blank to use 'yournickname'):
+    	  -Username (leave blank to use 'yournickname'):
 	  -Email address: (необов'язково)
 	  -Password:
 	  -Password (again):
