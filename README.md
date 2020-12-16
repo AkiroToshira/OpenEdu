@@ -39,7 +39,7 @@
     ```
     python manage.py migrate
     ```
-   Після здійснених міграцій в папці з файлом manage.py автоматично створиться база даних 'mydatabase'
+  	 Після здійснених міграцій в папці з файлом 'manage.py' автоматично створиться база даних 'mydatabase'
 * Створити суперкористувача:
     ```
     python manage.py createsuperuser
