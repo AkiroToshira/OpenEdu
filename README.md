@@ -46,10 +46,10 @@
     ``` 
 * В терміналі заповнити усі поля для подальшого входу в проект на сайті:
     ```
-    	  -Username (leave blank to use 'yournickname'):
-	  -Email address: (необов'язково)
-	  -Password:
-	  -Password (again):
+	-Username (leave blank to use 'yournickname'):
+	-Email address: (необов'язково)
+	-Password:
+	-Password (again):
     ``` 
 * Запустити проект: 
     ```
