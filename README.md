@@ -1,6 +1,6 @@
 # OpenEdu. How to start a project
 
-* Клонувати репозиторій за посиланням
+* Клонувати репозиторій 
     ```
     git clone https://github.com/AkiroToshiro/OpenEdu.git 
     ``` 
