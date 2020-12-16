@@ -17,7 +17,7 @@
     ```
     pip install -r requirements.txt
     ``` 
-* Замінити у файлі settings.py частину коду, а саме на
+* Замінити у файлі settings.py частину коду
     ```
    DATABASES = {
 	'default': {
