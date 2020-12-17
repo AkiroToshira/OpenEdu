@@ -26,7 +26,7 @@ def gradebookteacher(request, id):
 
 @login_required(login_url='/login')
 def gradebookhub(request):
-    template = 'core/diary.html'
+    template = 'GradeBook/diary_hub.html'
     return render(request, template)
 
 
