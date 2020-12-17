@@ -67,11 +67,6 @@ class Group(models.Model):
         lessons = StudentGroupLesson.objects.all().filter(student_group=self)
         return lessons
 
-    def get_deadlines(self):
-        deadline = GroupDeadline.objects.get(group=self)
-        deadlines = deadline.get_all_deadlines()
-        return deadlines
-
     def get_shedule(self):
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
         schedule = []
@@ -164,27 +159,18 @@ class TeacherLesson(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
-@receiver(post_save, sender=Group)
-def create_group_deadline(sender, instance, created, **kwargs):
-    if created:
-        new_group_deadline = GroupDeadline(group=instance)
-        new_group_deadline.save()
-
-
-class GroupDeadline(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
-    def get_all_deadlines(self):
-        deadlines = Deadlines.objects.all().filter(group_deadline=self)
-        return deadlines
+    @classmethod
+    def get_teacher_lessons(cls, user):
+        lessons = []
+        for x in cls.objects.all().filter(teacher=user):
+            lessons.append(x.lesson)
+        return lessons
 
 
 class Deadlines(models.Model):
     name = models.CharField(max_length=20)
-    group_deadline = models.ForeignKey(GroupDeadline, on_delete=models.CASCADE)
+    student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
     deadline_time = models.DateField(blank=True)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
 
 
 class Schedule(models.Model):
@@ -238,14 +224,18 @@ class Profile(models.Model):
         lessons = group.get_lessons()
         return lessons
 
-    def get_student_deadlines(self):
-        group = self.get_student_group()
-        deadlines = group.get_deadlines()
-        return deadlines
-
     def get_teacher_lessons(self):
-        lessons = TeacherLesson.objects.all().filter(teacher=self.user)
+        lessons = TeacherLesson.get_teacher_lessons(user=self.user)
         return lessons
+
+    def get_deadlines(self):
+        if self.account_permission == 'Student':
+            lessons = self.get_student_lessons()
+        elif self.account_permission == 'Teacher':
+            teacher_lessons = self.get_teacher_lessons()
+            lessons = StudentGroupLesson.objects.all().filter(lesson__in=teacher_lessons)
+        deadlines = Deadlines.objects.all().filter(student_group_lesson__in=lessons)
+        return deadlines
 
 
 @receiver(post_save, sender=User)

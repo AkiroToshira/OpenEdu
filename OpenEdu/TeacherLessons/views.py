@@ -12,7 +12,7 @@ def lessonst(request):
             new_deadlines = Deadlines()
             new_deadlines.name = form.cleaned_data['name']
             new_deadlines.deadline_time = form.cleaned_data['deadline_time']
-            new_deadlines.lesson_group = StudentGroupLesson.objects.get(
+            new_deadlines.student_group_lesson = StudentGroupLesson.objects.get(
                 lesson=Lesson.objects.get(id=form.cleaned_data['lesson']),
                 student_group=Group.objects.get(id=form.cleaned_data['group'])
             )
@@ -20,9 +20,8 @@ def lessonst(request):
             return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
     get_lessons = get_profile.get_teacher_lessons()
-    lessons = Lesson.objects.all().filter(id__in=get_lessons)
-    get_deadlines = Deadlines.objects.all().filter(lesson__in=lessons).order_by('deadline_time')
-    groups = StudentGroupLesson.objects.all().filter(lesson__in=lessons).distinct()
+    get_deadlines = get_profile.get_deadlines().order_by('deadline_time')
+    groups = StudentGroupLesson.objects.all().filter(lesson__in=get_lessons).distinct()
     form = DeadLinesForm()
     context = {
         'get_lesson': get_lessons,
@@ -42,21 +41,16 @@ def editdeadline(request, id):
         if form.is_valid():
             update_deadline.name = form.cleaned_data['name']
             update_deadline.deadline_time = form.cleaned_data['deadline_time']
-            update_deadline.lesson = Lesson.objects.get(id=form.cleaned_data['lesson'])
-            update_deadline.lesson_group = StudentGroupLesson.objects.get(
-                lesson=Lesson.objects.get(id=form.cleaned_data['lesson']),
-                student_group=Group.objects.get(id=form.cleaned_data['group']))
+            update_deadline.lesson_group = StudentGroupLesson.objects.get(id=form.cleaned_data['lesson'])
             update_deadline.save()
             return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
-    get_lessons = get_profile.get_teacher_lessons()
-    lessons = Lesson.objects.all().filter(id__in=get_lessons)
-    groups = StudentGroupLesson.objects.all().filter(lesson__in=lessons).distinct()
+    teacher_lessons = get_profile.get_teacher_lessons()
+    lessons = StudentGroupLesson.objects.all().filter(lesson__in=teacher_lessons).order_by('lesson')
     form = ChapterForm()
     context = {
         'form': form,
-        'get_lesson': get_lessons,
-        'get_group': groups,
+        'get_lesson': lessons,
         'update_deadline': update_deadline,
     }
     template = 'TeacherLessons/editdeadlines.html'
