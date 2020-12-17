@@ -244,13 +244,8 @@ class Profile(models.Model):
         return deadlines
 
     def get_teacher_lessons(self):
-        lessons = TeacherLesson.objects.all().filer(teacher=self.user)
+        lessons = TeacherLesson.objects.all().filter(teacher=self.user)
         return lessons
-
-    def get_teacher_lessons_groups(self):
-        lessons = self.get_teacher_lessons()
-        groups = StudentGroupLesson.objects.all().filter(lesson__in=lessons).distinct()
-        return groups
 
 
 @receiver(post_save, sender=User)

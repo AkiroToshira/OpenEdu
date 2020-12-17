@@ -13,7 +13,7 @@
       <div class="container">
         {% for lesson in get_lesson %}
         <a href="lesson/{{ lesson.id }}" class="col">
-          <div class="inner-information"><span>{{ lesson.name }}</span></div>
+          <div class="inner-information"><span>{{ lesson.lesson }}</span></div>
         </a>
         {% endfor %}
       </div>
@@ -44,7 +44,7 @@
               <td>{{ x.lesson }}</td>
               <td>{{ x.name }}</td>
               <td>{{ x.deadline_time }}</td>
-              <td>{{ x.groups }}</td>
+              <td>{{ x.group_deadline.group.name }}</td>
               <td class="delete"><a href="{% url 'DeleteDeadline' x.id %}">Delete</a></td>
               <td class="edit"><a href="{% url 'EditDeadline' x.id %}">Edit</a></td>
             </tr>
@@ -73,7 +73,7 @@
               <select name="lesson" required id="id_lesson">
                 <option disabled>Виберіть предмет</option>
                 {% for lesson in get_lesson %}
-                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
+                <option value="{{ lesson.id }}">{{ lesson.lesson }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -82,7 +82,7 @@
               <select name="group" required id="id_group">
                 <option disabled>Виберіть групу</option>
                 {% for group in get_group %}
-                <option value="{{ group.id }}">{{ group.name }}</option>
+                <option value="{{ group.id }}">{{ group.student_group.name }}</option>
                 {% endfor %}
               </select>
             </div>

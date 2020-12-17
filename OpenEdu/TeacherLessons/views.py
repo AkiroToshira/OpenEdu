@@ -20,16 +20,17 @@ def lessonst(request):
             print(new_deadlines)
             return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
-    get_lessons = get_profile.teacher_lesson.all()
-    get_deadlines = Deadlines.objects.all().filter(lesson__in=get_lessons).order_by('deadline_time')
-    get_group = get_profile.get_teacher_lessons_groups()
+    get_lessons = get_profile.get_teacher_lessons()
+    lessons = Lesson.objects.all().filter(id__in=get_lessons)
+    get_deadlines = Deadlines.objects.all().filter(lesson__in=lessons).order_by('deadline_time')
+    groups = StudentGroupLesson.objects.all().filter(lesson__in=lessons).distinct()
     form = DeadLinesForm()
     context = {
         'get_lesson': get_lessons,
         'get_profile': get_profile,
         'get_deadlines': get_deadlines,
         'form': form,
-        'get_group': get_group,
+        'get_group': groups,
     }
     template = 'TeacherLessons/classest.html'
     return render(request, template, context)
@@ -48,7 +49,7 @@ def lessont(request, id):
             return redirect('/lessonst/lesson/' + str(id))
     get_lessons = Lesson.objects.get(id=id)
     get_chapter = Chapter.objects.all().filter(lesson=id)
-    get_group = StudentsGroup.objects.all().filter(lessons=id)
+    get_group = StudentGroupLesson.objects.all().filter(lesson=id)
     form = ChapterForm()
     context = {
         'get_lesson': get_lessons,
