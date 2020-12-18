@@ -14,7 +14,6 @@
                     Понеділок
                     <div class="schedual_block_title_undeline"></div>
                 </div>
-                <div class="schedual_day">21 Листопада</div>
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
@@ -29,8 +28,13 @@
                                         <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
-                                        <div class="">Викладач: Оренчук</div>
-                                        <div class="">Посилання:<a href="https://meet.google.com/nbh-gnci-xnm?pli=1&authuser=2">Click!</a></div>
+                                        <div class="">Викладачі: {% for i in x.lesson.get_lesson_teachers %}
+                                            {{ i.get_full_name }}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="">Посилання:<a
+                                                href="https://meet.google.com/nbh-gnci-xnm?pli=1&authuser=2">Click!</a>
+                                        </div>
                                         <div class="">Дод. інформація: Контрольна робота</div>
                                     </div>
                                 </div>
@@ -49,11 +53,10 @@
                             class="schedual_block_title_undeline undeline_color_purplemountain"
                     ></div>
                 </div>
-                <div class="schedual_day">21 Листопада</div>
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
-                    {% for x in schedule_monday%}
+                    {% for x in schedule_tuesday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
@@ -64,7 +67,10 @@
                                         <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
-                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Викладачі: {% for i in x.lesson.get_lesson_teachers %}
+                                            {{ i.get_full_name }}
+                                            {% endfor %}
+                                        </div>
                                         <div class="">Посилання: {{link}}</div>
                                         <div class="">Дод. інформація: {{additional_info}}</div>
                                     </div>
@@ -84,11 +90,10 @@
                             class="schedual_block_title_undeline undeline_color_summertime"
                     ></div>
                 </div>
-                <div class="schedual_day">26 Січня</div>
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
-                    {% for x in schedule_monday%}
+                    {% for x in schedule_wednesday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
@@ -99,7 +104,10 @@
                                         <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
-                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Викладачі: {% for i in x.lesson.get_lesson_teachers %}
+                                            {{ i.get_full_name }}
+                                            {% endfor %}
+                                        </div>
                                         <div class="">Посилання: {{link}}</div>
                                         <div class="">Дод. інформація: {{additional_info}}</div>
                                     </div>
@@ -120,11 +128,10 @@
                             class="schedual_block_title_undeline undeline_color_squeky"
                     ></div>
                 </div>
-                <div class="schedual_day">31 Вересня</div>
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
-                    {% for x in schedule_monday%}
+                    {% for x in schedule_thursday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
@@ -135,7 +142,10 @@
                                         <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
-                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Викладачі: {% for i in x.lesson.get_lesson_teachers %}
+                                            {{ i.get_full_name }}
+                                            {% endfor %}
+                                        </div>
                                         <div class="">Посилання: {{link}}</div>
                                         <div class="">Дод. інформація: {{additional_info}}</div>
                                     </div>
@@ -155,11 +165,10 @@
                             class="schedual_block_title_undeline undeline_color_tigerlily"
                     ></div>
                 </div>
-                <div class="schedual_day">12 Серпня</div>
             </div>
             <div class="schedual_block_info">
                 <div class="schedual_list">
-                    {% for x in schedule_monday%}
+                    {% for x in schedule_friday%}
                     <div class="schedual_list_item_block">
                         <div class="item_time">{{ x.time }}</div>
                         <div class="schedual_list_items">
@@ -170,7 +179,10 @@
                                         <div class="subject">{{ x.lesson }}</div>
                                     </div>
                                     <div class="additional_info">
-                                        <div class="">Група: {{group}}</div>
+                                        <div class="">Викладачі: {% for i in x.lesson.get_lesson_teachers %}
+                                            {{ i.get_full_name }}
+                                            {% endfor %}
+                                        </div>
                                         <div class="">Посилання: {{link}}</div>
                                         <div class="">Дод. інформація: {{additional_info}}</div>
                                     </div>
