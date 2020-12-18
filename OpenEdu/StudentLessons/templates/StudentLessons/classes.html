@@ -8,7 +8,7 @@
     <div class="container">
         {% for lesson in get_lesson %}
         <a href="lesson/{{ lesson.get_lesson.id }}" class="col">
-            <div class="inner-information"><span>{{ lesson.get_lesson }}</span></div>
+            <div class="inner-information"><span>{{ lesson.get_lesson }}</span><span>Teacher</span></div>
         </a>
         {% endfor %}
     </div>
@@ -18,18 +18,20 @@
         <table class="content-table">
             <thead>
             <tr>
-                <th>Назва предмету</th>
+                <th>Назва предмату</th>
                 <th>Назва задачі</th>
                 <th>Дедлайн</th>
+                <th>Додатковий опис</th>
             </tr>
             </thead>
             <tbody>
             {% for x in get_deadlines %}
             <tr>
 
-                <td>{{ x.student_group_lesson.lesson }}</td>
+                <td>{{ x.lesson }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>
+                <td>--</td>
             </tr>
             {% endfor %}
             </tbody>
