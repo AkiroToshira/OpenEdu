@@ -17,7 +17,7 @@
     ```
     pip install -r requirements.txt
     ``` 
-* Замінити у файлі settings.py частину коду
+* Вказати у файлі settings.py свою СУБД, або залишити стандартною:
     ```
    DATABASES = {
 	'default': {
@@ -25,8 +25,6 @@
         'NAME': BASE_DIR / 'db.sqlite3',
     }
    ```
-
-* Зкомпілювати файл settings.py
 
 * Вказати в терміналі шлях до папки з файлом manage.py 
     ```
