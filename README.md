@@ -17,7 +17,7 @@
     ```
     pip install -r requirements.txt
     ``` 
-* Замінити у файлі settings.py частину коду
+* Вказати у файлі settings.py свою СУБД, або залишити стандартною:
     ```
    DATABASES = {
 	'default': {
