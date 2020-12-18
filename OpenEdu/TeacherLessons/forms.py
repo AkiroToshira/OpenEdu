@@ -9,7 +9,6 @@ class DeadLinesForm(forms.Form):
     name = forms.CharField(max_length=20)
     deadline_time = forms.DateField(widget=DateInput)
     lesson = forms.IntegerField(required=True)
-    group = forms.IntegerField(required=True)
 
 
 class ChapterForm(forms.Form):

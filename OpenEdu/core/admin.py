@@ -16,8 +16,8 @@ admin.site.register(Grade)
 admin.site.register(Institute)
 admin.site.register(Faculty)
 admin.site.register(Department)
-admin.site.register(GroupDeadline)
 admin.site.register(Deadlines)
+admin.site.register(TeacherLesson)
 
 
 

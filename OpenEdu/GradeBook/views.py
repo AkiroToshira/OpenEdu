@@ -15,8 +15,6 @@ def gradebookteacher(request, id):
             data[i].append({"date": str(grade.date.date), "grades": str(grade.value), "student": str(grade.user)})
         i = i + 1
 
-    print(data)
-
     context = {
         'get_columns': get_columns,
         'get_check': book.get_grades(),

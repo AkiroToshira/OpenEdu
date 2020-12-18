@@ -32,11 +32,14 @@
     </div>
     <div class="second-section">
         <div class="col col-teacher-info">
-            <div class="teacher-info"><p>{{ get_lesson.description }}</p></div>
+            <div class="teacher-info">
+                <span>{{ get_lesson}}</span>
+                <p>{{ get_lesson.description }}</p>
+            </div>
             <div class="whois">
                 <span>Групи:</span>
                 {% for i in get_group %}
-                <span>{{ i }}</span>
+                <span>{{ i.student_group.name }}</span>
                 {% endfor %}
             </div>
         </div>
@@ -62,10 +65,10 @@
     var i;
 
     for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
+        coll[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight){
+            if (content.style.maxHeight) {
                 content.style.maxHeight = null;
 
             } else {

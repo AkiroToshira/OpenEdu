@@ -3,15 +3,28 @@ from django.contrib.auth.decorators import login_required
 from core.models import Profile, Schedule, StudentGroupLesson
 
 
+def schedule_by_day(schedule):
+    schedule_monday = schedule[0]
+    schedule_tuesday = schedule[1]
+    schedule_wednesday = schedule[2]
+    schedule_thursday = schedule[3]
+    schedule_friday = schedule[4]
+    return schedule_monday, schedule_tuesday, schedule_wednesday, schedule_thursday, schedule_friday
+
+
 @login_required(login_url='/login')
 def schedule(request):
     get_profile = Profile.objects.get(id=request.user.id)
     group = get_profile.get_student_group()
     schedule = group.get_shedule()
-    schedule_monday = schedule[0]
+    schedule_monday, schedule_tuesday, schedule_wednesday, schedule_thursday, schedule_friday = \
+        schedule_by_day(schedule)
     context = {
-        'schedule': schedule,
         'schedule_monday': schedule_monday,
+        'schedule_tuesday': schedule_tuesday,
+        'schedule_wednesday': schedule_wednesday,
+        'schedule_thursday': schedule_thursday,
+        'schedule_friday': schedule_friday,
     }
     template = 'Shedule/shedule.html'
     return render(request, template, context)
@@ -20,12 +33,9 @@ def schedule(request):
 @login_required(login_url='/login')
 def schedulet(request):
     get_profile = Profile.objects.get(id=request.user.id)
-    get_lessons = get_profile.teacher_lesson.all()
-    schedule_monday = Schedule.objects.all().filter(lesson_id__in=get_lessons, week_day='Monday')
-    schedule_tuesday = Schedule.objects.all().filter(lesson_id__in=get_lessons, week_day='Tuesday')
-    schedule_wednesday = Schedule.objects.all().filter(lesson_id__in=get_lessons, week_day='Wednesday')
-    schedule_thursday = Schedule.objects.all().filter(lesson_id__in=get_lessons, week_day='Thursday')
-    schedule_friday = Schedule.objects.all().filter(lesson_id__in=get_lessons, week_day='Friday')
+    schedule=get_profile.get_teacher_schedule()
+    schedule_monday, schedule_tuesday, schedule_wednesday, schedule_thursday, schedule_friday = \
+        schedule_by_day(schedule)
     context = {
         'schedule_monday': schedule_monday,
         'schedule_tuesday': schedule_tuesday,

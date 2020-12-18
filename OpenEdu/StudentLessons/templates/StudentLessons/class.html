@@ -24,10 +24,14 @@
     </div>
     <div class="second-section">
         <div class="col col-teacher-info">
-            <div class="teacher-img" style="margin: 0 auto;"></div>
             <div class="whois">
-                <span>Викладач:</span>
-                <span>Мочурад Л. І.</span>
+                <span>Викладачі:</span>
+                {% for i in get_lesson.get_lesson_teachers %}
+                <div class="teacher-img" style="margin: 0 auto;">
+                    <img src="{{ i.profile.img.url }}"/>
+                </div>
+                <span>{{ i.get_full_name }}</span>
+                {% endfor %}
             </div>
             <div class="teacher-info"><p>{{ get_lesson.description }}</p></div>
         </div>

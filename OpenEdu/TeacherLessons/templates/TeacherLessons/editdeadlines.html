@@ -26,22 +26,11 @@
               <select name="lesson" required id="id_lesson">
                   <option disabled>Виберіть предмет</option>
                   {% for lesson in get_lesson %}
-                  <option value="{{ lesson.id }}">{{ lesson.name }}</option>
+                  <option value="{{ lesson.id }}">{{ lesson.student_group.name }} {{ lesson.lesson }}</option>
                   {% endfor %}
               </select>
             </div>
-            </div>
-            <div class="col1">
-            <div class="group-check">
-            <label for="id_group">Group:</label>
-              <select name="group" required id="id_group">
-                  <option disabled>Виберіть групу</option>
-                  {% for group in get_group %}
-                  <option value="{{ group.id }}">{{ group.name }}</option>
-                  {% endfor %}
-              </select>
-            </div>
-            </div>
+
             <div class="col1">
             <div class="modal-add">
                 <button type="submit" name="button">Add</button>
