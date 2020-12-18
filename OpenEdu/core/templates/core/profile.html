@@ -3,49 +3,22 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
 <body>
-<!--    <div class="profile_page">-->
-<!--      <div class="profile_image">-->
-<!--        <img src="{{ get_user.profile.img.url }}" />-->
-<!--      </div>-->
-<!--      <div class="profile_info">-->
-<!--        <div class="profile_id">id: {{ get_user.id}}</div>-->
-<!--        <div class="profile_name">-->
-<!--          ім'я: {{ get_user.first_name }} {{ get_user.last_name }}-->
-<!--        </div>-->
-<!--        <div class="profile_group">-->
-<!--          група: {{ get_user.profile.student_group }}-->
-<!--        </div>-->
-<!--        <div class="profile_email">емейл: {{ get_user.email }}</div>-->
-<!--        <div class="profile_phone">-->
-<!--          номер телефону: {{ get_user.profile.numberphone }}-->
-<!--        </div>-->
-<!--        <div class="profile_email">GitHub: {{ get_user.profile.github }}</div>-->
-<!--      </div>-->
-<!--    </div>-->
-<div class="container">
-    <div class="white_wrapper">
-        <div class="green_wrapper">
-            <div class="profile_page">
-                <div class="profile_image">
-                    <img src="{{ get_user.profile.img.url }}"/>
-<!--                    <img src="../media/news/bg4k.jpg" alt=""/>-->
-                </div>
-                <div class="profile_info">
-                    <div class="profile_id">id: {{ get_user.id}}</div>
-                    <div class="profile_name">
-                        ім'я: {{ get_user.first_name }} {{ get_user.last_name }}
-                    </div>
-                    <div class="profile_group">
-                        група: {{ get_user.profile.student_group }}
-                    </div>
-                    <div class="profile_email">емейл: {{ get_user.email }}</div>
-                    <div class="profile_phone">
-                        номер телефону: {{ get_user.profile.numberphone }}
-                    </div>
-                    <div class="profile_email">GitHub: {{ get_user.profile.github }}</div>
-                </div>
-            </div>
+<div class="profile_page">
+    <div class="profile_image">
+        <img src="{{ default_or_current_img }}"/>
+    </div>
+    <div class="profile_info">
+        <div class="profile_name">
+            ім'я: {{ get_user.first_name }} {{ get_user.last_name }}
         </div>
+        <div class="profile_group">
+            група: {{ get_user.profile.student_group }}
+        </div>
+        <div class="profile_email">емейл: {{ get_user.email }}</div>
+        <div class="profile_phone">
+            номер телефону: {{ get_user.profile.numberphone }}
+        </div>
+        <div class="profile_email">GitHub: {{ get_user.profile.github }}</div>
     </div>
 </div>
 </body>
