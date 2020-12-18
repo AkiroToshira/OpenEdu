@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_shortcuts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +68,7 @@ WSGI_APPLICATION = 'OpenEdu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -77,13 +79,14 @@ DATABASES = {
         'PASSWORD': '4132',
     }
 }
+"""
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': 'mydatabase',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -125,3 +128,52 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+ADMIN_SHORTCUTS = [
+    {
+        'shortcuts': [
+            {
+                'url': '/',
+                'open_new_window': True,
+            },
+            {
+                'url_name': 'admin:logout',
+            },
+        ]
+    },
+    {
+        'title': 'List',
+        'shortcuts': [
+            {
+                'title': 'Groups',
+                'url_name': 'admin:auth_group_changelist',
+                'count_new': 'OpenEdu.utils.count_groups',
+            },
+            {
+                'title': 'Users',
+                'url_name': 'admin:auth_user_changelist',
+                'count_new': 'OpenEdu.utils.count_users',
+            },
+        ]
+    },
+    {
+        'title': 'Add',
+        'shortcuts': [
+            {
+                'title': 'Add user',
+                'url_name': 'admin:auth_user_add',
+                'has_perms': 'OpenEdu.utils.has_perms_to_users',
+            },
+            {
+                'title': 'Add group',
+                'url_name': 'admin:auth_group_add',
+                'has_perms': 'OpenEdu.utils.has_perms_to_groups',
+            },
+        ]
+    },
+]
+ADMIN_SHORTCUTS_SETTINGS = {
+    'show_on_all_pages': True,
+    'hide_app_list': True,
+    'open_new_window': False,
+}
