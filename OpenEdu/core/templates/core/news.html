@@ -41,7 +41,7 @@
 <!--        </div>-->
         {% for i in list_articles %}
         <div class="subnews_item">
-            <div class="subnews_img"><img src="../media/news/bg4k.jpg" alt=""/></div>
+            <div class="subnews_img"><img src="{{ i.img.url }}" alt=""/></div>
             <div class="subnews_wrapper">
                 <div class="subnews_date">{{i.articles_data}}</div>
                 <div class="subnews_title">{{i.name}}</div>

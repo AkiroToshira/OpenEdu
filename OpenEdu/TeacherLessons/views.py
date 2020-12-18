@@ -13,9 +13,7 @@ def lessonst(request):
             new_deadlines.name = form.cleaned_data['name']
             new_deadlines.deadline_time = form.cleaned_data['deadline_time']
             new_deadlines.student_group_lesson = StudentGroupLesson.objects.get(
-                lesson=Lesson.objects.get(id=form.cleaned_data['lesson']),
-                student_group=Group.objects.get(id=form.cleaned_data['group'])
-            )
+                lesson=Lesson.objects.get(id=form.cleaned_data['lesson']))
             new_deadlines.save()
             return redirect('/lessonst/')
     get_profile = Profile.objects.get(id=request.user.id)
