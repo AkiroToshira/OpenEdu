@@ -106,18 +106,16 @@ body {
 }
 
 .subjet-title {
-  margin: 20px auto 5px auto;
-  width: 950px;
+  margin: 30px auto 5px auto;
+  text-align: center;
 }
 
 
 .subjet-title span{
   font-size: 30px;
   font-weight: 300;
-  font-family: 'Comfortaa', cursive;
   color: #121528;
 }
-table { box-sizing: border-box; }
 
 .content-table {
   margin: 10px auto;
@@ -172,6 +170,7 @@ tr td:last-child {
   border-right: 1px solid rgba(0, 0, 0, .1);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  width: 50px;
 }
 
 thead tr {
@@ -179,26 +178,33 @@ thead tr {
   border: none;
 }
 
+td.delete {
+  text-align: center;
+  width: 50px;
+}
 
-.delete a {
+td.edit {
+  text-align: center;
+}
+
+td.delete:hover,td.edit:hover {
+  background-color: white;
+}
+
+.edit a,.delete a {
   text-decoration: none;
-  color: red;
-  font-size: 1.375rem;
+  color: #556175;
+  font-size: 1.175rem;
   line-height: 1.7;
 }
 
-.delete a {
-  text-decoration: none;
-  color: #9c3838;
-  font-size: 1.375rem;
-  line-height: 1.7;
+.edit a:hover {
+  color: #278e27;
 }
 
-.edit a {
-  text-decoration: none;
-  color: #309830;
-  font-size: 1.375rem;
-  line-height: 1.7;
+.delete a:hover {
+  color: #d25656;
+
 }
 
 /* Deadline  */
@@ -249,6 +255,9 @@ thead tr {
   background-color: rgb(30, 156, 132);
   font-weight: 200;
   text-decoration: none;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
 }
 
 #myBtn:hover {
@@ -257,10 +266,6 @@ thead tr {
   transition: all 0.4s ease;
 
   color: white;
-}
-
-.subjet-title div:first-child span {
-  float: left;
 }
 
 tbody .add-deadline{
@@ -369,7 +374,7 @@ tbody .add-deadline{
 
 @media screen and (max-width: 1400px) {
   .container {
-    width: 85%;
+    /*width: 85%;*/
     position: relative;
     top: 0;
     left: 0;
@@ -378,20 +383,32 @@ tbody .add-deadline{
     box-shadow: 0 0 0 rgba(85, 104, 123, .3);
   }
 
-  .deadline-container {
-    width: 85%;
-  }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   .container {
+    width: 85%;
+    position: relative;
+    top: 0;
+    left: 0;
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
     justify-content: center;
+    box-shadow: 0 0 0 rgba(85, 104, 123, .3);
+  }
+  .content-table {
+    width: 750px;
+  }
+  .container {
+    justify-content: flex-start;
   }
   .deadline-container {
     margin: 0 auto 0 auto;
   }
 }
 
-@media screen and (max-width: 680px) {
+
+
+@media screen and (max-width: 780px) {
   .container {
     width: 85%;
     position: relative;
@@ -402,13 +419,17 @@ tbody .add-deadline{
     justify-content: center;
     box-shadow: 0 0 0 rgba(85, 104, 123, .3);
   }
+
+  .content-table {
+    width: 550px;
+  }
+
   .col {
     width: 200px;
     height: 120px;
     margin: 15px;
   }
   .deadline-container {
-
     margin: 0 auto 0 auto;
   }
 }
@@ -419,75 +440,10 @@ tbody .add-deadline{
     height: 120px;
     margin: 15px;
   }
-}
-@media only screen and (max-width: 760px){
-
-.col {
-  width: 200px;
-  height: 120px;
-  margin: 15px;
-}
-}
-@media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
-
-
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
+  .content-table {
+    width: 150px;
   }
-
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  td,th {
+    padding: 0px;
   }
-
-  tr {
-    border: 1px solid #ccc;
-  }
-
-  td {
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  td:before {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-
-  /* td:nth-of-type(1):before {
-    content: "Статус";
-  } */
-
-  td:nth-of-type(1):before {
-    content: "Назва предмату";
-  }
-
-  td:nth-of-type(2):before {
-    content: "Назва задачі";
-  }
-
-  td:nth-of-type(3):before {
-    content: "Дедлайн";
-  }
-
-  td:nth-of-type(4):before {
-    content: "Додатковий опис";
-  }
-  td:nth-of-type(5):before {
-    content: " ";
-  }
-
 }
