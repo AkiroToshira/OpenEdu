@@ -18,6 +18,12 @@ class Lesson(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=30, blank=True)
 
+    def get_lesson_teachers(self):
+        teachers = []
+        for i in TeacherLesson.objects.all().filter(lesson=self):
+            teachers.append(i.teacher)
+        return teachers
+
     def __str__(self):
         return self.name
 
@@ -62,6 +68,9 @@ class Group(models.Model):
     name = models.CharField(max_length=10)
     departament = models.ForeignKey(Department, on_delete=models.CASCADE)
     curator = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
     def get_lessons(self):
         lessons = StudentGroupLesson.objects.all().filter(student_group=self)
@@ -213,7 +222,7 @@ class Profile(models.Model):
     account_permission = models.CharField(max_length=7, choices=PERMISSION_CHOISE, default='Student')
     github = models.CharField(max_length=30, blank=True)
     numberphone = models.CharField(max_length=13, blank=True)
-    img = models.ImageField(upload_to='profile_img', blank=True)
+    img = models.ImageField(upload_to='profile_img', blank=True, default='profile_img/profile_photo.jpg')
 
     def get_student_group(self):
         group = StudentGroup.objects.get(student=self.user).get_group()
@@ -236,6 +245,14 @@ class Profile(models.Model):
             lessons = StudentGroupLesson.objects.all().filter(lesson__in=teacher_lessons)
         deadlines = Deadlines.objects.all().filter(student_group_lesson__in=lessons)
         return deadlines
+
+    def get_teacher_schedule(self):
+        teacher_lessons = self.get_teacher_lessons()
+        days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+        schedule = []
+        for day in days:
+            schedule.append(Schedule.objects.all().filter(lesson__in=teacher_lessons, week_day=day))
+        return schedule
 
 
 @receiver(post_save, sender=User)
