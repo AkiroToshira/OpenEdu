@@ -26,7 +26,7 @@
         <a href="{{ url_lessonst_page }}"> Предмети</a>
         {% endif %}
 
-         <!--Choose menu option according to account_permission -->
+        <!--Choose menu option according to account_permission -->
         {% if request.user.profile.account_permission == 'Student' %}
         <a href="{% url 'StudentShedule' %}">Розклад</a>
         {% elif request.user.profile.account_permission == 'Teacher' %}
@@ -34,7 +34,11 @@
         {% elif request.user.profile.account_permission == 'Admin' %}
         <a href="{{ url_schedulet_page }}">Розклад</a>
         {% endif %}
-
+        {% if request.user.profile.account_permission == 'Student' %}
+        <a href="{% url 'StudentGradeBook' %}">Оцінки</a>
+        {% elif request.user.profile.account_permission == 'Teacher' %}
+        <a href="{% url 'TeacherGradeBookHub' %}">Журнали</a>
+        {% endif %}
         {% url 'core' as url_news_page %}
         <a href="{{ url_news_page }}">Новини</a>
     </div>

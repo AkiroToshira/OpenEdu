@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from core.models import GradeBook, BookColumn
+from core.models import GradeBook, BookColumn, Profile, Lesson
 
 
 @login_required(login_url='/login')
@@ -31,7 +31,23 @@ def gradebookhub(request):
 
 
 def gradebookstudent(request):
-    pass
+    class LessonGrade:
+        grades = []
+        lesson = Lesson
+
+    get_profile = Profile.objects.get(id=request.user.id)
+    grade = get_profile.get_grades()
+    grades = []
+    for i in grade:
+        tmp = LessonGrade()
+        tmp.grades = grade[i]
+        tmp.lesson = i
+        grades.append(tmp)
+    context = {
+        'grades': grades,
+    }
+    template = 'GradeBook/student_diary.html'
+    return render(request, template, context)
 
 
 def gradebook(request):

@@ -1,0 +1,13 @@
+<table border="1">
+    {% for j in grades %}
+    Предмет: {{j.lesson}}<br>
+    <table>
+        {% for k in j.grades %}
+        <tr>
+            <td>{{k.date.date}}</td>
+            <td>{{k.value}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+</table>

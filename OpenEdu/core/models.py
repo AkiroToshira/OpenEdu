@@ -117,6 +117,14 @@ class GradeBook(models.Model):
             grades.append(Grade.objects.all().filter(user=student, date__in=get_colums))
         return grades
 
+    def get_self_grades(self, user):
+        get_colums = BookColumn.objects.all().filter(gradebook=self)
+        return Grade.objects.all().filter(user=user, date__in=get_colums)
+
+    def get_lesson(self):
+        tmp = StudentGroupLesson.objects.get(gradebook=self)
+        return tmp.lesson
+
 
 class StudentGroupLesson(models.Model):
     lesson = models.ForeignKey(Lesson, blank=False, on_delete=models.CASCADE)
@@ -157,10 +165,10 @@ class Grade(models.Model):
 @receiver(post_save, sender=BookColumn)
 def create_grade(sender, instance, created, **kwargs):
     if created:
-        gradebook = instance.gradebook
-        students = StudentGroup.students_by_group(group=gradebook.group)
+        group = instance.gradebook.group
+        students = StudentGroup.objects.all().filter(group=group)
         for student in students:
-            new_grade = Grade(date=instance, user=User.objects.get(id=student.id))
+            new_grade = Grade(date=instance, user=student.student)
             new_grade.save()
 
 
@@ -253,6 +261,17 @@ class Profile(models.Model):
         for day in days:
             schedule.append(Schedule.objects.all().filter(lesson__in=teacher_lessons, week_day=day))
         return schedule
+
+    def get_grades(self):
+        group = self.get_student_group()
+        gradebooks = GradeBook.objects.all().filter(group=group)
+        grades = {}
+        for i in gradebooks:
+            tmp = []
+            for k in i.get_self_grades(self.user):
+                tmp.append(k)
+            grades[i.get_lesson()] = tmp
+        return grades
 
 
 @receiver(post_save, sender=User)
