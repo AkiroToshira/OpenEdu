@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap');
 
 * {
   padding: 0;
@@ -7,56 +7,86 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
   background-color: #f5f7f9;
+  font-family: 'Comfortaa', cursive;
 }
 
-/* background-color: #f5f7f9;
-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.3);
-0.03 rem or 10px
-rgb(30, 156, 132) */
-
-.profile_page {
-  padding: 50px;
-  font-size: 20px;
-  border-bottom: 4px solid black;
-}
-
-.profile_image {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-}
-.profile_image img {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.profile_page {
+.container {
   display: flex;
+  width: 420px;
+  height: 470px;
+  margin: 25px auto;
+  border-radius: 6px;
+  border: 1px solid #2e3d5e;
+  background-color: #3c5079;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.col:first-child {
+  height: 470px;
+  border-radius: 6px;
+  background-color: #3c5079;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
+  height: 400px;
 }
 
-.profile_info div {
-  padding: 5px;
+.profile-col {
+  width: 150px;
+  height: 75px;
+  margin-bottom: 5px;
 }
 
-.profile_info {
-  margin-left: 100px;
-  padding: 10px;
+.profile-col:first-child {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 2px solid #2e3d5e;
+  margin-bottom: 30px;
 }
 
-.profile_info div::first-letter {
-  text-transform: uppercase;
+.profile-col:nth-child(2n) {
+  width: 300px;
+  height: 60px;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.profile-col:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+}
+
+.profile-col:last-child div i{
+  font-size: 2em;
+  margin: 0 20px;
+  color: white;
+}
+
+.profile-col:last-child div i:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color: rgb(30, 156, 132);
+}
+
+.lv-who span{
+  font-size: 16px;
+  color: #cedcf7;
+}
+
+@media screen and (max-width: 680px) {
+  .container {
+    width: 100%;
+  }
 }
