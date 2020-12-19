@@ -26,8 +26,13 @@ def gradebookteacher(request, id):
 
 @login_required(login_url='/login')
 def gradebookhub(request):
+    get_profile = Profile.objects.get(id=request.user.id)
+    lessons = get_profile.get_teacher_lessons()
+    context = {
+        'lessons': lessons,
+    }
     template = 'GradeBook/diary_hub.html'
-    return render(request, template)
+    return render(request, template, context)
 
 
 def gradebookstudent(request):

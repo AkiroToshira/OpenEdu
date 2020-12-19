@@ -24,6 +24,13 @@ class Lesson(models.Model):
             teachers.append(i.teacher)
         return teachers
 
+    def get_gradebooks(self):
+        lessongroup = StudentGroupLesson.objects.all().filter(lesson=self)
+        gradebooks = []
+        for x in lessongroup:
+            gradebooks.append(x.gradebook)
+        return gradebooks
+
     def __str__(self):
         return self.name
 

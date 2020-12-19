@@ -5,56 +5,18 @@
 <body>
 <div class="container">
     <div class="subject_list">
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Предмет 1</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">Предмет 2</button>
-            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Предмет 3</button>
-        </div>
-
-        <div id="London" class="tabcontent">
-            <span>Предмет 1</span>
+        {% for lesson in lessons %}
+        <div id="{{lesson.id}}" class="tabcontent">
+            <span>{{ lesson }}</span>
             <div class="list_of_groups">
-                <div class="group_item">КН-215</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
+                {% for x in lesson.get_gradebooks %}
+                <a href="/gradebook/teacher/{{ x.id }}" class="col">
+                    <div class="group_item">{{x.group.name}}</div>
+                </a>
+                {% endfor %}
             </div>
         </div>
-
-        <div id="Paris" class="tabcontent">
-            <span>Предмет 2</span>
-            <div class="list_of_groups">
-                <div class="group_item">КН-215</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
-            </div>
-        </div>
-
-        <div id="Tokyo" class="tabcontent">
-            <span>Предмет 3</span>
-            <div class="list_of_groups">
-                <div class="group_item">КН-215</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-214</div>
-                <div class="group_item">КН-213</div>
-                <div class="group_item">КН-212</div>
-                <div class="group_item">КН-212</div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 <script>
