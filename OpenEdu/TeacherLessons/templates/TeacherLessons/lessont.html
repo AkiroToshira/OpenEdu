@@ -53,7 +53,7 @@
         <div class="col1 col-teacher-info">
             <div class="teacher-info">
                 <span>{{ get_lesson}}</span>
-                <p>{{ get_lesson.description }}</p>
+                <p style="margin:0">{{ get_lesson.description }}</p>
             </div>
             <div class="whois">
                 <span>Групи:</span>
@@ -63,8 +63,8 @@
             </div>
         </div>
         <div class="col col-teacher-info add-new-chapter">
-            <!--            <span id="myBtn">Додати </span>-->
-            <span class="collapsible">Додати</span>
+            <span class="collapsible">Додати новий запис</span>
+
             <div class="content">
                 <form enctype="multipart/form-data" action="" method="post">
                     {% csrf_token %}
@@ -75,17 +75,14 @@
                             <div class="chapter-title">
                                 <input type="text" name="name" maxlength="30" required id="id_name" placeholder="Name">
                             </div>
-                            <hr>
                             <div class="chapter-description">
                                 <textarea name="description" id="id_description" placeholder="Введіть опис"></textarea>
                             </div>
-                            <div class="chapter-document">
-
+                            <div class="chapter-document" style="margin: 10px 0">
                                 <input type="file" name="document" id="id_document" class="file"/>
-                                <label for="id_document">choose a file</label>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" name="button">Add</button>
+                                <button type="submit" name="button">Додати</button>
                             </div>
                         </form>
 
@@ -107,13 +104,11 @@
             var content = this.nextElementSibling;
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     }
-
 </script>
 <script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
 
