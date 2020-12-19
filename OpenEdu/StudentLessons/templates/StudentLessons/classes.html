@@ -2,6 +2,11 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'StudentLessons/css/classes.css' %}"/>
+<style>
+    tr td {
+        width: 50px !important;
+    }
+</style>
 <body>
 <div class="main-container">
   <div class="subjet-title"><span>Предмети</span></div>
@@ -12,10 +17,10 @@
         </a>
         {% endfor %}
     </div>
-    <div class="subjet-title"><span>Дедлайни</span></div>
+    <div class="deadline-title"><span>Дедлайни</span></div>
 
     <div class="deadline-container">
-        <table class="content-table">
+        <table class="content-table" style="width: 650px;height:51px;">
             <thead>
             <tr>
                 <th>Назва предмату</th>
@@ -26,7 +31,6 @@
             <tbody>
             {% for x in get_deadlines %}
             <tr>
-
                 <td>{{ x.lesson }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>

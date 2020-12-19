@@ -48,7 +48,6 @@ body {
   height: 150px;
   width: 150px;
   border-radius: 50%;
-  border: 2px solid #2e3d5e;
   margin-bottom: 30px;
 }
 
@@ -78,6 +77,14 @@ body {
   cursor: pointer;
   transform: scale(1.1);
   color: rgb(30, 156, 132);
+}
+
+.profile-col img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  border: 2px solid #2e3d5e;
+
 }
 
 .lv-who span{
