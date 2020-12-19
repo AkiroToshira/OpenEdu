@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from django.utils.translation import gettext as _, ngettext
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -147,6 +147,7 @@ ADMIN_SHORTCUTS = [
             {
                 'title': 'Groups',
                 'url_name': 'admin:auth_group_changelist',
+                #'url': 'core/group',
                 'count_new': 'OpenEdu.utils.count_groups',
             },
             {
@@ -168,6 +169,11 @@ ADMIN_SHORTCUTS = [
                 'title': 'Add group',
                 'url_name': 'admin:auth_group_add',
                 'has_perms': 'OpenEdu.utils.has_perms_to_groups',
+            },
+            {
+                'title': 'Add article',
+                'url_name': 'admin:index',
+                #'has_perms': 'OpenEdu.utils.has_perms_to_articless',
             },
         ]
     },
