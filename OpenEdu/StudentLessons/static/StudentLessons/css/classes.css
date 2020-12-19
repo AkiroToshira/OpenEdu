@@ -12,7 +12,7 @@ body {
 
 .container {
   display: flex;
-  width: 940px;
+  width: 840px;
   margin: 25px auto;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -32,8 +32,8 @@ body {
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 248px;
-  height: 160px;
+  width: 228px;
+  height: 140px;
   text-align: center;
   font-size: 20px;
   max-width: 248px;
@@ -122,7 +122,7 @@ body {
   margin: 10px auto;
   font-size: 20px;
   overflow: hidden;
-  width: 940px;
+  width: 840px;
   padding: 2px;
   border-spacing: 0px 15px;
   border-collapse: separate;
