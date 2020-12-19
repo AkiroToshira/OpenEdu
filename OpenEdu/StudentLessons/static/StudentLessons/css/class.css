@@ -9,7 +9,6 @@ body {
   background-color: #f5f7f9;
   font-family: 'Source Sans Pro', sans-serif;
   /*font-family: 'Comfortaa', cursive;*/
-
 }
 
 .container {
@@ -31,6 +30,11 @@ body {
   max-height: 450px;
 }
 
+.teacher-info span {
+  color:#121528;
+  font-size: 1.425rem;
+}
+
 .col1 {
   background-color: white;
   width: 300px;
@@ -38,7 +42,8 @@ body {
   color:black;
   text-decoration: none;
   box-shadow: 0 0 2px rgba(0,0,0,.3);
-  border-radius: 10px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .col {
@@ -59,6 +64,77 @@ body {
   background-color: white;
 }
 
+
+.chapter-title {
+  padding-top: 20px;
+  margin-bottom: 10px
+}
+
+.chapter-title input {
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+  font-family: 'Source Sans Pro', sans-serif;
+  outline: none;
+  font-size: 1.1em;
+  transition: all 0.5s ease;
+
+}
+
+.chapter-description textarea {
+  width: 100%;
+  height: 100px;
+  padding: 5px 5px;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .1);
+  font-family: 'Source Sans Pro', sans-serif;
+  resize: none;
+  outline: none;
+  font-size: 1.1em;
+  color: #121528;
+  transition: all 0.5s ease;
+
+}
+
+textarea:focus {
+  box-shadow: 0 0 5px 0 rgba(30, 156, 132,1);
+  border-top: none;
+}
+/*.chapter-description textarea:hover,input[type=text]:hover {*/
+/*  box-shadow: 0 0 6px rgba(0, 0, 0, .25);*/
+/*}*/
+
+input[type=text]:focus {
+  box-shadow: 0 0 5px 0 rgba(30, 156, 132,1);
+  border-top: none;
+}
+::placeholder {
+  color: #121528;
+}
+
+.modal-footer {
+  padding-bottom: 20px;
+}
+.modal-footer button{
+  text-align: center;
+  padding: 10px 5px;
+  width: 100%;
+  color: white;
+  border: 1px solid rgb(30, 156, 132);
+  background-color: rgb(30, 156, 132);
+  transition: all 0.5s ease;
+  border-radius: 3px;
+}
+
+.modal-footer button:hover {
+  cursor: pointer;
+  border: 1px solid rgb(30, 156, 132);
+  background-color: rgb(14, 177, 145);
+
+}
 .lecture-info {
   padding: 5px 10px;
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, .1);
@@ -120,8 +196,13 @@ div.teacher-img {
 }
 
 .whois > span:first-child {
-  font-size: .55em;
-  color: #969ea9
+  font-size: 1.425rem;
+  color: #121528;
+}
+
+.whois  span:last-child {
+  font-size: 0.7em;
+  color: #969ea9;
 }
 
 .first-section .col{
@@ -159,29 +240,43 @@ div.teacher-img {
    border-radius: 6px;
    box-shadow: 0 0 2px rgba(0,0,0,.3);
 }
+.pdf a{
+   transition: all 0.5s ease;
+ }
+
+
+.pdf a:hover {
+  color: white;
+  background-color: rgb(30, 156, 132);
+}
+
 
 .pdf {
   padding: 2px 0;
   max-width: 350px;
   display: flex;
   flex-direction: column;
+  transition: all 0.5s ease;
 }
 
 .collapsible {
   cursor: pointer;
   text-align: center;
   box-shadow: 0 0 2px rgba(0,0,0,.3);
-  border-radius: 6px;
   padding: 10px 5px;
   background-color: white;
   color: black;
   transition: all 0.5s ease;
-  border: 2px solid rgb(30, 156, 132);
+  margin-bottom: 1px;
 }
+
 
 .collapsible:hover {
   color: white;
   background-color: rgb(30, 156, 132);
+}
+div:focus {
+  background-color:red;
 }
 
 .content {
@@ -189,12 +284,13 @@ div.teacher-img {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 .add-new-chapter {
   box-shadow: 0 0 0 rgba(0,0,0,.3);
   background-color: #f4f7f9;
+  padding: 0 !important;
 }
 
 .inner-information {
@@ -223,7 +319,7 @@ div.teacher-img {
 .edit-delete {
   display: flex;
   text-decoration: none;
-  font-size: 1.175rem;
+  font-size: 1.275rem;
 }
 
 .edit-delete a:first-child {
@@ -238,6 +334,11 @@ div.teacher-img {
   color: #556175;
 }
 
+
+.edit-delete a:first-child i,.edit-delete a:last-child i {
+  transition: all 0.5s ease;
+}
+
 .edit-delete a:first-child i:hover {
   color: #d25656;
 }
@@ -245,8 +346,6 @@ div.teacher-img {
 .edit-delete a:last-child i:hover {
   color: #278e27;
 }
-
-
 
 
 

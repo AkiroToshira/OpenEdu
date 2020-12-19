@@ -15,7 +15,7 @@ body {
   width: 940px;
   margin: 25px auto;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: #f5f7f9;
 
@@ -32,8 +32,8 @@ body {
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 248px;
-  height: 160px;
+  width: 228px;
+  height: 140px;
   text-align: center;
   font-size: 20px;
   max-width: 248px;
@@ -111,6 +111,14 @@ body {
   text-align: center;
 }
 
+.deadline-title {
+  margin: 0px auto 5px auto;
+}
+.deadline-title span{
+  font-size: 30px;
+  font-weight: 300;
+  color: #121528;
+}
 
 .subjet-title span{
   font-size: 30px;
@@ -375,7 +383,7 @@ tbody .add-deadline{
 
 @media screen and (max-width: 1400px) {
   .container {
-    /*width: 85%;*/
+    width: 85%;
     position: relative;
     top: 0;
     left: 0;
@@ -399,9 +407,7 @@ tbody .add-deadline{
   .content-table {
     width: 750px;
   }
-  .container {
-    justify-content: flex-start;
-  }
+
   .deadline-container {
     margin: 0 auto 0 auto;
   }
