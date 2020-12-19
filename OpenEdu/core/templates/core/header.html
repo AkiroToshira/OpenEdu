@@ -25,7 +25,6 @@
         {% elif request.user.profile.account_permission == 'Admin' %}
         <a href="{{ url_lessonst_page }}"> Предмети</a>
         {% endif %}
-
         <!--Choose menu option according to account_permission -->
         {% if request.user.profile.account_permission == 'Student' %}
         <a href="{% url 'StudentShedule' %}">Розклад</a>

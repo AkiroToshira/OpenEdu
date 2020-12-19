@@ -4,10 +4,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'StudentLessons/css/classes.css' %}"/>
 <body>
 <div class="main-container">
-  <div class="subjet-title"><span>Предмети</span></div>
+    <div class="subjet-title"><span>Предмети</span></div>
     <div class="container">
         {% for lesson in get_lesson %}
-        <a href="lesson/{{ lesson.get_lesson.id }}" class="col">
+        <a href="lesson/{{ lesson.get_lesson.id }}" class="col" style="color: black;text-decorations: none;">
             <div class="inner-information"><span>{{ lesson.get_lesson }}</span><span>Teacher</span></div>
         </a>
         {% endfor %}
@@ -26,8 +26,7 @@
             <tbody>
             {% for x in get_deadlines %}
             <tr>
-
-                <td>{{ x.lesson }}</td>
+                <td>{{ x.student_group_lesson.lesson }}</td>
                 <td>{{ x.name }}</td>
                 <td>{{ x.deadline_time }}</td>
             </tr>
