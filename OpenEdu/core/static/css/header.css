@@ -68,11 +68,10 @@ a.rounded {
 }
 
 a.logout {
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
   padding: 5px 27px;
   width: 113px;
-
   border-radius: 100px;
+  box-shadow: 0 0 0 1px #ccc;
 }
 
 a.logout:hover {

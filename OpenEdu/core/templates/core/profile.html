@@ -3,23 +3,29 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
 <body>
-<div class="profile_page">
-    <div class="profile_image">
-        <img src="{{ default_or_current_img }}"/>
-    </div>
-    <div class="profile_info">
-        <div class="profile_name">
-            ім'я: {{ get_user.first_name }} {{ get_user.last_name }}
+<div class="container">
+    <div class="col">
+        <div class="profile">
+            <div class="profile-col">
+
+            </div>
+            <div class="profile-col">
+                <span>{{ get_user.first_name }} {{ get_user.last_name }}</span>
+                <div class="lv-who">
+                    <span>Lviv</span>
+                    <span>|</span>
+                    <span>Student</span>
+                </div>
+            </div>
+            <div class="profile-col">
+                <div class="phone"><a href="tel:+{{ get_user.profile.numberphone }}"><i class="fas fa-phone-alt"></i></a></div>
+                <div class="email"><a href="mailto:{{ get_user.email }}"><i class="far fa-envelope"></i></a></div>
+                <div class="github"><a href="https://{{ get_user.profile.github }}"><i class="fab fa-github"></i></a></div>
+            </div>
         </div>
-        <div class="profile_group">
-            група: {{ get_user.profile.student_group }}
-        </div>
-        <div class="profile_email">емейл: {{ get_user.email }}</div>
-        <div class="profile_phone">
-            номер телефону: {{ get_user.profile.numberphone }}
-        </div>
-        <div class="profile_email">GitHub: {{ get_user.profile.github }}</div>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
+
 </body>
 {% endblock content %}
