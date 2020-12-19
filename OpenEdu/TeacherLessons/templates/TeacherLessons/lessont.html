@@ -9,29 +9,48 @@
     <div class="first-section">
 
         {% for i in get_chapter %}
+<!--        <div class="col">-->
+<!--            <div class="title">-->
+<!--                <span>{{ i.name }}</span>-->
+<!--            </div>-->
+<!--            <div class="description">-->
+<!--                <span>{{ i.description }}</span>-->
+<!--            </div>-->
+<!--            <div class="title pdf">-->
+<!--                <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>-->
+<!--                <img src="../../media/page/pdf.svg" alt="" class="user-png">-->
+<!--            </div>-->
+<!--            <div class="inner-information">-->
+<!--                <a href="{% url 'DeleteChapter' i.id %}">Видалити</a>-->
+<!--                <a href="editchapter/{{ i.id }}">-->
+<!--                    <span>Редактувати</span>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="col">
-            <div class="title">
-                <span>{{ i.name }}</span>
-            </div>
-            <div class="description">
-                <span>{{ i.description }}</span>
-            </div>
-            <div class="title pdf">
-                <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>
-                <img src="../../media/page/pdf.svg" alt="" class="user-png">
-            </div>
-            <div class="inner-information">
-                <a href="{% url 'DeleteChapter' i.id %}">Видалити</a>
-                <a href="editchapter/{{ i.id }}">
-                    <span>Редактувати</span>
-                </a>
+            <div class="lecture">
+                <div class="lecture-info">
+                    <div class="left-side">
+                        <div class="lecture-title"><span>{{ i.name }}</span></div>
+                        <div class="lecture-description">
+                            {{ i.description }}
+                        </div>
+                    </div>
+                    <div class="edit-delete">
+                        <a href="{% url 'DeleteChapter' i.id %}"><i class="fas fa-trash"></i></a>
+                        <a href="editchapter/{{ i.id }}"><i class="fas fa-edit"></i></a>
+                    </div>
+                </div>
+                <div class="title pdf">
+                    <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>
+                </div>
             </div>
         </div>
         {% endfor %}
 
     </div>
     <div class="second-section">
-        <div class="col col-teacher-info">
+        <div class="col1 col-teacher-info">
             <div class="teacher-info">
                 <span>{{ get_lesson}}</span>
                 <p>{{ get_lesson.description }}</p>
@@ -49,9 +68,27 @@
             <div class="content">
                 <form enctype="multipart/form-data" action="" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="modal-footer">
-                        <button type="submit" name="button">Add</button>
+                    <div class="form-container">
+                        <form enctype="multipart/form-data" action="" method="post">
+
+                            <input type="hidden">
+                            <div class="chapter-title">
+                                <input type="text" name="name" maxlength="30" required id="id_name" placeholder="Name">
+                            </div>
+                            <hr>
+                            <div class="chapter-description">
+                                <textarea name="description" id="id_description" placeholder="Введіть опис"></textarea>
+                            </div>
+                            <div class="chapter-document">
+
+                                <input type="file" name="document" id="id_document" class="file"/>
+                                <label for="id_document">choose a file</label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="button">Add</button>
+                            </div>
+                        </form>
+
                     </div>
                 </form>
             </div>
@@ -79,5 +116,7 @@
     }
 
 </script>
+<script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
+
 </body>
 {% endblock content %}

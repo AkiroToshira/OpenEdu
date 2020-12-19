@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap');
 
-/* light 300 open sans */
 
 * {box-sizing: border-box;  }
 body {
@@ -8,6 +8,8 @@ body {
   padding: 0;
   background-color: #f5f7f9;
   font-family: 'Source Sans Pro', sans-serif;
+  /*font-family: 'Comfortaa', cursive;*/
+
 }
 
 .container {
@@ -17,7 +19,6 @@ body {
   justify-content: center;
   margin: 25px auto;
   color:black;
-
 }
 
 .first-section > .col {
@@ -26,16 +27,11 @@ body {
   margin-bottom: 10px;
 }
 
-.second-section > .col {
-  margin-left: 10px;
-
-}
 .col-teacher-info {
   max-height: 450px;
 }
 
-
-.col {
+.col1 {
   background-color: white;
   width: 300px;
   font-size: 20px;
@@ -43,6 +39,46 @@ body {
   text-decoration: none;
   box-shadow: 0 0 2px rgba(0,0,0,.3);
   border-radius: 10px;
+}
+
+.col {
+  width: 350px;
+  flex-basis: 350px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.lecture {
+  /*height: 240px;*/
+  margin-bottom: 10px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .08);
+  border-radius: 6px;
+  background-color: white;
+}
+
+.lecture-info {
+  padding: 5px 10px;
+  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, .1);
+  max-height: 80%;
+}
+
+.lecture-title span,.user-info span:first-child {
+  color: #121528;
+  font-size: 1.425rem;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.lecture-description span,.user-info span:last-child {
+  font-size: 1.075rem;
+}
+
+.lecture-description {
+  word-wrap: break-word;
+  color: #556175;
 }
 
 .col-teacher-info {
@@ -71,8 +107,8 @@ div.teacher-img {
   border-radius: 50%;
 }
 
-p {
-  margin-top: 0;
+.content {
+  margin: 0 !important;
 }
 
 .whois {
@@ -93,7 +129,6 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 25px;
-  color: #919da9;
 }
 
 .title span {
@@ -106,12 +141,6 @@ p {
   font-weight: bold;
 }
 
-.user-png {
-  background-color: #eaeaea;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
-}
-
 .description {
   font-family: 'Open Sans', sans-serif;
   padding-bottom: 5px;
@@ -121,20 +150,21 @@ p {
   word-wrap: break-word;
 }
 
-.pdf span, .pdf a{
-  padding: 5px 10px;
-  text-decoration: none;
-  color: white;
-  background-color: rgb(30, 156, 132);
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-  box-shadow: 0 0 2px rgba(0,0,0,.3);
+ .pdf a {
+   margin: 4px 10px;
+   padding: 5px 10px;
+   text-decoration: none;
+   color: #121528;
+   background-color: white;
+   border-radius: 6px;
+   box-shadow: 0 0 2px rgba(0,0,0,.3);
 }
 
 .pdf {
-  padding: 2.5px 0;
+  padding: 2px 0;
+  max-width: 350px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .collapsible {
@@ -163,7 +193,6 @@ p {
 }
 
 .add-new-chapter {
-  margin-top: 10px;
   box-shadow: 0 0 0 rgba(0,0,0,.3);
   background-color: #f4f7f9;
 }
@@ -173,7 +202,6 @@ p {
   display: flex;
   flex-direction: column;
 }
-
 
 .inner-information a {
   width: 80px;
@@ -191,6 +219,36 @@ p {
 .inner-information a:last-child:hover {
   color: rgb(30, 156, 132);
 }
+
+.edit-delete {
+  display: flex;
+  text-decoration: none;
+  font-size: 1.175rem;
+}
+
+.edit-delete a:first-child {
+  margin-right: 10px;
+}
+
+.edit-delete {
+  margin: 10px 0 0 0;
+}
+
+.edit-delete a i {
+  color: #556175;
+}
+
+.edit-delete a:first-child i:hover {
+  color: #d25656;
+}
+
+.edit-delete a:last-child i:hover {
+  color: #278e27;
+}
+
+
+
+
 
 @media screen and (max-width: 1200px) {
 

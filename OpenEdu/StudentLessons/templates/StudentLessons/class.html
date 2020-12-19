@@ -7,23 +7,37 @@
     <div class="first-section">
 
         {% for i in get_chapter %}
+<!--        <div class="col">-->
+<!--            <div class="title">-->
+<!--                <span>{{ i.name }}</span>-->
+<!--            </div>-->
+<!--            <div class="description">-->
+<!--                <span>{{ i.description }}</span>-->
+<!--            </div>-->
+<!--            <div class="title pdf">-->
+<!--                <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>-->
+<!--                <img src="../../media/page/pdf.svg" alt="" class="user-png">-->
+<!--            </div>-->
+        <!--            <div class="inner-information">-->
+<!--                        <a href="{% url 'DeleteChapter' i.id %}">Видалити</a>-->
+<!--                        <a href="editchapter/{{ i.id }}">-->
+<!--                            <span>Редактувати</span>-->
+<!--                        </a>-->
+        <!--            </div>-->
+<!--        </div>-->
         <div class="col">
-            <div class="title">
-                <span>{{ i.name }}</span>
-            </div>
-            <div class="description">
-                <span>{{ i.description }}</span>
-            </div>
-            <div class="title pdf">
-                <a href="{{ i.document.url }}" download>{{ i.document.name }}</a>
-                <img src="../../media/page/pdf.svg" alt="" class="user-png">
+            <div class="lecture">
+                <div class="lecture-info">
+                    <div class="lecture-title"><span>{{ i.name }}</span></div>
+                    <div class="lecture-description"><p>{{ i.description }}</p></div>
+                </div>
             </div>
         </div>
         {% endfor %}
 
     </div>
     <div class="second-section">
-        <div class="col col-teacher-info">
+        <div class="col1 col-teacher-info">
             <div class="whois">
                 <span>Викладачі:</span>
                 {% for i in get_lesson.get_lesson_teachers %}
@@ -37,8 +51,6 @@
         </div>
     </div>
 </div>
-<script>
-    document.title = 'Інформаційна сторінка'
-</script>
+<script src="https://kit.fontawesome.com/f9bf105099.js" crossorigin="anonymous"></script>
 </body>
 {% endblock content %}
