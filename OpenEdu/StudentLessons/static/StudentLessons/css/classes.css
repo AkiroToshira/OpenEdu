@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f7f9;
-
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 
@@ -16,7 +16,6 @@ body {
   margin: 25px auto;
   flex-wrap: wrap;
   justify-content: flex-start;
-  font-family: 'Comfortaa', cursive;
   align-items: center;
   background-color: #f5f7f9;
 
@@ -102,7 +101,9 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  font-family: 'Comfortaa', cursive;
+  /*font-family: 'Comfortaa', cursive;*/
+  font-family: 'Source Sans Pro', sans-serif;
+
 }
 
 .subjet-title {
@@ -211,7 +212,7 @@ td.delete:hover,td.edit:hover {
 
 .modal-body{
   padding: 0px !important;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Comfortaa', cursive;
   width: 85%;
   margin: 0 auto;
 }
