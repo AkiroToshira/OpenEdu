@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import DeadLinesForm, ChapterForm
+from .forms import DeadLinesForm, ChapterForm, EditDeadLinesForm
 from core.models import Deadlines, Lesson, Profile, Chapter, StudentGroupLesson, Group
 
 
@@ -35,7 +35,7 @@ def lessonst(request):
 def editdeadline(request, id):
     update_deadline = Deadlines.objects.get(id=id)
     if request.method == 'POST':
-        form = DeadLinesForm(request.POST, request.FILES)
+        form = EditDeadLinesForm(request.POST, request.FILES)
         if form.is_valid():
             update_deadline.name = form.cleaned_data['name']
             update_deadline.deadline_time = form.cleaned_data['deadline_time']
@@ -45,9 +45,7 @@ def editdeadline(request, id):
     get_profile = Profile.objects.get(id=request.user.id)
     teacher_lessons = get_profile.get_teacher_lessons()
     lessons = StudentGroupLesson.objects.all().filter(lesson__in=teacher_lessons).order_by('lesson')
-    form = ChapterForm()
     context = {
-        'form': form,
         'get_lesson': lessons,
         'update_deadline': update_deadline,
     }

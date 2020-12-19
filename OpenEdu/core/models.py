@@ -6,8 +6,8 @@ from django.dispatch import receiver
 
 class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
-    text = models.TextField(max_length=200)
+    name = models.CharField(max_length=100)
+    text = models.TextField(max_length=5000)
     img = models.ImageField(upload_to='article', blank=True)
     is_main = models.BooleanField(default=False)
 
