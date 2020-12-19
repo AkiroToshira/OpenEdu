@@ -99,7 +99,9 @@ class StudentGroup(models.Model):
     @classmethod
     def students_by_group(cls, group):
         students = cls.objects.all().filter(group=group)
-        users = User.objects.all().filter(id__in=students)
+        users = []
+        for student in students:
+            users.append(student.student)
         return users
 
     def get_grades(self):

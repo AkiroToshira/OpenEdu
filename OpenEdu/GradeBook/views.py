@@ -12,11 +12,10 @@ def gradebookteacher(request, id):
     for colum in book.get_grades():
         data.append([])
         for grade in colum:
-            data[i].append({"date": str(grade.date.date), "grades": str(grade.value), "student": str(grade.user)})
+            data[i].append({"date": str(grade.date.date), "grades": str(grade.value), "student": str(grade.user.get_full_name())})
         i = i + 1
     context = {
         'get_columns': get_columns,
-        'get_check': book.get_grades(),
         'raw_data': data,
     }
     template = 'GradeBook/diary.html'
