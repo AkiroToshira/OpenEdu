@@ -3,14 +3,17 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'GradeBook/css/diary.css' %}"/>
 <body>
+        {% for j in grades %}
 <div class="table-fixed-column-outter">
     <div class="table-fixed-column-inner">
-        {% for j in grades %}
-        <h1 class="student_diary_title">Предмет: {{j.lesson}}</h1>
+        <h1 class="student_diary_title">
+            <div class="line-title"></div>
+            Предмет: {{j.lesson}}
+        </h1>
         <table class="table-fixed-column table-fixed-column table table-bordered table-striped">
             <thead>
             <tr>
-                <td>Дата</td>
+                <td>ДАТА</td>
                 {%for k in j.grades %}
                 <td>{{k.date.date}}</td>
                 {% endfor%}
@@ -18,16 +21,16 @@
             </thead>
             <tbody>
             <tr>
-                <td>Оцінка</td>
+                <td>ОЦІНКА</td>
                 {%for k in j.grades %}
                 <td>{{k.value}}</td>
                 {% endfor%}
             </tr>
             </tbody>
         </table>
-        {% endfor %}
     </div>
 </div>
+        {% endfor %}
 <script>
     document.title = 'Оцінки'
 </script>

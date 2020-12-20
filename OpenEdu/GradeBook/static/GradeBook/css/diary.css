@@ -213,6 +213,17 @@ td:hover::before {
 
 .student_diary_title {
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
 
+.line-title {
+    height: 5px;
+    width: 70px;
+    border-radius: 9999px;
+    background-color: rgb(30, 156, 132);;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
