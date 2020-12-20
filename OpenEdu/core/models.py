@@ -162,6 +162,7 @@ class Grade(models.Model):
     value = models.CharField(max_length=3, default='')
 
 
+
 @receiver(post_save, sender=BookColumn)
 def create_grade(sender, instance, created, **kwargs):
     if created:
@@ -184,11 +185,14 @@ class TeacherLesson(models.Model):
         return lessons
 
 
+
 class Deadlines(models.Model):
     name = models.CharField(max_length=20)
     student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
     deadline_time = models.DateField(blank=True)
 
+    def __str__(self):
+        return self.name
 
 class Schedule(models.Model):
     SUBGROUP_CHOICE = (
@@ -218,6 +222,7 @@ class Schedule(models.Model):
     subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
     time = models.CharField(max_length=13, choices=TIME_CHOICE)
+
 
 
 class Profile(models.Model):
@@ -272,6 +277,7 @@ class Profile(models.Model):
                 tmp.append(k)
             grades[i.get_lesson()] = tmp
         return grades
+
 
 
 @receiver(post_save, sender=User)
