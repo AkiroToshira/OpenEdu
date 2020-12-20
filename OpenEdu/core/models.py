@@ -61,15 +61,24 @@ class Document(models.Model):
 class Institute(models.Model):
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
+
 
 class Faculty(models.Model):
     name = models.CharField(max_length=30)
     institute = models.ForeignKey(Institute, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Department(models.Model):
     name = models.CharField(max_length=30)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class Group(models.Model):
@@ -111,6 +120,9 @@ class StudentGroup(models.Model):
     def get_group(self):
         return self.group
 
+    def __str__(self):
+        return str(self.group) + ' | ' + str(self.student.get_full_name())
+
 
 class GradeBook(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -135,6 +147,10 @@ class GradeBook(models.Model):
         tmp = StudentGroupLesson.objects.get(gradebook=self)
         return tmp.lesson
 
+    def __str__(self):
+        tmp = StudentGroupLesson.objects.get(gradebook=self)
+        return str(tmp.student_group.name) + ' ' + str(tmp.lesson)
+
 
 class StudentGroupLesson(models.Model):
     lesson = models.ForeignKey(Lesson, blank=False, on_delete=models.CASCADE)
@@ -143,6 +159,9 @@ class StudentGroupLesson(models.Model):
 
     def get_lesson(self):
         return self.lesson
+
+    def __str__(self):
+        return str(self.lesson) + " | " + str(self.student_group)
 
 
 @receiver(pre_save, sender=StudentGroupLesson)
@@ -165,12 +184,15 @@ class BookColumn(models.Model):
         get_grade = Grade.objects.all().filter(date=self.id)
         return get_grade
 
+    def __str__(self):
+        name = str(self.gradebook.group.name) + ' ' + str(self.date)
+        return name
+
 
 class Grade(models.Model):
     date = models.ForeignKey(BookColumn, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     value = models.CharField(max_length=3, default='')
-
 
 
 @receiver(post_save, sender=BookColumn)
@@ -195,7 +217,6 @@ class TeacherLesson(models.Model):
         return lessons
 
 
-
 class Deadlines(models.Model):
     name = models.CharField(max_length=20)
     student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
@@ -203,6 +224,7 @@ class Deadlines(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Schedule(models.Model):
     SUBGROUP_CHOICE = (
@@ -233,6 +255,8 @@ class Schedule(models.Model):
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
     time = models.CharField(max_length=13, choices=TIME_CHOICE)
 
+    def __str__(self):
+        return str(self.group) + " | " + str(self.week_day) + " | " + str(self.time)
 
 
 class Profile(models.Model):
@@ -287,7 +311,6 @@ class Profile(models.Model):
                 tmp.append(k)
             grades[i.get_lesson()] = tmp
         return grades
-
 
 
 @receiver(post_save, sender=User)

@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import *
 
 admin.site.site_header = "Administration"
-admin.site.site_title = "Administration"
-admin.site.index_title = None
+admin.site.site_title = "OpenEdu"
+admin.site.index_title = "Administration"
 admin.site.site_url = None
 
 admin.site.register(Articles)
