@@ -74,6 +74,14 @@ body {font-family: "Lato", sans-serif;}
     overflow-x: auto;
 }
 
+.list_of_groups a {
+    color: black;
+    text-decoration: none;
+}
+.list_of_groups a:hover {
+   color: lightgray;
+}
+
 
 .list_of_groups::-webkit-scrollbar {
     display: none;
