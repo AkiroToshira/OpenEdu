@@ -6,9 +6,10 @@ from django.dispatch import receiver
 
 class Articles(models.Model):
     articles_data = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=50)
-    text = models.TextField(max_length=200)
+    name = models.CharField(max_length=100)
+    text = models.TextField(max_length=5000)
     img = models.ImageField(upload_to='article', blank=True)
+    is_main = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,13 @@ class Lesson(models.Model):
         for i in TeacherLesson.objects.all().filter(lesson=self):
             teachers.append(i.teacher)
         return teachers
+
+    def get_gradebooks(self):
+        lessongroup = StudentGroupLesson.objects.all().filter(lesson=self)
+        gradebooks = []
+        for x in lessongroup:
+            gradebooks.append(x.gradebook)
+        return gradebooks
 
     def __str__(self):
         return self.name
@@ -91,7 +99,9 @@ class StudentGroup(models.Model):
     @classmethod
     def students_by_group(cls, group):
         students = cls.objects.all().filter(group=group)
-        users = User.objects.all().filter(id__in=students)
+        users = []
+        for student in students:
+            users.append(student.student)
         return users
 
     def get_grades(self):

@@ -2,8 +2,6 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="{% static 'StudentLessons/css/classes.css' %}"/>
-
-
 </head>
 <form enctype="multipart/form-data" action="" method="post">
             {% csrf_token %}
@@ -33,8 +31,13 @@
 
             <div class="col1">
             <div class="modal-add">
-                <button type="submit" name="button">Add</button>
+                <button type="submit" name="button">Edit</button>
+            </div>
             </div>
             </div>
             </div>
 </form>
+<script>
+    document.title = 'Оновити дедлайн'
+</script>
+

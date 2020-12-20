@@ -11,6 +11,12 @@ class DeadLinesForm(forms.Form):
     lesson = forms.IntegerField(required=True)
 
 
+class EditDeadLinesForm(forms.Form):
+    name = forms.CharField(max_length=20, required=False)
+    deadline_time = forms.DateField(widget=DateInput, required=False)
+    lesson = forms.IntegerField(required=False)
+
+
 class ChapterForm(forms.Form):
     name = forms.CharField(max_length=30)
     description = forms.CharField(required=False, widget=forms.Textarea())

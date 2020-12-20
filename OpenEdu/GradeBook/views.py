@@ -12,12 +12,10 @@ def gradebookteacher(request, id):
     for colum in book.get_grades():
         data.append([])
         for grade in colum:
-            data[i].append({"date": str(grade.date.date), "grades": str(grade.value), "student": str(grade.user)})
+            data[i].append({"date": str(grade.date.date), "grades": str(grade.value), "student": str(grade.user.get_full_name())})
         i = i + 1
-
     context = {
         'get_columns': get_columns,
-        'get_check': book.get_grades(),
         'raw_data': data,
     }
     template = 'GradeBook/diary.html'
@@ -26,8 +24,13 @@ def gradebookteacher(request, id):
 
 @login_required(login_url='/login')
 def gradebookhub(request):
+    get_profile = Profile.objects.get(id=request.user.id)
+    lessons = get_profile.get_teacher_lessons()
+    context = {
+        'lessons': lessons,
+    }
     template = 'GradeBook/diary_hub.html'
-    return render(request, template)
+    return render(request, template, context)
 
 
 def gradebookstudent(request):

@@ -29,9 +29,11 @@ def user_login(request):
 
 @login_required(login_url='/login')
 def core(request):
-    list_articles = Articles.objects.all()
+    list_articles = Articles.objects.all().filter(is_main=False)
+    main_article = Articles.objects.get(is_main=True)
     context = {
-        'list_articles': list_articles
+        'list_articles': list_articles,
+        'main_article': main_article,
     }
     template = 'core/news.html'
     return render(request, template, context)

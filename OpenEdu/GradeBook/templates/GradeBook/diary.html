@@ -5,29 +5,6 @@
 <body>
 <div class="main_page">
     <div class="diary">
-        <!--
-        <div class="dropdown_menu_diary">
-            <div class="choose_group">Виберіть свою групу</div>
-            <div class="dropdown">
-                 <button class="dropbtn">Групи</button>
-                <div class="dropdown-content group_content">
-                    <a href="#215">КН-215</a>
-                    <a href="#214">КН-214</a>
-                    <a href="#213">КН-213</a>
-                    <a href="#212">КН-212</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn group_name">Предмети</button>
-                <div class="dropdown-content">
-                    <a href="#">ОС</a>
-                    <a href="#">ПП</a>
-                    <a href="#">ТЙ</a>
-                    <a href="#">ТІ</a>
-                </div>
-            </div>
-        </div>
--->
         <div class="table-fixed-column-outter">
             <div class="table-fixed-column-inner">
                 <table class="table-fixed-column table-fixed-column table table-bordered table-striped">
@@ -42,6 +19,9 @@
         </div>
     </div>
 </div>
+<script>
+    document.title = 'Журнал'
+</script>
 <script>
     const data = {{ raw_data | safe }}
 

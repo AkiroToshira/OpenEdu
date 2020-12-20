@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-.dropbtn {
+body {
+    background-color: #f5f7f9;
+}
 
+.dropbtn {
     /*background-color: #3e8e41;*/
     color: black;
     font-size: 16px;
@@ -60,7 +63,6 @@
 .choose_group {
     display: flex;
     font-family: 'Open Sans', sans-serif;
-
     align-items: center;
     background-color: #eceaea60;
     height: 60px;
@@ -79,6 +81,15 @@
     overflow-y: visible;
 }
 
+.table-fixed-column-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.table-fixed-column-inner {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .table-fixed-column-inner .table {
     margin-bottom: 0.25rem;
 }
@@ -89,7 +100,8 @@
 
 .table td,
 .table th {
-    width: 60px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    width: 200px;
     padding: 10px 0;
     height: 40px;
     text-align: center;
@@ -197,4 +209,30 @@ td:hover::before {
     top: 0;
     width: 10000px;
     z-index: -2;
+}
+
+.student_diary_title {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.student_diary_title:hover {
+    background-color: #eceaea60;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.line-title {
+    height: 5px;
+    width: 70px;
+    border-radius: 9999px;
+    background-color: rgb(30, 156, 132);;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.panel {
+    display: none;
 }
