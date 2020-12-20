@@ -126,11 +126,12 @@ body {
 
 .subnews_date {
     font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 5px;
-    padding-left: 10px;
+    background-color: #1e9c84;
+    padding: 0 7px;
     border-radius: 9999px;
     border: 2px solid #1e9c84;
+    width: fit-content;
+    color: white;
 }
 
 .subnews_title {
