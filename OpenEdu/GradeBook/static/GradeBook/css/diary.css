@@ -218,6 +218,12 @@ td:hover::before {
     text-transform: uppercase;
 }
 
+.student_diary_title:hover {
+    background-color: #eceaea60;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
 .line-title {
     height: 5px;
     width: 70px;
@@ -227,3 +233,6 @@ td:hover::before {
     margin-right: 20px;
 }
 
+.panel {
+    display: none;
+}
