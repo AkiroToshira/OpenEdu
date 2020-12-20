@@ -73,19 +73,21 @@ body {font-family: "Lato", sans-serif;}
     width: 100%;
     overflow-x: auto;
 }
+git
+
+.list_of_groups::-webkit-scrollbar {
+    display: none;
+}
+
 
 .list_of_groups a {
     color: black;
     text-decoration: none;
 }
 .list_of_groups a:hover {
-   color: lightgray;
+    color: lightgray;
 }
 
-
-.list_of_groups::-webkit-scrollbar {
-    display: none;
-}
 
 .group_item {
     height: 50px;
