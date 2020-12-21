@@ -1,23 +1,21 @@
 # OpenEdu. How to start a project
 
-* Клонувати репозиторій 
+* Clone repository
     ```
     git clone https://github.com/AkiroToshiro/OpenEdu.git 
     ``` 
 
-* Cтворити стандартний проект в IDE з зклонованими файлами
-
-* Створити віртуальне середовище , під'єднати до проекту
+* Create default project with cloned files 
+* Create default virtual environment
 		
-* Вказати в терміналі шлях до папки з файлом requirements.txt
+* Enter path to "requirements.txt" and install dependencies
     ```
-    cd /шлях/до/папки/з/файлом/requirements.txt
+    cd /path/to/requirements.txt
     ```
-* Інсталювати залежності
     ```
     pip install -r requirements.txt
     ``` 
-* Вказати у файлі settings.py свою СУБД, або залишити стандартною:
+* Set in "settings.py" your database(Any you want).Or leave it default
     ```
    DATABASES = {
 	'default': {
@@ -26,38 +24,46 @@
     }
    ```
 
-* Вказати в терміналі шлях до папки з файлом manage.py 
+* Enter path to "manage.py"
     ```
-    cd /шлях/до/папки/з/файлом/manage.py
+    cd /path/to/manage.py
     ```
-* Створити міграції,щоб синхронізувати базу даних: 
+* Create migrations, to sync database
     ```
     python manage.py makemigrations
     ```
     ```
     python manage.py migrate
     ```
-  Після здійснених міграцій в папці з файлом 'manage.py' автоматично створиться база даних 'mydatabase'
-* Створити суперкористувача:
+  (ONLY IF DEFAULT SQLITE3)
+  After migrations , a database file 'mydatabase' will automatically create in folder with manage.py
+* Create superuser
     ```
     python manage.py createsuperuser
     ``` 
-* В терміналі заповнити усі поля для подальшого входу в проект на сайті:
+* Enter your data in terminal for future log in project
     ```
 	-Username (leave blank to use 'yournickname'):
-	-Email address: (необов'язково)
+	-Email address: (not must)
 	-Password:
 	-Password (again):
     ``` 
-* Запустити проект: 
+* Start project 
     ```
     python manage.py runserver
     ``` 
-* Перейти за посиланням ,яке висвітлилося в терміналі 
+* Copy the link highlighted in the terminal
     ```
-    Example: Starting development server at http://127.0.0.1:8000/
+    Example: 	Starting development server at http://127.0.0.1:8000/
     ``` 
-* Вказати User'а та Password , які ви вказали при створенні суперкористувача.
+    p.s: if you follow this url address you will enter a main page of project(website)
+* Change copied url address to
+	```
+    Example:	 Starting development server at http://127.0.0.1:8000/admin
+    ``` 
+* Enter User and Password ,created earlier
+* Using 'Django Administration' fill database
+* Enjoy using
    
     
     
