@@ -54,12 +54,12 @@
     ``` 
 * Copy the link highlighted in the terminal
     ```
-    Example: 	Starting development server at http://127.0.0.1:8000/
+    Example:   Starting development server at http://127.0.0.1:8000/
     ``` 
     p.s: if you follow this url address you will enter a main page of project(website)
 * Change copied url address to
-	```
-    Example:	 Starting development server at http://127.0.0.1:8000/admin
+    ```
+    Example:  Starting development server at http://127.0.0.1:8000/admin
     ``` 
 * Enter User and Password ,created earlier
 * Using 'Django Administration' fill database
