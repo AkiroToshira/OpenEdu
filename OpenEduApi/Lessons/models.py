@@ -22,6 +22,22 @@ class StudentGroupLesson(models.Model):
 
 
 class TeacherStudentGroupLesson(models.Model):
-    """"Викладач може керувати данними предметом, який привязаний до певної групи"""
+    """"Викладач проводить певний предмет у певної групи"""
     student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Chapter(models.Model):
+    """"Поділ розділів предмету"""
+    name = models.CharField(max_length=30)
+    description = models.TextField(max_length=30, blank=True)
+    lesson = models.ForeignKey(Lesson, related_name='chapters', on_delete=models.CASCADE)
+
+
+class Document(models.Model):
+    """"Файли прикріплені до певного розділу"""
+    chapter = models.ForeignKey(Chapter, related_name='documents', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='documents/')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+

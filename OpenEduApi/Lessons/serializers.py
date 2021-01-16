@@ -11,12 +11,29 @@ class LessonListSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class LessonDetailSerializer(serializers.ModelSerializer):
-    """"Інформація про предмет"""
+class DocumentSerializer(serializers.ModelSerializer):
+    """"Вивід фалів розділу"""
+    class Meta:
+        model = Document
+        fields = ('file',)
+
+
+class ChapterSerializer(serializers.ModelSerializer):
+    """"Вивід розділів предмету"""
+    documents = DocumentSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Chapter
+        fields = ['name', 'description', 'documents']
+
+
+class StudentLessonDetailSerializer(serializers.ModelSerializer):
+    """"Інформація про предмет для учня"""
+    chapters = ChapterSerializer(many=True)
 
     class Meta:
         model = Lesson
-        fields = '__all__'
+        fields = ['name', 'description', 'chapters']
 
 
 class StudentLessonListSerializer(serializers.ModelSerializer):
