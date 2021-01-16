@@ -48,11 +48,12 @@ class Profile(models.Model):
         ('Teacher', 'Teacher'),
         ('Admin', 'Admin'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
     middle_name = models.CharField(max_length=150, blank=True)
     account_permission = models.CharField(max_length=7, choices=PERMISSION_CHOISE, default='Student')
     group = models.ForeignKey(Group, null=True, blank=True, on_delete=models.SET_NULL)
     numberphone = models.CharField(max_length=13, blank=True)
+    credit_book_number = models.CharField(max_length=8, blank=True)
     img = models.ImageField(upload_to='profile_img', blank=True, default='profile_img/profile_photo.jpg')
 
 
