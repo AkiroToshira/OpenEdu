@@ -5,7 +5,6 @@ from .models import *
 admin.site.register(Lesson)
 admin.site.register(TeacherLesson)
 admin.site.register(StudentGroupLesson)
-admin.site.register(TeacherStudentGroupLesson)
 admin.site.register(Chapter)
 admin.site.register(Document)
 

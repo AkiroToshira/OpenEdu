@@ -19,12 +19,7 @@ class StudentGroupLesson(models.Model):
     """"Група прив'язана до певного предмету"""
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
-
-class TeacherStudentGroupLesson(models.Model):
-    """"Викладач проводить певний предмет у певної групи"""
-    student_group_lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    teachers = models.ManyToManyField(User)
 
 
 class Chapter(models.Model):

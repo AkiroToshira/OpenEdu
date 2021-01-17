@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
 from .models import *
+from Users.models import Group
+from Users.serializers import ShortUserInfoSerializer
 
 
 class LessonListSerializer(serializers.ModelSerializer):
@@ -27,13 +29,13 @@ class ChapterSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'documents']
 
 
-class StudentLessonDetailSerializer(serializers.ModelSerializer):
-    """"Інформація про предмет для учня"""
+class LessonDetailSerializer(serializers.ModelSerializer):
+    """"Інформація про предмет"""
     chapters = ChapterSerializer(many=True)
 
     class Meta:
         model = Lesson
-        fields = ['name', 'description', 'chapters']
+        fields = ['id', 'name', 'description', 'chapters']
 
 
 class StudentLessonListSerializer(serializers.ModelSerializer):
@@ -54,3 +56,33 @@ class TeacherLessonListSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherLesson
         fields = ('lesson',)
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    """"Вивіл ід і імен групи"""
+
+    class Meta:
+        model = Group
+
+        fields = ('id', 'name')
+
+
+class TeacherStudentGroupListSerializer(serializers.ModelSerializer):
+    """"Вивід списоку груп, у яких веде пару вилкладач. З моделі StudentGroupLesson"""
+
+    group = GroupSerializer()
+
+    class Meta:
+        model = StudentGroupLesson
+
+        fields = ('group',)
+
+
+class TeacherLessonSerializer(serializers.ModelSerializer):
+
+    teachers = ShortUserInfoSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = StudentGroupLesson
+
+        fields = ('teachers',)

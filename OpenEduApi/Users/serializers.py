@@ -4,12 +4,17 @@ from .models import User, Profile, Group
 
 
 class ShortUserInfoSerializer(serializers.ModelSerializer):
-    """"Короткі данні про користувача(ім'я і ід)"""
+    """"Короткі данні про користувача(ПІБ і ід)"""
+    middle_name = serializers.SerializerMethodField('middle_name_foo')
+
+    """"Витягуємо по батькові з profile"""
+    def middle_name_foo(self, user):
+        return user.profile.middle_name
 
     class Meta:
         model = User
 
-        fields = ['first_name', 'last_name', 'id']
+        fields = ('id', 'first_name', 'last_name', 'middle_name')
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -36,9 +41,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     """"Вивід данних про користувача"""
 
-    user_profile = ProfileSerializer(read_only=True)
+    profile = ProfileSerializer(read_only=True)
 
     class Meta:
         model = User
 
-        fields = ['username', 'first_name', 'last_name', 'email', 'user_profile']
+        fields = ['username', 'first_name', 'last_name', 'email', 'profile']
