@@ -35,4 +35,3 @@ class Document(models.Model):
     file = models.FileField(upload_to='documents/')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-

@@ -2,19 +2,7 @@ from rest_framework.response import Response
 from rest_framework import permissions, viewsets
 from django.shortcuts import get_object_or_404
 
-from .models import StudentGroupLesson, Lesson, TeacherLesson
-
 from .serializers import *
-
-
-class LessonViewSet(viewsets.ViewSet):
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def list(self, request):
-        """"Вивід списку предметів"""
-        queryset = Lesson.objects.all()
-        serializer = LessonListSerializer(queryset, many=True)
-        return Response(serializer.data)
 
 
 class StudentLessonListViewSet(viewsets.ViewSet):
@@ -50,7 +38,7 @@ class TeacherLessonListViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        """"Детальний вівід інформації про предмет для викладача"""
+        """"Детальний вивід інформації про предмет для викладача"""
         queryset = Lesson.objects.all()
         lesson = get_object_or_404(queryset, pk=pk)
         lesson_serializer = LessonDetailSerializer(lesson)

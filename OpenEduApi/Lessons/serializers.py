@@ -79,7 +79,7 @@ class TeacherStudentGroupListSerializer(serializers.ModelSerializer):
 
 
 class TeacherLessonSerializer(serializers.ModelSerializer):
-
+    """"Вивід інформації про викладача з StudentGroupLesson"""
     teachers = ShortUserInfoSerializer(read_only=True, many=True)
 
     class Meta:

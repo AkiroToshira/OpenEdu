@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'News',
     'Users',
     'Lessons',
+    'Tests',
 ]
 
 MIDDLEWARE = [
