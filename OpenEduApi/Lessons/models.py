@@ -9,16 +9,10 @@ class Lesson(models.Model):
     description = models.TextField(max_length=30, blank=True)
 
 
-class TeacherLesson(models.Model):
-    """"Викладачі, які можуть керувати певним предметом"""
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class StudentGroupLesson(models.Model):
-    """"Група прив'язана до певного предмету"""
+    """"Групи і викладачі прив'язані до проекту"""
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ManyToManyField(Group)
     teachers = models.ManyToManyField(User)
 
 
@@ -34,4 +28,3 @@ class Document(models.Model):
     chapter = models.ForeignKey(Chapter, related_name='documents', on_delete=models.CASCADE)
     file = models.FileField(upload_to='documents/')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-

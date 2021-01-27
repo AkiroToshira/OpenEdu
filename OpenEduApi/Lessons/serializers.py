@@ -48,14 +48,14 @@ class StudentLessonListSerializer(serializers.ModelSerializer):
         fields = ('lesson',)
 
 
-class TeacherLessonListSerializer(serializers.ModelSerializer):
-    """"Вивід предметів вчителя з списку TeacherLesson"""
-
-    lesson = LessonListSerializer(read_only=True)
-
-    class Meta:
-        model = TeacherLesson
-        fields = ('lesson',)
+#class TeacherLessonListSerializer(serializers.ModelSerializer):
+#    """"Вивід предметів вчителя з списку TeacherLesson"""
+#
+#    lesson = LessonListSerializer(read_only=True)
+#
+#    class Meta:
+#        model = TeacherLesson
+#        fields = ('lesson',)
 
 
 class GroupSerializer(serializers.ModelSerializer):

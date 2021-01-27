@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'Users',
     'Lessons',
     'Tests',
+    'GradeBook'
 ]
 
 MIDDLEWARE = [
