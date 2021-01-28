@@ -1,0 +1,188 @@
+
+.container {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    margin: 25px auto;
+    color:black;
+
+}
+
+.first-section > .col {
+    width: 600px;
+    max-height: 620px;
+    margin-bottom: 10px;
+}
+
+.second-section > .col {
+    margin-left: 10px;
+
+}
+.col-teacher-info {
+    max-height: 450px;
+}
+
+
+.col {
+    background-color: white;
+    width: 300px;
+    font-size: 20px;
+    color:black;
+    text-decoration: none;
+    box-shadow: 0 0 2px rgba(0,0,0,.3);
+    border-radius: 10px;
+}
+
+.col-teacher-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    color: #969ea9;
+}
+
+.col-teacher-info > div {
+    word-wrap: break-word;
+}
+
+.col-teacher-info > div {
+    margin: 15px 20px 1px 20px;
+
+}
+
+div.teacher-img {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(30, 156, 132);
+    margin-top: 20px !important;
+    box-shadow: 0 0 2px rgba(0,0,0,.3);
+    border-radius: 50%;
+}
+
+.whois {
+    font-size: 1.5em;
+    color: #403333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.whois > span:first-child {
+    font-size: .55em;
+    color: #969ea9
+}
+
+.first-section .col{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 25px;
+    color: #919da9;
+}
+
+.title span {
+    font-size: 1.2em;
+    color: #55687b;
+}
+
+.title {
+    margin: 10px 0 !important;
+    font-weight: bold;
+}
+
+.user-png {
+    background-color: #eaeaea;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.description {
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 5px;
+}
+
+.first-section > col > div{
+    word-wrap: break-word;
+}
+
+.pdf span, .pdf a{
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(30, 156, 132);
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    box-shadow: 0 0 2px rgba(0,0,0,.3);
+}
+
+.pdf {
+    padding: 2.5px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.collapsible {
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 2px rgba(0,0,0,.3);
+    border-radius: 6px;
+    padding: 10px 5px;
+    background-color: white;
+    color: black;
+    transition: all 0.5s ease;
+    border: 2px solid rgb(30, 156, 132);
+}
+
+.collapsible:hover {
+    color: white;
+    background-color: rgb(30, 156, 132);
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f1f1f1;
+}
+
+.add-new-chapter {
+    margin-top: 10px;
+    box-shadow: 0 0 0 rgba(0,0,0,.3);
+    background-color: #f4f7f9;
+}
+
+.inner-information {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.inner-information a {
+    width: 80px;
+    color: #0b0b0b;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.inner-information a:first-child:hover {
+    color: #bf1f1f;
+}
+.inner-information a:last-child:hover {
+    color: rgb(30, 156, 132);
+}
+
+@media screen and (max-width: 1200px) {
+
+
+    .container {
+        height: 0;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

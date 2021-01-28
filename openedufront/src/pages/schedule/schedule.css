@@ -1,0 +1,40 @@
+.schedule-block-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-gap: 10px;
+    justify-content: center;
+    align-content: flex-start;
+    text-align: center;
+}
+
+.schedule-block {
+    height: 500px;
+}
+
+.schedule-title {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: #6e6e6e;
+    margin: 20px 50px;
+    padding: 0 50px 30px;
+    border-bottom: 1px solid #cecece;
+}
+
+.schedule-head {
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(177, 177, 177, 0.3);
+    position: relative;
+}
+
+.schedule-head:after {
+    content: '';
+    position: absolute;
+    height: 7px;
+    width: 50%;
+    background-color: green;
+    border-radius: 9999px;
+    bottom: 0;
+    left: 0;
+}
