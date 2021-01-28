@@ -7,13 +7,14 @@ class Lesson(models.Model):
     """"Предмет"""
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=30, blank=True)
+    lesson_moderator = models.ManyToManyField(User, related_name='LessonModerator', blank=True)
 
 
 class StudentGroupLesson(models.Model):
     """"Групи і викладачі прив'язані до проекту"""
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    group = models.ManyToManyField(Group)
-    teachers = models.ManyToManyField(User)
+    group = models.ManyToManyField(Group, related_name='GroupLesson')
+    teachers = models.ManyToManyField(User, related_name='TeacherGroup')
 
 
 class Chapter(models.Model):

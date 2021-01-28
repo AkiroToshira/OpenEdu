@@ -36,7 +36,7 @@ class Group(models.Model):
     departament = models.ForeignKey(Department, on_delete=models.CASCADE)
     curator = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, related_name='curatorial_group')
     year = models.PositiveIntegerField(default=1)
-    student = models.ManyToManyField(User, related_name='group')
+    student = models.ManyToManyField(User, related_name='Student_group', blank=True)
 
     def __str__(self):
         return self.name

@@ -32,30 +32,30 @@ class ChapterSerializer(serializers.ModelSerializer):
 class LessonDetailSerializer(serializers.ModelSerializer):
     """"Інформація про предмет"""
     chapters = ChapterSerializer(many=True)
+    lesson_moderator = ShortUserInfoSerializer(many=True)
 
     class Meta:
         model = Lesson
-        fields = ['id', 'name', 'description', 'chapters']
+        fields = ['id', 'name', 'description', 'lesson_moderator', 'chapters']
 
 
 class StudentLessonListSerializer(serializers.ModelSerializer):
     """"Вивід предметів учня з списку StudentGroupLesson"""
 
     lesson = LessonListSerializer(read_only=True)
+    teachers = ShortUserInfoSerializer(many=True)
 
     class Meta:
         model = StudentGroupLesson
-        fields = ('lesson',)
+        fields = ('lesson', 'teachers')
 
 
-#class TeacherLessonListSerializer(serializers.ModelSerializer):
-#    """"Вивід предметів вчителя з списку TeacherLesson"""
-#
-#    lesson = LessonListSerializer(read_only=True)
-#
-#    class Meta:
-#        model = TeacherLesson
-#        fields = ('lesson',)
+class TeacherLessonListSerializer(serializers.ModelSerializer):
+    """"Вивід предметів вчителя з списку TeacherLesson"""
+
+    class Meta:
+        model = Lesson
+        fields = ('id', 'name')
 
 
 class GroupSerializer(serializers.ModelSerializer):

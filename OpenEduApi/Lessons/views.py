@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 
 from .serializers import *
 
+from Users.models import Group
+
 
 class StudentLessonListViewSet(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
@@ -11,7 +13,11 @@ class StudentLessonListViewSet(viewsets.ViewSet):
     def list(self, request):
         """"Вивід списку предметів студента"""
         user = request.user
-        queryset = StudentGroupLesson.objects.all().filter(group=user.profile.group)
+        try:
+            group = Group.objects.get(student=user)
+        except:
+            return Response('User have not group')
+        queryset = StudentGroupLesson.objects.all().filter(group=group)
         serializer = StudentLessonListSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -20,11 +26,7 @@ class StudentLessonListViewSet(viewsets.ViewSet):
         lesson_queryset = Lesson.objects.all()
         lesson = get_object_or_404(lesson_queryset, pk=pk)
         lesson_data = LessonDetailSerializer(lesson)
-        user = request.user
-        teachers_queryset = StudentGroupLesson.objects.all()
-        teachers = get_object_or_404(teachers_queryset, lesson=lesson, group=user.profile.group)
-        teacher_data = TeacherLessonSerializer(teachers)
-        return Response({'lesson_data': lesson_data.data, 'teachers': teacher_data.data})
+        return Response(lesson_data.data)
 
 
 class TeacherLessonListViewSet(viewsets.ViewSet):
@@ -33,7 +35,7 @@ class TeacherLessonListViewSet(viewsets.ViewSet):
     def list(self, request):
         """"Вивід списку предметів викладача"""
         user = request.user
-        queryset = TeacherLesson.objects.all().filter(teacher=user)
+        queryset = Lesson.objects.all().filter(lesson_moderator=user)
         serializer = TeacherLessonListSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -46,4 +48,3 @@ class TeacherLessonListViewSet(viewsets.ViewSet):
         queryset = StudentGroupLesson.objects.all().filter(lesson=pk, teachers=user)
         groups_serializer = TeacherStudentGroupListSerializer(queryset, many=True)
         return Response({'lesson_data': lesson_serializer.data, 'groups': groups_serializer.data})
-
