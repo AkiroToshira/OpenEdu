@@ -22,7 +22,8 @@ class QuestionSet(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     group = models.ManyToManyField(Group)
     visible = models.BooleanField(default=True)
-    open_since = models.DateField(null=True)
+    open_since = models.DateField(blank=True)
+    open_until = models.DateTimeField(blank=True)
     limit = models.CharField(max_length=8, choices=LIMIT_CHOICES)
     type = models.CharField(max_length=7, choices=TYPE_CHOICES)
 
