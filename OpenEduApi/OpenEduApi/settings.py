@@ -4,12 +4,15 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
+#SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+DEBUG = os.getenv('DEBUG')
+
+ALLOWED_HOSTS = ['*']
 # Тут вказуємо чи ми включаємо cors на всіх доменах
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -76,12 +79,8 @@ WSGI_APPLICATION = 'OpenEduApi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'openeduapi',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': '4132',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -154,6 +153,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=3),
 }
 
+STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
