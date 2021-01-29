@@ -1,0 +1,106 @@
+/*HEADER*/
+.main-header {
+    min-height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    text-transform: uppercase;
+    padding: 0 50px;
+    letter-spacing: 1px;
+    background-color: #f6f7f9;
+}
+
+/*LOGO*/
+
+.logo a {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(30, 156, 132);
+}
+
+.logo:hover a {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: black;
+}
+
+/*NAV LINKS*/
+
+.nav-links-list {
+    padding: 0;
+    display: flex;
+    font-weight: 500;
+}
+
+.nav-links-list li:not(:first-child) {
+    margin-left: 50px;
+}
+
+.nav-links-list li a:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgb(30, 156, 132);
+}
+
+/* WRAPPER WHI_IS_LOGGED AND LOG_OUT BUTTONS */
+.wrapper-buttons {
+    display: flex;
+}
+
+.wrapper-buttons .btn:not(:first-child) {
+    margin-left: 30px;
+}
+
+.btn a{
+    padding: 5px 25px;
+    border-radius: 9999px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    font-weight: 400;
+}
+
+
+.btn a:hover {
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-who-logged a{
+    background-color: rgb(30, 156, 132);
+}
+
+.btn-who-logged a {
+    color: white;
+}
+
+.btn-logged-out a{
+    color: rgb(30, 156, 132);
+    box-shadow: 0 0 0 1px rgb(30, 156, 132);
+}
+
+.btn-who-logged a:hover {
+    box-shadow: 0 0 0 1px rgb(30, 156, 132);
+    background-color: transparent;
+}
+.btn-who-logged a:hover {
+    color: rgb(30, 156, 132);
+}
+
+.btn-logged-out a:hover {
+    color: white;
+    background-color: rgb(30, 156, 132);
+    box-shadow: 0 0 0 1px rgb(30, 156, 132);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .main-header .wrapper-buttons {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-header .nav-links-list {
+        display: none;
+    }
+}

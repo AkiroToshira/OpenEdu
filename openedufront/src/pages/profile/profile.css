@@ -1,0 +1,70 @@
+/* SKEW */
+
+.skew-block {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 550px;
+    z-index: -1;
+    transform: skew(-30deg);
+}
+
+.skew-block-bottom {
+    position: absolute;
+    bottom: 0;
+    right: -550px;
+    height: 100vh;
+    width: 550px;
+    z-index: -1;
+    transform: skew(-30deg);
+}
+
+
+/* PROFILE */
+
+.profile {
+    position: relative;
+    min-height: calc(100vh - 58px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.profile-block {
+    min-width: 470px;
+    height: 337px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-title {
+    color: rgba(0, 0, 0, 0.7);
+    letter-spacing: 1px;
+    /*position: re;*/
+}
+
+.profile-title h1 {
+    text-align: left;
+    position: relative;
+    text-transform: uppercase;
+}
+
+
+.profile-title h1 span {
+    font-size: 1.3rem;
+}
+
+.img-info-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.profile-img img{
+    width: 250px;
+    height: 250px;
+    margin: 10px 30px 10px 10px;
+    background-size: cover;
+    background-position: center;
+}

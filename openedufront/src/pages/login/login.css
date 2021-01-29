@@ -1,0 +1,117 @@
+/* SKEW */
+
+.skew-block {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 550px;
+    z-index: -1;
+    transform: skew(-30deg);
+    background-color: rgba(30, 156, 132, 0.4);
+}
+
+.skew-block-bottom {
+    position: absolute;
+    bottom: 0;
+    right: -550px;
+    height: 100vh;
+    width: 550px;
+    z-index: -1;
+    transform: skew(-30deg);
+    background-color: rgba(30, 156, 132, 0.3);
+}
+
+/* LOGIN */
+
+.login {
+    position: relative;
+    min-height: calc(100vh - 58px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 400px;
+}
+
+.login-title {
+    text-align: left;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.login-title:after {
+    content: '';
+    height: 5px;
+    width: 50%;
+    position: absolute;
+    border-radius: 9999px;
+    bottom: -20px;
+    left: 0;
+    background-color: rgb(30, 156, 132);
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+    width: 100%;
+    border-radius: 5px;
+}
+
+.icon-wrapper svg {
+    margin: 0 25px;
+    width: 25px;
+    height: 25px;
+}
+
+.login-form input {
+    height: 50px;
+    border: none;
+    outline: none;
+}
+
+.login-form input[type='text'] {
+    width: 100%;
+    text-indent: 10px;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+::placeholder {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+
+.login-form .icon-wrapper:not(.icon-wrapper:nth-child(1)) {
+    margin-top: 25px;
+}
+
+.login-submit {
+    border-radius: 5px;
+    margin-top: 25px;
+    width: 100px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: white;
+    background-color: rgb(30, 156, 132);
+}
+
+.login-submit:hover {
+    cursor: pointer;
+    color: rgb(30, 156, 132);
+    background-color: white !important;
+    border: 1px solid rgb(30, 156, 132);
+    transition: 0.5s;
+}
