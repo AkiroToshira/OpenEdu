@@ -10,6 +10,13 @@ SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# Тут вказуємо чи ми включаємо cors на всіх доменах
+CORS_ORIGIN_ALLOW_ALL = True
+
+# а тут ми пишемо список доменів які можуть приймати запити з апі
+# CORS_ORIGIN_WHITELIST = (
+#        'localhost:3000',
+# )
 
 # Application definition
 
@@ -26,7 +33,8 @@ INSTALLED_APPS = [
     'Users',
     'Lessons',
     'Tests',
-    'GradeBook'
+    'GradeBook',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -37,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'OpenEduApi.urls'
