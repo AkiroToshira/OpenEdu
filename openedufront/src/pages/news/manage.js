@@ -1,4 +1,4 @@
-import month from '../../utils'
+import {month} from '../../utils'
 
 export const manageText = (text) => {
   if (text.length > 160) {

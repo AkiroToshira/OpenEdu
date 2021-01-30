@@ -1,20 +1,22 @@
 import {useState, useEffect} from 'react'
 
 const useFetch = (url) => {
+
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const authToken = localStorage.getItem('access')
+  const jwt = JSON.parse(localStorage.getItem('user')).access
   useEffect(() => {
 	const fetchData = async () => {
 	  setIsLoading(true)
 	  fetch(url, {
-		'Authorization': 'JWT' + authToken,
 		headers: {
+		  Authorization: 'JWT ' + jwt,
 		  'Content-Type': 'application/json'
 		}
 	  })
 		  .then((response) => response.json())
 		  .then((result) => {
+			console.log(result, 'result')
 			setData(result)
 			setIsLoading(false)
 		  })
@@ -25,3 +27,4 @@ const useFetch = (url) => {
 }
 
 export default useFetch
+

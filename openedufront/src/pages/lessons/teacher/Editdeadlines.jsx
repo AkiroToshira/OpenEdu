@@ -2,24 +2,24 @@ import '../classes.css'
 
 
 function Editdeadlines() {
-  return <form enctype="multipart/form-data" action="" method="post">
+  return <form encType="multipart/form-data" action="" method="post">
 	{/*{% csrf_token %}*/}
-	<div class="flex-container">
-	  <div class="col1">
-		<div class="subject-title">
+	<div className="flex-container">
+	  <div className="col1">
+		<div className="subject-title">
 		  <label for="id_name">Name:</label>
 		  <input type="text" name="name" maxlength="20" required id="id_name" value="{{update_deadline.name}}"/>
 		</div>
 	  </div>
-	  <div class="col1">
-		<div class="deadline-time">
+	  <div className="col1">
+		<div className="deadline-time">
 		  <label for="id_deadline_time">Deadline time:</label>
 		  <input type="date" name="deadline_time" required id="id_deadline_time"
 				 value="{{update_deadline.deadline_time}}"/>
 		</div>
 	  </div>
-	  <div class="col1">
-		<div class="lesson-check">
+	  <div className="col1">
+		<div className="lesson-check">
 		  <label for="id_lesson">Lesson:</label>
 		  <select name="lesson" required id="id_lesson">
 			<option disabled>Виберіть предмет</option>
@@ -29,8 +29,8 @@ function Editdeadlines() {
 		  </select>
 		</div>
 	  </div>
-	  <div class="col1">
-		<div class="group-check">
+	  <div className="col1">
+		<div className="group-check">
 		  <label for="id_group">Group:</label>
 		  <select name="group" required id="id_group">
 			<option disabled>Виберіть групу</option>
@@ -40,8 +40,8 @@ function Editdeadlines() {
 		  </select>
 		</div>
 	  </div>
-	  <div class="col1">
-		<div class="modal-add">
+	  <div className="col1">
+		<div className="modal-add">
 		  <button type="submit" name="button">Add</button>
 		</div>
 	  </div>

@@ -1,11 +1,14 @@
 import {Context} from '../../context'
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {manageDate, manageText, manageTitle} from "./manage";
+import useFetch from "../../use/useFetch";
+import {url} from "../../utils";
 
 
 function SmallNews() {
 
-  const {news, newsLoading} = useContext(Context)
+  // const {news, newsLoading} = useContext(Context)
+  const [news, newsLoading] = useFetch(`${url}/news/`)
 
   if (!newsLoading) {
 	return <section className="small-news">
@@ -20,7 +23,7 @@ function SmallNews() {
 	  <div className="small-news-list">
 		{[1, 2, 3, 4, 5].map(el => {
 		  return (
-			  <div className={"small-news-skeleton one-news"}>
+			  <div className={"small-news-skeleton one-news"} key={el}>
 				<div className="news-skew"></div>
 			  </div>
 		  )

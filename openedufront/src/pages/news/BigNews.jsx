@@ -1,9 +1,14 @@
 import {useContext} from "react";
 import {Context} from "../../context";
 import {manageBigText, manageTitle} from "./manage";
+import useFetch from "../../use/useFetch";
+import {url} from "../../utils";
 
 function BigNews() {
-  const {news, newsLoading} = useContext(Context)
+  // const {news, newsLoading} = useContext(Context)
+  // const [news, newsLoading] = useFetch(`${url}/news/`)
+  const [news, newsLoading] = useFetch(`${url}/news/`)
+
 
   if (!newsLoading) {
 	const {creation_date, name, mini_description} = news[0]

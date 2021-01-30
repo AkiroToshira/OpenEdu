@@ -22,8 +22,8 @@ function Lessont() {
 			{/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
 		  </div>
 		  <div className="inner-information">
-			<a href="{% url 'DeleteChapter' i.id %}">Видалити</a>
-			<a href="editchapter/{{ i.id }}">
+			<a href="/">Видалити</a>
+			<a href="/">
 			  <span>Редактувати</span>
 			</a>
 		  </div>

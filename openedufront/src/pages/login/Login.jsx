@@ -22,7 +22,9 @@ function Login() {
 		history.push("/news");
 	  }
 	}).catch(e => {
-	  setError(e.response.data.detail)
+	  if(e.response) {
+		setError(e.response.data.detail)
+	  }
 	})
 	e.preventDefault();
   }
