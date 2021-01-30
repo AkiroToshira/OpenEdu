@@ -11,8 +11,10 @@ function Lessont() {
 		<div className="col">
 		  <div className="title">
 			{/*<span>{{i.name}}</span>*/}
+			вв
 		  </div>
 		  <div className="description">
+			ввв
 			{/*<span>{{i.description}}</span>*/}
 		  </div>
 		  <div className="title pdf">

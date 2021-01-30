@@ -8,12 +8,30 @@ function ClassStudent() {
 		  {/*{% for i in get_chapter %}*/}
 		  <div className="col">
 			<div className="title">
+			  вів
 			  {/*<span>{{i.name}}</span>*/}
 			</div>
 			<div className="description">
+			  вівв
 			  {/*<span>{{i.description}}</span>*/}
 			</div>
 			<div className="title pdf">
+			  віів
+			  {/*<a href="{{ i.document.url }}" download>{{i.document.name}}</a>*/}
+			  {/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
+			</div>
+		  </div>
+		  <div className="col">
+			<div className="title">
+			  вів
+			  {/*<span>{{i.name}}</span>*/}
+			</div>
+			<div className="description">
+			  вівв
+			  {/*<span>{{i.description}}</span>*/}
+			</div>
+			<div className="title pdf">
+			  віів
 			  {/*<a href="{{ i.document.url }}" download>{{i.document.name}}</a>*/}
 			  {/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
 			</div>

@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {Context} from "../../context";
-import {manageBigText, manageText, manageTitle} from "./manage";
+import {manageBigText, manageTitle} from "./manage";
 
 function BigNews() {
   const {news, newsLoading} = useContext(Context)

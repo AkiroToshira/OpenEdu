@@ -10,7 +10,6 @@ export const manageText = (text) => {
 }
 
 export const manageBigText = (text) => {
-  console.log(text)
   if (text.length > 300) {
     text = text.substring(0, 300)
     return text + '...';
@@ -30,6 +29,5 @@ export const manageTitle = (name) => {
 
 export const manageDate = (creation_date) => {
   creation_date = creation_date.split('-').map(Number)
-  console.log(creation_date[1])
   return [creation_date[2], String(month[creation_date[1]]).substring(0, 3)]
 }
