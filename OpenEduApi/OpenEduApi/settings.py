@@ -4,13 +4,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
+SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
 
-#DEBUG = True
+DEBUG = True
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+#SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG')
+#DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 # Тут вказуємо чи ми включаємо cors на всіх доменах
@@ -78,9 +78,14 @@ WSGI_APPLICATION = 'OpenEduApi.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'OpenEdu',
+        'USER': 'postgres',
+        'PASSWORD': 'santa2002',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

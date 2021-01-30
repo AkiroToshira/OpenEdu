@@ -8,6 +8,7 @@ from .serializers import ArticleListSerializer, ArticleDetailSerializer
 
 
 class ArticleViewSet(viewsets.ViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
 
     def list(self, request):
         """"Вивід списку новин"""

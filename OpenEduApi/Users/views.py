@@ -16,3 +16,11 @@ class UserViewSet(viewsets.ViewSet):
         lesson = get_object_or_404(queryset, pk=pk)
         serializer = UserSerializer(lesson)
         return Response(serializer.data)
+
+
+class UserViewSetReact(viewsets.ViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def retrieve(self, request):
+        user = request.user
+        return Response({'id': user.id, 'perm': user.profile.account_permission})
