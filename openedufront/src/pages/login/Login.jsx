@@ -4,9 +4,12 @@ import {RiLockPasswordFill} from 'react-icons/ri';
 
 import {useState} from 'react'
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import {useContext} from "react";
+import {Context} from "../../context";
 
-function Login() {
+function Login({value}) {
+  const [state, dispatch] = useContext(Context);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -19,10 +22,11 @@ function Login() {
 	}).then(res => {
 	  localStorage.setItem('user', JSON.stringify(res.data))
 	  if (res.status === 200) {
-		history.push("/news");
+		dispatch({type: 'LOGIN', payload: {username, password, isLogged: true}})
+		history.push("/");
 	  }
 	}).catch(e => {
-	  if(e.response) {
+	  if (e.response) {
 		setError(e.response.data.detail)
 	  }
 	})

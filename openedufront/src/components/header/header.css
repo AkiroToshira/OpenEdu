@@ -93,13 +93,13 @@
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 500px) {
     .main-header .wrapper-buttons {
         display: none;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .main-header .nav-links-list {
         display: none;
     }
