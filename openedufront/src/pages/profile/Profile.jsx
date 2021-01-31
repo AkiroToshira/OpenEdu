@@ -3,19 +3,28 @@ import profilePicture from '../../media/anime.jpeg'
 import {url} from '../../utils'
 
 import {ColorExtractor} from "react-color-extractor";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import axios from "axios";
+import {Context} from "../../context";
 
 function Profile() {
   const [commonColor, setCommonColor] = useState()
-
-  // const [user, userLoading] = useFetch(`${url}/user/react-info/`)
-  // const [getProfile, isProfileLoading] = useState()
+  const [state, dispatch] = useContext(Context)
+  const [userInfo, setUserInfo] = useState({
+	first_name: "",
+	last_name: '',
+	email: ''
+  })
 
   useEffect(() => {
-    console.log('hey')
-    axios.get(`${url}/user/react-info/`).then(res => console.log(res))
-  }, [])
+	axios.get(`${url}/user/${state.id}`, {
+	  headers: {
+		Authorization: 'JWT ' + state.access,
+		'Content-Type': 'application/json'
+	  }
+	}).then(res => setUserInfo(res.data)
+	)
+  }, [state.isLogged])
 
 
   if (true) {
@@ -28,7 +37,7 @@ function Profile() {
 	  />
 	  <div className="profile-block">
 		<div className="profile-title">
-		  <h1><span>Профіль |</span> Максим Примаченко
+		  <h1><span>Профіль |</span> {userInfo.first_name} {userInfo.last_name}
 			<div style={{
 			  height: '5px',
 			  width: '50%',
@@ -37,7 +46,8 @@ function Profile() {
 			  bottom: '-20px',
 			  left: '0',
 			  backgroundColor: `${commonColor}`
-			}}/></h1>
+			}}/>
+		  </h1>
 
 		</div>
 		<div className="img-info-wrapper">
@@ -45,11 +55,8 @@ function Profile() {
 			<img src={profilePicture} alt={'profile'}/>
 		  </div>
 		  <div className="profile-info">
-			<p>група кн-215</p>
-			<p>студентський кн-215</p>
-			<p>інфа кн-215</p>
-			<p>інфа лфлф</p>
-			<p>інфа лаала</p>
+			<p>{userInfo.email}</p>
+
 		  </div>
 		</div>
 	  </div>

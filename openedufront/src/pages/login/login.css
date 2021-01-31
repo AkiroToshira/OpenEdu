@@ -79,7 +79,7 @@
     outline: none;
 }
 
-.login-form input[type='text'] {
+.login-form input[type='text'],.login-form input[type='password']  {
     width: 100%;
     text-indent: 10px;
     font-size: 1.5rem;

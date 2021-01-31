@@ -14,7 +14,9 @@ import ClassStudent from "./pages/lessons/student/Class";
 import ClassesStudent from "./pages/lessons/student/Classes";
 
 import {useState, useEffect, useReducer} from "react";
+import axios from "axios";
 
+//ПЕРЕПИСАТИ КОД І РОЗКЛАСТИ ПО ПАПКАМ
 function newsReducer(state = [], action) {
   switch (action.type) {
 	case 'ADD':
@@ -27,12 +29,20 @@ function newsReducer(state = [], action) {
 const userInitialState = {
   password: "",
   username: "",
-  isLogged: false
+  isLogged: false,
+  id: 0,
+  role: 'student',
+  refresh: '',
+  access: '',
 }
 
 function userReducer(state = userInitialState, action) {
   switch (action.type) {
 	case 'LOGIN':
+	  return {...state, ...action.payload}
+	case "SAVE":
+	  console.log(action.payload)
+	  localStorage.setItem('user', JSON.stringify({...state, ...action.payload}))
 	  return {...state, ...action.payload}
 	case 'LOGOUT':
 	  return {...state, ...action.payload}
@@ -41,14 +51,14 @@ function userReducer(state = userInitialState, action) {
   }
 }
 
-const checkIfUserLogged = () => {
-  return !!JSON.parse(localStorage.getItem('user'));
-}
+const checkIfUserLogged = () => !!JSON.parse(localStorage.getItem('user'));
+
 
 function App() {
   const history = useHistory()
   const [loading, setLoading] = useState(localStorage.getItem('user') === null)
-  const [state, dispatch] = useReducer(userReducer, {...userInitialState, isLogged: checkIfUserLogged()})
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+  const [state, dispatch] = useReducer(userReducer, {...userInitialState, isLogged: checkIfUserLogged(), ...userInfo})
 
   useEffect(() => {
 	console.log(state)
@@ -99,6 +109,7 @@ function App() {
 	  return <Login/>
 	}
   }
+
 
   return (
 	  <Context.Provider value={[state, dispatch]}>
