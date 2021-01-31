@@ -24,7 +24,7 @@ function Profile() {
 	  }
 	}).then(res => setUserInfo(res.data)
 	)
-  }, [state.isLogged])
+  }, [])
 
 
   if (true) {

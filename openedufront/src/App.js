@@ -41,7 +41,6 @@ function userReducer(state = userInitialState, action) {
 	case 'LOGIN':
 	  return {...state, ...action.payload}
 	case "SAVE":
-	  console.log(action.payload)
 	  localStorage.setItem('user', JSON.stringify({...state, ...action.payload}))
 	  return {...state, ...action.payload}
 	case 'LOGOUT':

@@ -8,29 +8,28 @@ import {url} from "../../utils";
 function SmallNews() {
 
   // const {news, newsLoading} = useContext(Context)
-  const [news, newsLoading] = useFetch(`${url}/news/`)
+  const creation_date = '', name = '', mini_description = ''
 
-  if (!newsLoading) {
-	return <section className="small-news">
+  return <section className="small-news">
 	  <h1 className="upcoming-news">Найновіші новини</h1>
 	  <div className="small-news-list">
-		{news.map((el, i) => <OneNews data={el} key={i}/>)}
+		{/*{news.map((el, i) => <OneNews data={el} key={i}/>)}*/}
 	  </div>
 	</section>
-  } else {
-	return <section className="small-news">
-	  <h1 className="upcoming-news">Найновіші новини</h1>
-	  <div className="small-news-list">
-		{[1, 2, 3, 4, 5].map(el => {
-		  return (
-			  <div className={"small-news-skeleton one-news"} key={el}>
-				<div className="news-skew"></div>
-			  </div>
-		  )
-		})}
-	  </div>
-	</section>
-  }
+  // } else {
+	// return <section className="small-news">
+	//   <h1 className="upcoming-news">Найновіші новини</h1>
+	//   <div className="small-news-list">
+	// 	{[1, 2, 3, 4, 5].map(el => {
+	// 	  return (
+	// 		  <div className={"small-news-skeleton one-news"} key={el}>
+	// 			<div className="news-skew"></div>
+	// 		  </div>
+	// 	  )
+	// 	})}
+	//   </div>
+	// </section>
+  // }
 
 }
 

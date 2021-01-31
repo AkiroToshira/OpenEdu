@@ -32,7 +32,7 @@ function Login() {
 	    console.log('помилка', e)
 	  })
 	}
-  }, [state.isLogged])
+  }, [])
 
   const handleSubmit = (e) => {
 	axios.post("http://127.0.0.1:8000/token/", {

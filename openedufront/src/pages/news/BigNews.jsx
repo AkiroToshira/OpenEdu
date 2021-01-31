@@ -7,11 +7,10 @@ import {url} from "../../utils";
 function BigNews() {
   // const {news, newsLoading} = useContext(Context)
   // const [news, newsLoading] = useFetch(`${url}/news/`)
-  const [news, newsLoading] = useFetch(`${url}/news/`)
+  // const [news, newsLoading] = useFetch(`${url}/news/`)
+	const creation_date = '', name = '', mini_description = ''
 
-
-  if (!newsLoading) {
-	const {creation_date, name, mini_description} = news[0]
+	// const {creation_date, name, mini_description} = news[0]
 	return <section className="intro">
 	  <div className="left-text">
 		<h4 className="text-date">{creation_date}
@@ -26,11 +25,11 @@ function BigNews() {
 	  </div>
 	  <div className="right-photo"></div>
 	</section>
-  } else {
-	return <div className={"big-news-skeleton"}>
-		<div className="news-skew"></div>
-	</div>
-  }
+  // } else {
+	// return <div className={"big-news-skeleton"}>
+	// 	<div className="news-skew"></div>
+	// </div>
+  // }
 }
 
 export default BigNews
