@@ -1,6 +1,8 @@
 from django.db import models
 
-from Lessons.models import StudentGroupLesson
+from Lessons.models import Lesson
+
+from Users.models import Group
 
 
 class Schedule(models.Model):
@@ -26,13 +28,14 @@ class Schedule(models.Model):
         ('19:20 − 20:55', '7'),
         ('21:00 − 22:35', '8'),
     )
-    lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='schedules')
     subgroup = models.CharField(max_length=6, choices=SUBGROUP_CHOICE)
     week_day = models.CharField(max_length=9, choices=WEEK_DAY_CHOICES)
     time = models.CharField(max_length=13, choices=TIME_CHOICE)
 
 
 class AdditionalInfoForScheduleDay(models.Model):
-    schedule_day = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule = models.OneToOneField(Schedule, on_delete=models.CASCADE, related_name='addinfo')
     place = models.CharField(max_length=30, blank=True)
-    add_info = models.CharField(max_length=50, blank=True)
+    info = models.CharField(max_length=50, blank=True)

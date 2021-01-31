@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'Tests',
     'GradeBook',
     'corsheaders',
+    'Schedule',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ DATABASES = {
         'NAME': 'OpenEdu',
         'USER': 'postgres',
         'PASSWORD': 'santa2002',
-        'HOST': 'localhost',
+        'HOST': 'openedu.cnvfsz9royuc.eu-west-3.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
