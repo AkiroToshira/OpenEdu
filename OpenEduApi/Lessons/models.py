@@ -11,10 +11,20 @@ class Lesson(models.Model):
 
 
 class StudentGroupLesson(models.Model):
-    """"Групи і викладачі прив'язані до проекту"""
+    """"Групи і викладачі прив'язані до предмету"""
+    TYPE_CHOICE = (
+        ('Lessons', 'L'),
+        ('Practical ', 'P')
+    )
+    type = models.CharField(max_length=10, choices=TYPE_CHOICE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    group = models.ManyToManyField(Group, related_name='GroupLesson')
-    teachers = models.ManyToManyField(User, related_name='TeacherGroup')
+    group = models.ForeignKey(Group, related_name='GroupLesson', on_delete=models.CASCADE)
+    teacher = models.ForeignKey(User, related_name='TeacherGroup', on_delete=models.CASCADE)
+
+
+class Lecture(models.Model):
+    """Лекції які йдуть разом"""
+    lesson = models.ManyToManyField(StudentGroupLesson, related_name='Lecture')
 
 
 class Chapter(models.Model):

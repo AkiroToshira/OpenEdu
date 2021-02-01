@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from .models import Schedule, AdditionalInfoForScheduleDay
 
-from Lessons.serializers import LessonListSerializer
+from Lessons.serializers import StudentLessonListSerializer
 
 
 class AdditionalInfoForScheduleDaySerializer(serializers.ModelSerializer):
@@ -15,7 +15,7 @@ class AdditionalInfoForScheduleDaySerializer(serializers.ModelSerializer):
 class ScheduleListSerializer(serializers.ModelSerializer):
 
     addinfo = AdditionalInfoForScheduleDaySerializer(read_only=True)
-    lesson = LessonListSerializer(read_only=True)
+    lesson = StudentLessonListSerializer(read_only=True, many=False)
 
     class Meta:
         model = Schedule
