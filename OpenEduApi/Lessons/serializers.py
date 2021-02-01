@@ -13,6 +13,15 @@ class LessonListSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
+class GroupSerializer(serializers.ModelSerializer):
+    """"Вивіл ід і імен групи"""
+
+    class Meta:
+        model = Group
+
+        fields = ('id', 'name')
+
+
 class DocumentSerializer(serializers.ModelSerializer):
     """"Вивід фалів розділу"""
     class Meta:
@@ -44,10 +53,11 @@ class StudentLessonListSerializer(serializers.ModelSerializer):
 
     lesson = LessonListSerializer(read_only=True, many=False)
     teacher = ShortUserInfoSerializer(read_only=True)
+    group = GroupSerializer()
 
     class Meta:
         model = StudentGroupLesson
-        fields = ('lesson', 'teacher', 'type')
+        fields = ('lesson', 'teacher', 'type', 'group')
 
 
 class TeacherLessonListSerializer(serializers.ModelSerializer):
@@ -55,15 +65,6 @@ class TeacherLessonListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = ('id', 'name')
-
-
-class GroupSerializer(serializers.ModelSerializer):
-    """"Вивіл ід і імен групи"""
-
-    class Meta:
-        model = Group
-
         fields = ('id', 'name')
 
 
