@@ -18,7 +18,8 @@ class StudentLessonListViewSet(viewsets.ViewSet):
         except:
             return Response('User have not group')
         queryset = StudentGroupLesson.objects.all().filter(group=group)
-        serializer = StudentLessonListSerializer(queryset, many=True)
+        serializer = LessonSerializer(queryset, many=True)
+
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):

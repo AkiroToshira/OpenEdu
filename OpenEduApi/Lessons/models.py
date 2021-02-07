@@ -10,16 +10,33 @@ class Lesson(models.Model):
     lesson_moderator = models.ManyToManyField(User, related_name='LessonModerator', blank=True)
 
 
-class StudentGroupLesson(models.Model):
-    """"Групи і викладачі прив'язані до предмету"""
+class LessonTeacher(models.Model):
     TYPE_CHOICE = (
         ('Lessons', 'L'),
         ('Practical ', 'P')
     )
     type = models.CharField(max_length=10, choices=TYPE_CHOICE)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='TeacherLesson')
+
+
+class StudentGroupLesson(models.Model):
+    """"Групи і викладачі прив'язані до предмету"""
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, related_name='GroupLesson', on_delete=models.CASCADE)
-    teacher = models.ForeignKey(User, related_name='TeacherGroup', on_delete=models.CASCADE)
+    teachers = models.ManyToManyField(LessonTeacher, related_name='StudentGroup')
+
+    @classmethod
+    def get_user_lesson(cls, user):
+        if user.profile.account_permission == 'Student':
+            group = Group.objects.get(student=user)
+            lessons = StudentGroupLesson.objects.all().filter(group=group)
+        elif user.profile.account_permission == 'Teacher':
+            teacher_lessons = LessonTeacher.objects.all().filter(teacher=user)
+            lessons = StudentGroupLesson.objects.all().filter(teachers__in=teacher_lessons)
+        return lessons
+
+    def get_lesson(self):
+        return self.lesson.name
 
 
 class Lecture(models.Model):

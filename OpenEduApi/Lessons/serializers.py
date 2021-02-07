@@ -57,7 +57,16 @@ class StudentLessonListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentGroupLesson
-        fields = ('lesson', 'teacher', 'type', 'group')
+        fields = ('lesson', 'teacher', 'group')
+
+
+class LessonSerializer(serializers.ModelSerializer):
+
+    lesson = LessonListSerializer(read_only=True)
+
+    class Meta:
+        model = StudentGroupLesson
+        fields = ('lesson',)
 
 
 class TeacherLessonListSerializer(serializers.ModelSerializer):

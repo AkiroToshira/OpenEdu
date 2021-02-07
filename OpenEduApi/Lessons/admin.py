@@ -6,4 +6,4 @@ admin.site.register(Lesson)
 admin.site.register(StudentGroupLesson)
 admin.site.register(Chapter)
 admin.site.register(Document)
-
+admin.site.register(LessonTeacher)
