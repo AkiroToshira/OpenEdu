@@ -4,15 +4,15 @@ function ClassesStudent() {
   return (
 	  <div className="main-container">
 		<div className="subjet-title"><span>Предмети</span></div>
-		<div className="container">
+		<div className="inner-container">
 		  {/*{% for lesson in get_profile.student_group.lessons.all %}*/}
-		  <a href="#" className="col">
+		  <a href="#" className="col2">
 			<div className="inner-information"><span>dkkdk</span><span>Teacher</span></div>
 		  </a>
-		  <a href="#" className="col">
+		  <a href="#" className="col2">
 			<div className="inner-information"><span>dkkdk</span><span>Teacher</span></div>
 		  </a>
-		  <a href="#" className="col">
+		  <a href="#" className="col2">
 			<div className="inner-information"><span>dkkdk</span><span>Teacher</span></div>
 		  </a>
 		  {/*{% endfor %}*/}

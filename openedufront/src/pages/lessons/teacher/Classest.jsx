@@ -5,9 +5,9 @@ function Classest() {
 	<div class="main-container">
 	  <div class="subjet-title"><span>Предмети</span></div>
 
-	  <div class="container">
+	  <div class="main-container">
 		{/*{% for lesson in get_lesson %}*/}
-		{/*<a href="lesson/{{ lesson.id }}" class="col">*/}
+		{/*<a href="lesson/{{ lesson.id }}" class="col2">*/}
 		{/*    <div class="inner-information"><span>{{ lesson.name }}</span></div>*/}
 		{/*</a>*/}
 		{/*{% endfor %}*/}
