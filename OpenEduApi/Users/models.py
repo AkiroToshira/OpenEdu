@@ -38,6 +38,9 @@ class Group(models.Model):
     year = models.PositiveIntegerField(default=1)
     student = models.ManyToManyField(User, related_name='Student_group', blank=True)
 
+    def get_all_students(self):
+        return User.objects.all().filter(Student_group=self)
+
     def __str__(self):
         return self.name
 

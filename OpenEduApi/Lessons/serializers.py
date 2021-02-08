@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import *
+
 from Users.models import Group
 from Users.serializers import ShortUserInfoSerializer
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('lessons/', include('Lessons.urls')),
     path('schedule/', include('Schedule.urls')),
     path('deadlines/', include('DeadLines.urls')),
+    path('gradebook/', include('GradeBook.urls')),
 
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
