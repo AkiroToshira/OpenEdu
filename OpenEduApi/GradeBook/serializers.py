@@ -4,7 +4,9 @@ from .models import *
 
 from Users.serializers import ShortUserInfoSerializer
 
-from Lessons.serializers import TeacherStudentGroupListSerializer
+from Lessons.serializers import TeacherStudentGroupListSerializer, TeacherLessonListSerializer
+
+from Lessons.models import StudentGroupLesson
 
 
 class GradeSerializer(serializers.ModelSerializer):
@@ -38,3 +40,21 @@ class TeacherGradeBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = GradeBook
         fields = ('id', 'group', 'columns')
+
+
+class StudentGradeBookSerializer(serializers.ModelSerializer):
+
+    columns = ColumnsGradeBookSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = GradeBook
+        fields = ('columns',)
+
+
+class StudentLessonGradeBookSerializer(serializers.ModelSerializer):
+
+    gradebook = StudentGradeBookSerializer(read_only=True)
+    lesson = TeacherLessonListSerializer(read_only=True)
+    class Meta:
+        model = StudentGroupLesson
+        fields = ('lesson', 'gradebook',)

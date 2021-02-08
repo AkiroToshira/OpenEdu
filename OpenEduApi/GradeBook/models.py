@@ -9,7 +9,7 @@ from django.dispatch import receiver
 
 
 class GradeBook(models.Model):
-    group = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
+    group = models.OneToOneField(StudentGroupLesson, on_delete=models.CASCADE, related_name='gradebook')
 
 
 class BookColumn(models.Model):

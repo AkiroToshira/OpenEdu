@@ -5,7 +5,9 @@ from django.shortcuts import get_object_or_404
 
 from .models import GradeBook, Grade
 
-from .serializers import TeacherGradeBookSerializer, GradeSerializer
+from Lessons.models import StudentGroupLesson
+
+from .serializers import TeacherGradeBookSerializer, GradeSerializer, StudentLessonGradeBookSerializer
 
 
 class TeacherGradeBookViewSet(viewsets.ViewSet):
@@ -28,3 +30,12 @@ class GradeViewSet(viewsets.ViewSet):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+
+class StudentGradeBookViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        user = request.user
+        lessons = StudentGroupLesson.get_user_lesson(user)
+        serializer = StudentLessonGradeBookSerializer(lessons, many=True)
+        return Response(serializer.data)
