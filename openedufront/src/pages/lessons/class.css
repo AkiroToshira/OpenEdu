@@ -153,14 +153,14 @@ div.teacher-img {
     background-color: #f4f7f9;
 }
 
-.inner-information {
+.redaction {
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
 
 
-.inner-information a {
+.redaction a {
     width: 80px;
     color: #0b0b0b;
     padding: 10px 0;
@@ -170,10 +170,10 @@ div.teacher-img {
     letter-spacing: 1px;
 }
 
-.inner-information a:first-child:hover {
+.redaction a:first-child:hover {
     color: #bf1f1f;
 }
-.inner-information a:last-child:hover {
+.redaction a:last-child:hover {
     color: rgb(30, 156, 132);
 }
 

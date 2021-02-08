@@ -21,7 +21,7 @@ function Lessont() {
 			{/*<a href="{{ i.document.url }}" download>{{i.document.name}}</a>*/}
 			{/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
 		  </div>
-		  <div className="inner-information">
+		  <div className="redaction">
 			<a href="/">Видалити</a>
 			<a href="/">
 			  <span>Редактувати</span>
