@@ -49,3 +49,70 @@ class TeacherLessonListViewSet(viewsets.ViewSet):
         queryset = StudentGroupLesson.objects.all().filter(lesson=pk, teachers=user)
         groups_serializer = TeacherStudentGroupListSerializer(queryset, many=True)
         return Response({'lesson_data': lesson_serializer.data, 'groups': groups_serializer.data})
+
+
+class ChapterViewSet(viewsets.ViewSet):
+
+    def create(self, request):
+        user = request.user
+        chapter_serializer = ChapterCreateSerializer(data=request.data)
+        if chapter_serializer.is_valid():
+            new_chapter = chapter_serializer.save()
+            if request.data.get('file'):
+                for i in request.data.getlist('file'):
+                    document_serializer = DocumentCreateSerializer(data=
+                                                                   {'user': user.id,
+                                                                    'file': i,
+                                                                    'chapter': new_chapter.id})
+                    if document_serializer.is_valid():
+                        document_serializer.save()
+                    else:
+                        return Response(document_serializer.errors)
+            return Response(ChapterSerializer(new_chapter).data)
+        else:
+            return Response(chapter_serializer.errors)
+
+    def update(self, request):
+        serializer = ChapterCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            queryset = Chapter.objects.all()
+            chapter = get_object_or_404(queryset, pk=request.data.get('id'))
+            serializer.update(chapter, serializer.data)
+            return Response(serializer.data)
+        else:
+            return Response(serializers.errors)
+
+    def delete(self, request):
+        queryset = Chapter.objects.all()
+        chapter = get_object_or_404(queryset, pk=request.data.get('id'))
+        chapter.delete()
+        return Response('Deleted')
+
+
+class DocumentViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        user = request.user
+        queryset = Document.objects.all().filter(user=user)
+        serializer = DocumentCreateSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        user = request.user
+        file = request.data.get('file')
+        chapter = request.data.get('chapter')
+        document_serializer = DocumentCreateSerializer(data=
+                                                       {'user': user.id,
+                                                        'file': file,
+                                                        'chapter': chapter})
+        if document_serializer.is_valid():
+            document_serializer.save()
+        else:
+            return Response(document_serializer.errors)
+
+    def delete(self, request):
+        queryset = Document.objects.all()
+        document = get_object_or_404(queryset, pk=request.data.get('id'))
+        document.delete()
+        return Response('Deleted')
+

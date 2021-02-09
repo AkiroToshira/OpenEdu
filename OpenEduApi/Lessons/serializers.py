@@ -27,7 +27,7 @@ class DocumentSerializer(serializers.ModelSerializer):
     """"Вивід фалів розділу"""
     class Meta:
         model = Document
-        fields = ('file',)
+        fields = ('id', 'file',)
 
 
 class ChapterSerializer(serializers.ModelSerializer):
@@ -36,7 +36,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chapter
-        fields = ['name', 'description', 'documents']
+        fields = ['id', 'name', 'description', 'documents']
 
 
 class LessonDetailSerializer(serializers.ModelSerializer):
@@ -97,3 +97,27 @@ class TeacherLessonSerializer(serializers.ModelSerializer):
         model = StudentGroupLesson
 
         fields = ('teachers',)
+
+
+class ChapterCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Chapter
+
+        fields = '__all__'
+
+
+class DocumentCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Document
+
+        fields = '__all__'
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.description = validated_data.get(
+            'description',
+            instance.description)
+        instance.save()
+        return instance

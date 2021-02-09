@@ -1,6 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import viewsets
 
+from django.shortcuts import get_object_or_404
+
 from .models import Deadlines
 
 from Lessons.models import StudentGroupLesson
@@ -33,3 +35,9 @@ class DeadlinesViewSet(viewsets.ViewSet):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+    def delete(self, request):
+        queryset = Deadlines.objects.all()
+        deadline = get_object_or_404(queryset, pk=request.data.get('id'))
+        deadline.delete()
+        return Response('Deleted')
