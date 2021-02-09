@@ -1,14 +1,13 @@
 import './header.css'
 import {NavLink} from "react-router-dom";
-import {Context} from "../../context";
-import {useContext} from "react"
+import {useDispatch} from "react-redux";
+import {logout} from "../../actions/auth";
 
 function Header() {
-  const [state, dispatch] = useContext(Context)
+  const dispatch = useDispatch()
 
   const handleLogout = () => {
-	localStorage.removeItem('user')
-	dispatch({type: "LOGOUT", payload: {isLogged: false}})
+	dispatch(logout())
   }
 
   return (

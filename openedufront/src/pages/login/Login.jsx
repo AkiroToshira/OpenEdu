@@ -3,52 +3,33 @@ import {FaUserAlt} from 'react-icons/fa';
 import {RiLockPasswordFill} from 'react-icons/ri';
 
 import {useState} from 'react'
-import axios from "axios";
 import {useHistory} from "react-router-dom";
-import {useContext, useEffect} from "react";
-import {Context} from "../../context";
-import useFetch from "../../use/useFetch";
+
+
+import {useDispatch} from "react-redux";
+import {login} from "../../actions/auth";
 
 function Login() {
-  const [state, dispatch] = useContext(Context);
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  let history = useHistory();
 
-  //ПЕРЕПИСАТИ НА ХУК
-  useEffect(async () => {
-	if (JSON.parse(localStorage.getItem('user'))) {
-	  const jwt = JSON.parse(localStorage.getItem('user'))
-	  axios.get("http://127.0.0.1:8000/user/react-info/", {
-		headers: {
-		  "Authorization": 'JWT ' + jwt.access,
-		}
-	  }).then(res => {
-	    console.log(res)
-		dispatch({type: "SAVE", payload: {...jwt, id: res.data.id, role: res.data.perm}})
-		dispatch({type: 'LOGIN', payload: {id: res.data.id, role: res.data.perm}})
-	  }).catch(e => {
-	    console.log('помилка', e)
-	  })
-	}
-  }, [])
 
   const handleSubmit = (e) => {
-	axios.post("http://127.0.0.1:8000/token/", {
-	  password,
-	  username
-	}).then(res => {
-	  if (res.status === 200) {
-		dispatch({type: "SAVE", payload: {...res.data, username, password, isLogged: true}})
-		dispatch({type: 'LOGIN', payload: {username, password, isLogged: true}})
-		history.push("/");
-	  }
-	}).catch(e => {
-	  if (e.response) {
-		setError(e.response.data.detail)
-	  }
-	})
+  if(username && password) {
+	dispatch(login(username, password))
+		.then(() => {
+		  history.push("/");
+		  window.location.reload();
+		})
+		.catch((e) => {
+		  alert(e)
+		});
+  } else {
+	alert('oops')
+  }
 	e.preventDefault();
   }
 
@@ -61,14 +42,16 @@ function Login() {
 		  <div className="icon-wrapper">
 			<input type="text" id="user" name="user" placeholder="username"
 				   onChange={(e) => setUsername(e.target.value)}/>
+
 			<FaUserAlt/>
+
+
 		  </div>
 		  <div className="icon-wrapper">
 			<input type="password" id="password" name="password" placeholder="password"
 				   onChange={(e) => setPassword(e.target.value)}/>
 			<RiLockPasswordFill/>
 		  </div>
-		  {error}
 		  <input type="submit" className="login-submit" value="Submit"/>
 
 		</form>

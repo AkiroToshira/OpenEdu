@@ -1,13 +1,8 @@
-import {Context} from '../../context'
-import {useContext} from "react";
 import {manageDate, manageText, manageTitle} from "./manage";
-import useFetch from "../../use/useFetch";
-import {url} from "../../utils";
 
 
 function SmallNews() {
 
-  // const {news, newsLoading} = useContext(Context)
   const creation_date = '', name = '', mini_description = ''
 
   return <section className="small-news">
