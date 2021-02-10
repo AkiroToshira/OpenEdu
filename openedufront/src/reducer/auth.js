@@ -4,10 +4,10 @@ import {
   LOGOUT,
 } from "../actions/types";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const token = JSON.parse(localStorage.getItem("user"));
 
-const initialState = user
-	? { isLoggedIn: true, user }
+const initialState = token
+	? { isLoggedIn: true, token }
 	: { isLoggedIn: false, user: null };
 
 export default function (state = initialState, action) {

@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Switch, Route,} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, useHistory,} from "react-router-dom";
 
 import Header from "./components/header/Header";
 import NewsPage from "./pages/news/NewsPage"
@@ -13,9 +13,12 @@ import ClassesStudent from "./pages/lessons/student/Classes";
 
 
 import {useSelector} from "react-redux";
+import Profile from "./pages/profile/Profile";
 
 
 function App() {
+  const history = useHistory()
+
   const auth = useSelector((state) => state.auth)
 
   if (auth.isLoggedIn) {
@@ -30,7 +33,7 @@ function App() {
 			<Login/>
 		  </Route>
 		  <Route path='/profile'>
-			{/*<Profile/>*/}
+			<Profile/>
 		  </Route>
 		  <Route path='/schedule'>
 			<Schedule/>
@@ -59,10 +62,11 @@ function App() {
 		  <Route path='*'>
 			<div>No page found</div>
 		  </Route>
-		</Switch>)
+		</Switch>
 	  </div>
 	</>)
   } else {
+    history.push('/login')
 	return <Login/>
   }
 }

@@ -1,4 +1,4 @@
-import {manageDate, manageText, manageTitle} from "./manage";
+import {manageDate, manageText, manageTitle} from "../../helpers/manage";
 
 
 function SmallNews() {
