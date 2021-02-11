@@ -45,10 +45,7 @@ class TeacherLessonListViewSet(viewsets.ViewSet):
         queryset = Lesson.objects.all()
         lesson = get_object_or_404(queryset, pk=pk)
         lesson_serializer = LessonDetailSerializer(lesson)
-        user = request.user
-        queryset = StudentGroupLesson.objects.all().filter(lesson=pk, teachers=user)
-        groups_serializer = TeacherStudentGroupListSerializer(queryset, many=True)
-        return Response({'lesson_data': lesson_serializer.data, 'groups': groups_serializer.data})
+        return Response(lesson_serializer.data)
 
 
 class ChapterViewSet(viewsets.ViewSet):
