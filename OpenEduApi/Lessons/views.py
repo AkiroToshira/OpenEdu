@@ -112,4 +112,3 @@ class DocumentViewSet(viewsets.ViewSet):
         document = get_object_or_404(queryset, pk=request.data.get('id'))
         document.delete()
         return Response('Deleted')
-
