@@ -6,6 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'mq(j$4fxwkx(7#94sd-_(d5__166co&$8oo-6buf7s6@epeb58'
 
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+
 DEBUG = True
 
 #SECRET_KEY = os.getenv('SECRET_KEY')
@@ -13,6 +15,7 @@ DEBUG = True
 #DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # Тут вказуємо чи ми включаємо cors на всіх доменах
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -80,6 +83,17 @@ WSGI_APPLICATION = 'OpenEduApi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'postgres',
+#        'USER': 'postgres',
+#        'PASSWORD': 'postgres',
+#        'HOST': 'db',
+#        'PORT': 5432,
+#    }
+#}
+
 DATABASES = {
 
     'default': {
@@ -91,8 +105,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

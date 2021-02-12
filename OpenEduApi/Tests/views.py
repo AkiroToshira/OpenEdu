@@ -1,12 +1,12 @@
 from rest_framework.response import Response
-
 from rest_framework import permissions, viewsets
+from django.shortcuts import get_object_or_404
 
-from User.models import Group
+from Users.models import Group
 
 from .models import QuestionSet
 
-from .serializers import QuestionSetListForStudent
+from .serializers import QuestionSetListForStudentSerializer, DetailQuestionSetListForStudentSerializer
 
 
 class StudentTestViewSet(viewsets.ViewSet):
@@ -19,6 +19,12 @@ class StudentTestViewSet(viewsets.ViewSet):
             group = Group.objects.get(student=user)
         except:
             return Response('User have not group')
-        queryset = QuestionSet.objects.all().filter(group=group, lesson=pk)
-        serializer = QuestionSetListForStudent(queryset, many=True)
+        queryset = QuestionSet.objects.all().filter(group=group, lesson=pk, visible=True)
+        serializer = QuestionSetListForStudentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = QuestionSet.objects.all()
+        questionset = get_object_or_404(queryset, pk=pk)
+        serializer = DetailQuestionSetListForStudentSerializer(questionset)
         return Response(serializer.data)
