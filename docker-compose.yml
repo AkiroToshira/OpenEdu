@@ -16,5 +16,13 @@ services:
       context: ./OpenEduApi
     ports:
       - "8000:8000"
+  nginx-react:
+    container_name: ngixreactapp
+    build:
+      context: ./openedufront
+    ports:
+      - "80:80"
+    environment:
+      NODE_ENV: production
 volumes:
   static:

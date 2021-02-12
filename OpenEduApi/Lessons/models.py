@@ -38,6 +38,9 @@ class StudentGroupLesson(models.Model):
     def get_lesson(self):
         return self.lesson.name
 
+    def __str__(self):
+        return "{} | {}".format(self.lesson.name, self.group.name)
+
 
 class Lecture(models.Model):
     """Лекції які йдуть разом"""

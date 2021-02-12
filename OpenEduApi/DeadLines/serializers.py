@@ -4,9 +4,11 @@ from .models import Deadlines
 
 from Lessons.models import StudentGroupLesson
 
+from Lessons.serializers import LessonSerializer
+
 
 class DeadlinesSerializer(serializers.ModelSerializer):
-    lesson = StudentGroupLesson.get_lesson
+    lesson = LessonSerializer(StudentGroupLesson.get_lesson)
 
     class Meta:
         model = Deadlines
