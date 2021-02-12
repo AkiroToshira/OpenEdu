@@ -15,7 +15,7 @@ function Header() {
 		<nav className="main-header">
 		  <div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
 		  <ul className="nav-links-list">
-			<li className="nav-link"><NavLink to={'/subject'}>Предмети</NavLink></li>
+			<li className="nav-link"><NavLink to={'/student/classes'}>Предмети</NavLink></li>
 			<li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
 			<li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
 		  </ul>

@@ -11,6 +11,7 @@ import news from './newsReducer'
 import schedule from './scheduleReducer'
 import lessonsStudent from './lessonsStudentReducer'
 import lessonsTeacher from './lessonsTeacherReducer'
+import lessonsStudentById from './lessonsStudentById'
 
 const rootReducer = combineReducers({
   profile,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   news,
   schedule,
   lessonsStudent,
-  lessonsTeacher
+  lessonsStudentById,
+  lessonsTeacher,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
