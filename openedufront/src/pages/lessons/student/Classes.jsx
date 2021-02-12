@@ -1,14 +1,15 @@
 import '../classes.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from 'react'
-import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
+
+// import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
 
 function ClassesStudent() {
   const dispatch = useDispatch();
   const state = useSelector(state => state.lessonsStudent)
 
   useEffect(() => {
-	dispatch(fetchLessonsStudent())
+	// dispatch(fetchLessonsStudent())
   }, [])
 
   return (
