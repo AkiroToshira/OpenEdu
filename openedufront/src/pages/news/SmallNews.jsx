@@ -1,36 +1,37 @@
 import {manageDate, manageText, manageTitle} from "../../helpers/manage";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 
 
 function SmallNews() {
+  const dispatch = useDispatch()
+  const smallNews = useSelector(state => state.news)
 
-  const creation_date = '', name = '', mini_description = ''
-
-  return <section className="small-news">
-	  <h1 className="upcoming-news">Найновіші новини</h1>
+  if (!smallNews.loading) {
+	return <section className="small-news">
+	  <h1 className="upcoming-news">Найсвіжіні Новини</h1>
 	  <div className="small-news-list">
-		{/*{news.map((el, i) => <OneNews data={el} key={i}/>)}*/}
+		{smallNews.data.smallNews.map((el, i) => <OneNews data={smallNews.data.smallNews[i]} key={i}/>)}
 	  </div>
 	</section>
-  // } else {
-	// return <section className="small-news">
-	//   <h1 className="upcoming-news">Найновіші новини</h1>
-	//   <div className="small-news-list">
-	// 	{[1, 2, 3, 4, 5].map(el => {
-	// 	  return (
-	// 		  <div className={"small-news-skeleton one-news"} key={el}>
-	// 			<div className="news-skew"></div>
-	// 		  </div>
-	// 	  )
-	// 	})}
-	//   </div>
-	// </section>
-  // }
+  } else {
+	return <section className="small-news">
+	  <div className="small-news-list">
+		{[1, 2, 3, 4, 5].map(el => {
+		  return (
+			  <div className={"small-news-skeleton one-news"} key={el}>
+				<div className="news-skew"/>
+			  </div>
+		  )
+		})}
+	  </div>
+	</section>
+  }
 
 }
 
 function OneNews(el) {
   const {creation_date, name, mini_description} = el.data
-
 
   return <div className="one-news">
 	<div className="wrapper-img-date">

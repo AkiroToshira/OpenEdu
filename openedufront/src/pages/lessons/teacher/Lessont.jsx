@@ -1,7 +1,18 @@
 import '../class.css'
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {fetchLessonsTeacher} from "../../../actions/lessonsTeacher";
 
 
 function Lessont() {
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.lessonsTeacher)
+
+
+  useEffect(() => {
+	dispatch(fetchLessonsTeacher())
+  }, [])
+
   return <>
 
 	<div className="container">

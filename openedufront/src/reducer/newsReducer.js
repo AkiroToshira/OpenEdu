@@ -29,7 +29,7 @@ export default function (state = defaultState, action) {
 		...state,
 		loading: false,
 		error: action.error,
-		profile: {}
+		data: {}
 	  }
 	default:
 	  return state;

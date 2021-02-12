@@ -1,22 +1,19 @@
 import {manageBigText, manageTitle} from "../../helpers/manage";
-import axios from "axios";
-import {url} from "../../helpers/utils";
+
 import {useEffect, useContext, useState} from "react";
 import {fetchNews} from "../../actions/news";
 import {useDispatch, useSelector} from "react-redux";
 
 function BigNews() {
   const dispatch = useDispatch()
-  const news = useSelector(state => state.news.data)
+  const news = useSelector(state => state.news)
 
   useEffect(() => {
-    dispatch(fetchNews())
+	dispatch(fetchNews())
   }, [])
 
-
   if (!news.loading) {
-
-	const {creation_date, name, mini_description} = news.mainNews
+	const {creation_date, name, mini_description} = news.data.mainNews
 
 	return <section className="intro">
 	  <div className="left-text">
@@ -33,9 +30,9 @@ function BigNews() {
 	  <div className="right-photo"/>
 	</section>
   } else {
-  return <div className={"big-news-skeleton"}>
-  	<div className="news-skew"/>
-  </div>
+	return <div className={"big-news-skeleton"}>
+	  <div className="news-skew"/>
+	</div>
   }
 }
 
