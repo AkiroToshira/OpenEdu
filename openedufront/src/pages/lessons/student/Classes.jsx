@@ -6,38 +6,49 @@ import {BrowserRouter as Router, Switch, Route, useHistory,} from "react-router-
 
 import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
 import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
+import {fetchDeadlines} from "../../../actions/deadlines";
 
 function ClassesStudent() {
   const history = useHistory()
   const dispatch = useDispatch();
   const studentLessons = useSelector(state => state.lessonsStudent)
+  const studentLessonsById = useSelector(state => state.lessonsStudentById)
+  const deadlines = useSelector(state => state.deadlines)
 
   useEffect(() => {
 	dispatch(fetchLessonsStudent())
+	dispatch(fetchDeadlines())
   }, [])
 
   const handleLessonClick = (id) => {
 	dispatch(fetchLessonsStudentDetailed(id))
-	history.push("/student/class");
+	if (!studentLessonsById.loading) {
+	  localStorage.setItem("lessonId", JSON.stringify(id))
+	  history.push("/student/class");
+	}
   }
 
-  if(!studentLessons.loading) {
-	return (
-		<div className="main-container">
-		  <div className="subjet-title"><span>Предмети</span></div>
-		  <div className="inner-container">
-			{studentLessons.lessons.map((el, i) => {
-			  return <a href="#" className="col2" key={el.lesson.id} onClick={() => handleLessonClick(el.lesson.id)}>
-				<div className="inner-information">
-				  <span>{el.lesson.name}</span>
-				  <span>Teacher</span>
-				</div>
-			  </a>
-			})}
+  if (!studentLessons.loading) {
+	return (<>
+	  <div className="main-container">
+		<div className="subject-title"><span>Предмети</span></div>
+		<div className="inner-container">
+		  {studentLessons.lessons.map((el, i) => {
+			return <a href="#" className="col2" key={el.lesson.id} onClick={() => handleLessonClick(el.lesson.id)}>
+			  <div className="inner-information">
+				<span>{el.lesson.name}</span>
+				<span>Teacher</span>
+			  </div>
+			</a>
+		  })}
 
-		  </div>
+		</div>
+	  </div>
 
-		  <div className="subjet-title"><span>Дедлайни</span></div>
+	  {
+		!deadlines.loading &&
+		<>
+		  <div className="subject-title"><span>Дедлайни</span></div>
 
 		  <div className="deadline-container">
 			<table className="content-table">
@@ -51,38 +62,33 @@ function ClassesStudent() {
 			  </thead>
 			  <tbody>
 			  {/*{% for x in get_deadlines %}*/}
-			  <tr>
+			  {deadlines.deadlines.map(el => {
+			    return (
+					<tr key={el.id}>
 
-				<td>kl;</td>
-				<td>kl;</td>
-				<td>kl;k</td>
-				<td>--</td>
-			  </tr>
-			  <tr>
+					  <td>{el.name}</td>
+					  <td>{el.type}</td>
+					  <td>{el.deadline_time}</td>
+					  <td>{el.description}</td>
+					</tr>
+				)
+			  })}
 
-				<td>kl;</td>
-				<td>kl;</td>
-				<td>kl;k</td>
-				<td>--</td>
-			  </tr>
-			  <tr>
-
-				<td>kl;</td>
-				<td>kl;</td>
-				<td>kl;k</td>
-				<td>--</td>
-			  </tr>
 			  {/*{% endfor %}*/}
 			  </tbody>
 			</table>
 		  </div>
-		</div>
-	);
+		</>
+	  }
+
+	</>)
   } else {
-    return <>
-		<div>Loading...</div>
+	return <>
+	  <div>Loading...</div>
 	</>
   }
+
+
 }
 
 

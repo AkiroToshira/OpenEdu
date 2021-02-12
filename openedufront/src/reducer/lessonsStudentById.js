@@ -8,7 +8,7 @@ import {
 
 const defaultState = {
   detailed:{},
-  loading: false,
+  loading: true,
   error: null,
 }
 

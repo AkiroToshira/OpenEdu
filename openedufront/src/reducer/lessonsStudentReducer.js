@@ -4,7 +4,7 @@ import {
 
 const defaultState = {
   lessons: [],
-  loading: false,
+  loading: true,
   error: null,
 }
 

@@ -6,7 +6,7 @@ const defaultState = {
 	mainNews: {},
 	smallNews: [],
   },
-  loading: false,
+  loading: true,
   error: null,
 }
 

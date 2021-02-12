@@ -1,35 +1,37 @@
-import {FETCH_SCHEDULE, FETCH_SCHEDULE_SUCCESS, FETCH_SCHEDULE_FAIL} from "../actions/types";
-
+import {
+  FETCH_DEADLINES_FAIL,
+  FETCH_DEADLINES, FETCH_DEADLINES_SUCCESS,
+} from "../actions/types";
 
 const defaultState = {
-  days: {},
+  deadlines: [],
   loading: true,
   error: null,
 }
 
+
 export default function (state = defaultState, action) {
   switch (action.type) {
-	case FETCH_SCHEDULE:
+	case FETCH_DEADLINES:
 	  return {
 		...state,
 		loading: true,
 		error: null,
 	  }
-	case FETCH_SCHEDULE_SUCCESS:
+	case FETCH_DEADLINES_SUCCESS:
 	  return {
 		...state,
 		loading: false,
-		days: action.payload,
+		deadlines: action.payload
 	  }
-	case FETCH_SCHEDULE_FAIL:
+	case FETCH_DEADLINES_FAIL:
 	  return {
 		...state,
 		loading: false,
 		error: action.error,
-		days: {}
+		deadlines: {},
 	  }
 	default:
 	  return state;
   }
 }
-

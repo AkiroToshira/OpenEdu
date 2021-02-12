@@ -1,56 +1,57 @@
 import '../class.css'
+import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
+
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 function ClassStudent() {
+  let dispatch = useDispatch()
+  let lessonsStudentById = useSelector(state => state.lessonsStudentById)
+  let chapters = lessonsStudentById.detailed.chapters
+  let moderators = lessonsStudentById.detailed.lesson_moderator
+
+  useEffect(() => {
+    const id = JSON.parse(localStorage.getItem('lessonId'))
+	dispatch(fetchLessonsStudentDetailed(id))
+  }, [])
+
+  if(!lessonsStudentById.loading) {
   return (
 	  <div className="container">
 		<div className="first-section">
 
-		  {/*{% for i in get_chapter %}*/}
-		  <div className="col">
-			<div className="title">
-			  вів
-			  {/*<span>{{i.name}}</span>*/}
+		  {chapters.map((el,i ) => {
+		    return <div className="col" key={el.id}>
+			  <div className="title">
+				<span>{el.name}</span>
+			  </div>
+			  <div className="description">
+				<span>{el.description}</span>
+			  </div>
+			  <div className="title pdf">
+				скачування ще в розробці^^
+			  </div>
 			</div>
-			<div className="description">
-			  вівв
-			  {/*<span>{{i.description}}</span>*/}
-			</div>
-			<div className="title pdf">
-			  віів
-			  {/*<a href="{{ i.document.url }}" download>{{i.document.name}}</a>*/}
-			  {/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
-			</div>
-		  </div>
-		  <div className="col">
-			<div className="title">
-			  вів
-			  {/*<span>{{i.name}}</span>*/}
-			</div>
-			<div className="description">
-			  вівв
-			  {/*<span>{{i.description}}</span>*/}
-			</div>
-			<div className="title pdf">
-			  віів
-			  {/*<a href="{{ i.document.url }}" download>{{i.document.name}}</a>*/}
-			  {/*<img src="../../media/page/pdf.svg" alt="" className="user-png">*/}
-			</div>
-		  </div>
-		  {/*{% endfor %}*/}
-
+		  })}
 		</div>
 		<div className="second-section">
 		  <div className="col col-teacher-info">
-			<div className="teacher-img" style={{margin: '0 auto'}}></div>
+			<div className="teacher-img" style={{margin: '0 auto'}}/>
 			<div className="whois">
 			  <span>Викладач:</span>
-			  <span>Мочурад Л. І.</span>
+			  {moderators.map(el => {
+			    return <span key={el.id}>{el.last_name} {el.first_name.substring(0,1)} {el.middle_name.substring(0,1)}</span>
+			  })}
 			</div>
-			{/*<div className="teacher-info"><p>{{get_lesson.description}}</p></div>*/}
 		  </div>
 		</div>
 	  </div>
   );
+	} else {
+    return <>
+		<div>Loading...</div>
+	</>
+  }
 }
 
 

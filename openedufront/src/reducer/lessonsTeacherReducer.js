@@ -1,7 +1,9 @@
 import {FETCH_LESSONS_TEACHER, FETCH_LESSONS_TEACHER_SUCCESS, FETCH_LESSONS_TEACHER_FAIL} from "../actions/types";
 
 const defaultState = {
-
+  lessons: [],
+  loading: true,
+  error: null,
 }
 
 export default function(state = defaultState, action) {

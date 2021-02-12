@@ -15,7 +15,6 @@ export const fetchLessonsStudentDetailed = (id) => async (dispatch, getState) =>
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
 	})
-	console.log(detailed.data)
 	dispatch({
 	  type: FETCH_LESSONS_STUDENT_BY_ID_SUCCESS,
 	  payload: detailed.data,
