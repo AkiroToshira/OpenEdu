@@ -12,7 +12,7 @@ function Schedule() {
   useEffect(() => {
 	dispatch(fetchSchedule())
   }, [])
-  if (!schedule.loading) {
+  // if (!schedule.loading) {
 	return (<div className="schedual">
 		  <div className="schedual_title">
 			<div className="schedule_title_block">Розклад</div>
@@ -37,10 +37,10 @@ function Schedule() {
 		  </div>
 		</div>
 	)
-
-  } else {
-	return <div>Loading...</div>
-  }
+  //
+  // } else {
+	// return <div>Loading...</div>
+  // }
 
 }
 
