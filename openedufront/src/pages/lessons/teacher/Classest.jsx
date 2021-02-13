@@ -1,37 +1,77 @@
 import '../classes.css'
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {fetchLessonsTeacher} from "../../../actions/lessonsTeacher";
+import {fetchDeadlines} from "../../../actions/deadlines";
 
 function Classest() {
-  return (<>
-	<div class="main-container">
-	  <div class="subjet-title"><span>Предмети</span></div>
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.lessonsTeacher)
+  const deadlines = useSelector(state => state.deadlines)
 
-	  <div class="main-container">
+
+  useEffect(() => {
+	dispatch(fetchLessonsTeacher())
+	dispatch(fetchDeadlines())
+
+  }, [])
+
+  return (<>
+	<div className="main-container">
+	  <div className="subject-title"><span>Предмети</span></div>
+
+	  <div className="inner-container">
 		{/*{% for lesson in get_lesson %}*/}
+		{state.lessons.map((el) => {
+		  return <a href="#" className="col2" key={el.id}>
+			<div className="inner-information">
+			  <span>{el.name}</span>
+			</div>
+		  </a>
+		})}
 		{/*<a href="lesson/{{ lesson.id }}" class="col2">*/}
 		{/*    <div class="inner-information"><span>{{ lesson.name }}</span></div>*/}
 		{/*</a>*/}
 		{/*{% endfor %}*/}
 	  </div>
 
-	  <div class="subjet-title">
-		<div>
-		  <span>Дедлайни</span>
-		</div>
-	  </div>
-	  <div class="deadline-container">
-		<table class="content-table">
-		  <thead>
-		  <tr>
-			<th>Назва предмата</th>
-			<th>Назва задачі</th>
-			<th>Дедлайн</th>
-			<th>Група</th>
-			<th colspan="2" id="myBtn">Додати дедлайн</th>
-		  </tr>
-		  </thead>
-		</table>
-	  </div>
-	</div>
+	  {
+		!deadlines.loading &&
+		<>
+		  <div className="subject-title"><span>Дедлайни</span></div>
+
+		  <div className="deadline-container">
+			<table className="content-table">
+			  <thead>
+			  <tr>
+				<th>Назва предмату</th>
+				<th>Назва задачі</th>
+				<th>Дедлайн</th>
+				<th>Додатковий опис</th>
+				<th colSpan="2" id="myBtn">Додати дедлайн</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  {deadlines.deadlines.map(el => {
+				return (
+					<tr key={el.id}>
+
+					  <td>{el.name}</td>
+					  <td>{el.type}</td>
+					  <td>{el.deadline_time}</td>
+					  <td>{el.description}</td>
+					  <td/>
+					</tr>
+				)
+			  })}
+
+			  </tbody>
+			</table>
+		  </div>
+
+		</>
+	  }
+
 	<div id="myModal" class="modal">
 	  <div class="modal-content">
 		<span class="close">&times;</span>
@@ -71,6 +111,7 @@ function Classest() {
 		  </form>
 		</div>
 	  </div>
+	</div>
 	</div>
   </>)
 }
