@@ -6,38 +6,41 @@ import {useDispatch, useSelector} from "react-redux";
 
 function Schedule() {
   const dispatch = useDispatch()
-  const days = useSelector(state => state.schedule.days)
+  const schedule = useSelector(state => state.schedule)
 
 
   useEffect(() => {
 	dispatch(fetchSchedule())
   }, [])
-
-  return (<div className="schedual">
-		<div className="schedual_title">
-		  <div className="schedule_title_block">Розклад</div>
-		  <div className="group_info">
-			<div className="first group_block select-1">
-			  <div className="left-line" style={{'backgroundColor': 'aquamarine'}}/>
-			  1 підгрупа
-			</div>
-			<div className="second group_block select-2">
-			  <div className="left-line" style={{'backgroundColor': 'darkmagenta'}}/>
-			  2 підгрупа
-			</div>
-			<div className="both group_block select-3">
-			  <div className="left-line" style={{'backgroundColor': 'black'}}/>
-			  Обидві
+  if (!schedule.loading) {
+	return (<div className="schedual">
+		  <div className="schedual_title">
+			<div className="schedule_title_block">Розклад</div>
+			<div className="group_info">
+			  <div className="first group_block select-1">
+				<div className="left-line" style={{'backgroundColor': 'aquamarine'}}/>
+				1 підгрупа
+			  </div>
+			  <div className="second group_block select-2">
+				<div className="left-line" style={{'backgroundColor': 'darkmagenta'}}/>
+				2 підгрупа
+			  </div>
+			  <div className="both group_block select-3">
+				<div className="left-line" style={{'backgroundColor': 'black'}}/>
+				Обидві
+			  </div>
 			</div>
 		  </div>
-		</div>
-		<div className="schedual_block_wrapper">
-		  {Object.keys(days).map((_, i) => <ScheduleBlock key={i}/>)}
+		  <div className="schedual_block_wrapper">
+			{Object.keys(schedule.days).map((_, i) => <ScheduleBlock key={i}/>)}
 
+		  </div>
 		</div>
-	  </div>
-  )
+	)
 
+  } else {
+	return <div>Loading...</div>
+  }
 
 }
 

@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # Тут вказуємо чи ми включаємо cors на всіх доменах
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 # а тут ми пишемо список доменів які можуть приймати запити з апі
 # CORS_ORIGIN_WHITELIST = (
