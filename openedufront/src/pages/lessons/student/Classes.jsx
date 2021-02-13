@@ -22,11 +22,13 @@ function ClassesStudent() {
 
   const handleLessonClick = (id) => {
 	dispatch(fetchLessonsStudentDetailed(id))
-	if (!studentLessonsById.loading) {
 	  localStorage.setItem("lessonId", JSON.stringify(id))
 	  history.push("/student/class");
-	}
   }
+
+  useEffect(() => {
+    console.log(studentLessons.loading)
+  }, [studentLessons.loading])
 
   if (!studentLessons.loading) {
 	return (<>

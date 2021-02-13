@@ -29,7 +29,7 @@ export default function(state = defaultState, action) {
 	case FETCH_LESSONS_STUDENT_BY_ID_FAIL:
 	  return {
 		...state,
-		loading: false,
+		loading: true,
 		error: action.error,
 		detailed: {},
 	  }

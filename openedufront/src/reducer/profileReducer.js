@@ -13,7 +13,7 @@ const defaultState = {
   username: "",
   role: "",
   id: null,
-  loading: false,
+  loading: true,
   error: null
 }
 
@@ -34,7 +34,7 @@ export default function (state = defaultState, action) {
 	case FETCH_PROFILE_FAIL:
 	  return {
 		...state,
-		loading: false,
+		loading: true,
 		error: action.error,
 		profile: {}
 	  }

@@ -26,7 +26,7 @@ export default function(state = defaultState, action) {
 	  case FETCH_LESSONS_STUDENT_FAIL:
 		return {
 		  ...state,
-		  loading: false,
+		  loading: true,
 		  error: action.error,
 		  lessons: {},
 		}
