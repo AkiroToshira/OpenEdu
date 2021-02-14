@@ -12,14 +12,26 @@ import ClassStudent from "./pages/lessons/student/Class";
 import ClassesStudent from "./pages/lessons/student/Classes";
 
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Profile from "./pages/profile/Profile";
+import {useEffect} from "react";
+import {fetchProfile} from "./actions/profile";
+import {fetchLessonsTeacher} from "./actions/lessonsTeacher";
+import {fetchLessonsStudent} from "./actions/lessonsStudent";
 
 
 function App() {
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const auth = useSelector((state) => state.auth)
+
+  useEffect(() => {
+	dispatch(fetchProfile())
+	dispatch(fetchLessonsTeacher())
+	dispatch(fetchLessonsStudent())
+
+  }, [])
 
   if (auth.isLoggedIn) {
 	return (<>

@@ -2,8 +2,8 @@ import {FETCH_PROFILE, FETCH_PROFILE_FAIL, FETCH_PROFILE_SUCCESS} from "../actio
 
 const defaultState = {
   email: "",
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   profile: {
 	middleName: "",
 	numberPhone: "",
@@ -11,7 +11,7 @@ const defaultState = {
 	img: "",
   },
   username: "",
-  role: "",
+  perm: "",
   id: null,
   loading: true,
   error: null

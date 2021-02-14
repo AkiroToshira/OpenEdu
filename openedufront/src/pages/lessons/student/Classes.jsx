@@ -7,16 +7,18 @@ import {BrowserRouter as Router, Switch, Route, useHistory,} from "react-router-
 import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
 import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
 import {fetchDeadlines} from "../../../actions/deadlines";
+import {fetchLessonsTeacher} from "../../../actions/lessonsTeacher";
 
 function ClassesStudent() {
   const history = useHistory()
   const dispatch = useDispatch();
   const studentLessons = useSelector(state => state.lessonsStudent)
   const studentLessonsById = useSelector(state => state.lessonsStudentById)
+  const state = useSelector(state => state.lessonsTeacher)
+
   const deadlines = useSelector(state => state.deadlines)
 
   useEffect(() => {
-	dispatch(fetchLessonsStudent())
 	dispatch(fetchDeadlines())
   }, [])
 

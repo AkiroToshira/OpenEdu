@@ -13,6 +13,7 @@ import lessonsStudent from './lessonsStudentReducer'
 import lessonsTeacher from './lessonsTeacherReducer'
 import lessonsStudentById from './lessonsStudentById'
 import deadlines from './lessonsStudentDeadlines'
+import lessonsTeacherById from './lessonsTeacherById'
 
 const rootReducer = combineReducers({
   profile,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   lessonsStudent,
   lessonsStudentById,
   lessonsTeacher,
+  lessonsTeacherById,
   deadlines,
 })
 

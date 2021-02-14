@@ -7,17 +7,19 @@ export const fetchLessonsTeacher = () => async (dispatch, getState) => {
 	type: FETCH_LESSONS_TEACHER
   })
   try {
-	const response = await axios.get(`${url}/lessons/teacher`, {
+
+	const response = await axios.get(`http://127.0.0.1:8000/lessons/teacher`, {
 	  headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
 	})
-	console.log(response)
+	console.log(response, 'here')
 	dispatch({
 	  type: FETCH_LESSONS_TEACHER_SUCCESS,
 	  payload: response.data,
 	})
   } catch (e) {
+    console.log(e)
 	dispatch({
 	  type: FETCH_LESSONS_TEACHER_FAIL,
 	  error: e,
