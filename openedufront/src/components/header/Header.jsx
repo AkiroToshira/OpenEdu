@@ -11,43 +11,23 @@ function Header() {
 	dispatch(logout())
   }
 
-  const roleHeader = () => {
-    if(role === "Student") {
-      return (
-		  <nav className="main-header">
-			<div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
-			<ul className="nav-links-list">
-			  <li className="nav-link"><NavLink to={'/student/classes'}>Предмети</NavLink></li>
-			  <li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
-			  <li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
-			</ul>
-			<div className="wrapper-buttons">
-			  <div className="btn btn-who-logged"><NavLink to={'/profile'}>Розбійник</NavLink></div>
-			  <div className="btn btn-logged-out"><NavLink to={'/login'} onClick={handleLogout}>Вийти атсюда</NavLink></div>
-			</div>
-		  </nav>
-	  )
-	} else if(role === "Teacher") {
-	  return (
-		  <nav className="main-header">
-			<div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
-			<ul className="nav-links-list">
-			  <li className="nav-link"><NavLink to={'/teacher/classest'}>Предмети</NavLink></li>
-			  <li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
-			  <li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
-			</ul>
-			<div className="wrapper-buttons">
-			  <div className="btn btn-who-logged"><NavLink to={'/profile'}>Профіль</NavLink></div>
-			  <div className="btn btn-logged-out"><NavLink to={'/login'} onClick={handleLogout}>logout</NavLink></div>
-			</div>
-		  </nav>
-	  )
-	}
-  }
 
   return (
 	  <>
-		{roleHeader()}
+		<nav className="main-header">
+		  <div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
+		  <ul className="nav-links-list">
+			<li className="nav-link">
+			  {role === 'Teacher' ? <NavLink to={'/teacher/classest'}>Предмети</NavLink> : <NavLink to={'/student/classes'}>Предмети</NavLink>}
+			</li>
+			<li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
+			<li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
+		  </ul>
+		  <div className="wrapper-buttons">
+			<div className="btn btn-who-logged"><NavLink to={'/profile'}>Профіль</NavLink></div>
+			<div className="btn btn-logged-out"><NavLink to={'/login'} onClick={handleLogout}>logout</NavLink></div>
+		  </div>
+		</nav>
 	  </>
   );
 }

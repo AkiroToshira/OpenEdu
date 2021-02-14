@@ -8,9 +8,9 @@ function BigNews() {
   const dispatch = useDispatch()
   const news = useSelector(state => state.news)
 
-  useEffect(() => {
-	dispatch(fetchNews())
-  }, [])
+  // useEffect(() => {
+	// dispatch(fetchNews())
+  // }, [])
 
   if (!news.loading) {
 	const {creation_date, name, mini_description} = news.data.mainNews

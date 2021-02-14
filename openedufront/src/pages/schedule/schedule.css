@@ -248,7 +248,7 @@
 }
 
 .additional_info {
-    display: none;
+    display: block;
     flex-direction: column;
     padding: 10px;
     margin-top: 10px;
@@ -297,6 +297,7 @@
 }
 
 .link > a {
+    text-decoration: underline;
     color: black;
     margin-left: 5px;
 }
