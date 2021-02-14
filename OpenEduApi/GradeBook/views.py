@@ -9,12 +9,20 @@ from Lessons.models import StudentGroupLesson
 
 from .serializers import TeacherGradeBookSerializer, GradeSerializer, StudentLessonGradeBookSerializer
 
+from Lessons.serializers import StudentGroupLessonSerializer
+
 
 class TeacherGradeBookViewSet(viewsets.ViewSet):
 
+    def grade_book_list(self, request):
+        user = request.user
+        lessons = StudentGroupLesson.get_user_lesson(user)
+        serializer = StudentGroupLessonSerializer(lessons, many=True)
+        return Response(serializer.data)
+
     def retrieve(self, request, pk=None):
-        queryset = GradeBook.objects.all()
-        gradebook = get_object_or_404(queryset, pk=pk)
+        lesson = StudentGroupLesson.objects.get(pk=pk)
+        gradebook = lesson.gradebook
         serializer = TeacherGradeBookSerializer(gradebook)
         return Response(serializer.data)
 
