@@ -121,3 +121,12 @@ class DocumentCreateSerializer(serializers.ModelSerializer):
             instance.description)
         instance.save()
         return instance
+
+
+class StudentGroupLessonSerializer(serializers.ModelSerializer):
+    group = GroupSerializer(read_only=True)
+    lesson = TeacherLessonListSerializer(read_only=True)
+
+    class Meta:
+        model = StudentGroupLesson
+        fields = ('id', 'lesson', 'group')
