@@ -69,19 +69,19 @@ class ChapterViewSet(viewsets.ViewSet):
         else:
             return Response(chapter_serializer.errors)
 
-    def update(self, request):
+    def update(self, request, pk=None):
         serializer = ChapterCreateSerializer(data=request.data)
         if serializer.is_valid():
             queryset = Chapter.objects.all()
-            chapter = get_object_or_404(queryset, pk=request.data.get('id'))
+            chapter = get_object_or_404(queryset, pk=pk)
             serializer.update(chapter, serializer.data)
             return Response(serializer.data)
         else:
             return Response(serializers.errors)
 
-    def delete(self, request):
+    def delete(self, request, pk=None):
         queryset = Chapter.objects.all()
-        chapter = get_object_or_404(queryset, pk=request.data.get('id'))
+        chapter = get_object_or_404(queryset, pk=pk)
         chapter.delete()
         return Response('Deleted')
 

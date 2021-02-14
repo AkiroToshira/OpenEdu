@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import QuestionSet, Question, Answer
+from .models import QuestionSet, Question, Answer, UserAnswer
 
 
 class AnswerListForStudentSerializer(serializers.ModelSerializer):
@@ -23,11 +23,19 @@ class DetailQuestionSetListForStudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuestionSet
-        fields = ('id', 'title', 'open_since', 'open_until', 'limit', 'type', 'questions')
+        fields = ('id', 'title', 'open_since', 'open_until', 'limit', 'questions')
+
+
+class UserAnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserAnswer
+        fields = ('id', 'user', 'questions_set', 'score')
 
 
 class QuestionSetListForStudentSerializer(serializers.ModelSerializer):
+    user_answer = UserAnswerSerializer(many=True)
 
     class Meta:
         model = QuestionSet
-        fields = ('id', 'title', 'open_since', 'open_until', 'limit', 'type')
+        fields = ('id', 'title', 'open_since', 'open_until', 'limit', 'user_answer')
