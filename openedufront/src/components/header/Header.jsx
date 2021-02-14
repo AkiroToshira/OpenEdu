@@ -12,7 +12,7 @@ function Header() {
   }
 
   const roleHeader = () => {
-    if(role === '') {
+    if(role === "Student") {
       return (
 		  <nav className="main-header">
 			<div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
@@ -27,7 +27,7 @@ function Header() {
 			</div>
 		  </nav>
 	  )
-	} else if(role === "Student") { // Teacher
+	} else if(role === "Teacher") {
 	  return (
 		  <nav className="main-header">
 			<div className="logo"><NavLink to={"/"}>OpenEdu</NavLink></div>
