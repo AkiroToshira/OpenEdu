@@ -4,9 +4,11 @@ from django.shortcuts import get_object_or_404
 
 from Users.models import Group
 
-from .models import QuestionSet
+from .models import QuestionSet, Answer, UserAnswer
 
-from .serializers import QuestionSetListForStudentSerializer, DetailQuestionSetListForStudentSerializer
+from .serializers import (QuestionSetListForStudentSerializer,
+                          DetailQuestionSetListForStudentSerializer,
+                          UserAnswerSerializer)
 
 
 class StudentTestViewSet(viewsets.ViewSet):
@@ -28,3 +30,19 @@ class StudentTestViewSet(viewsets.ViewSet):
         questionset = get_object_or_404(queryset, pk=pk)
         serializer = DetailQuestionSetListForStudentSerializer(questionset)
         return Response(serializer.data)
+
+    def count(self, request, pk=None):
+        answers = request.data.get('answers')
+        answers = answers.split(' ')
+        answers = Answer.objects.all().filter(id__in=answers)
+        mark = 0
+        for i in answers:
+            mark += i.mark
+        user = request.user
+        serializer = UserAnswerSerializer(data={'user': user.id,
+                                                'questions_set': pk, 'score': mark})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
