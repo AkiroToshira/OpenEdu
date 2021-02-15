@@ -31,6 +31,8 @@ export default function (state = defaultState, action) {
 		error: action.error,
 		data: {}
 	  }
+	case 'LOGOUT':
+	  return defaultState
 	default:
 	  return state;
   }

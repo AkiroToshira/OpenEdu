@@ -30,6 +30,7 @@ import lessonsStudentById from "./reducer/lessonsStudentById";
 import lessonsTeacher from "./reducer/lessonsTeacherReducer";
 import lessonsTeacherById from "./reducer/lessonsTeacherById";
 import deadlines from "./reducer/lessonsStudentDeadlines";
+import Tests from "./pages/tests/Tests";
 
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
 		<Switch>
 		  <Route exact path='/'>
 			<NewsPage/>
+		  </Route>
+		  <Route path='/tests'>
+			<Tests/>
 		  </Route>
 		  <Route path='/login'>
 			<Login/>

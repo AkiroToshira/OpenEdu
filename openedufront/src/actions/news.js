@@ -3,6 +3,11 @@ import axios from 'axios';
 import {url} from '../helpers/utils'
 import {FETCH_NEWS, FETCH_NEWS_FAIL, FETCH_NEWS_SUCCESS} from "./types";
 
+export const newsLogout = () => ({
+  type: "LOGOUT",
+})
+
+
 export const fetchNews = () => async (dispatch, getState) => {
   dispatch({
 	type: FETCH_NEWS,

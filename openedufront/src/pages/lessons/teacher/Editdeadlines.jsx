@@ -1,7 +1,21 @@
 import '../classes.css'
+import {addDeadlines, updateDeadlines} from "../../../actions/deadlines";
+import {useDispatch} from "react-redux";
 
 
 function Editdeadlines() {
+  const dispatch = useDispatch()
+
+  const addDeadline = () => {
+	let name = prompt('name ')
+	let type = prompt('type ')
+	let lesson = 9
+	let description = prompt('description ')
+	let deadline_time = prompt('deadline_time ')
+	let id = 9
+	dispatch(updateDeadlines(lesson,name, description, deadline_time, type, id))
+  }
+
   return <form encType="multipart/form-data" action="" method="post">
 	{/*{% csrf_token %}*/}
 	<div className="flex-container">
@@ -42,7 +56,7 @@ function Editdeadlines() {
 	  </div>
 	  <div className="col1">
 		<div className="modal-add">
-		  <button type="submit" name="button">Add</button>
+		  <button type="submit" name="button" onClick={addDeadline}>Add</button>
 		</div>
 	  </div>
 	</div>

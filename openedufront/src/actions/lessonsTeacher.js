@@ -13,7 +13,6 @@ export const fetchLessonsTeacher = () => async (dispatch, getState) => {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
 	})
-	console.log(response, 'here')
 	dispatch({
 	  type: FETCH_LESSONS_TEACHER_SUCCESS,
 	  payload: response.data,
