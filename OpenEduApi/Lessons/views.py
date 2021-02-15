@@ -70,14 +70,14 @@ class ChapterViewSet(viewsets.ViewSet):
             return Response(chapter_serializer.errors)
 
     def update(self, request, pk=None):
-        serializer = ChapterCreateSerializer(data=request.data)
+        serializer = ChapterUpdateSerializer(data=request.data)
         if serializer.is_valid():
             queryset = Chapter.objects.all()
             chapter = get_object_or_404(queryset, pk=pk)
             serializer.update(chapter, serializer.data)
             return Response(serializer.data)
         else:
-            return Response(serializers.errors)
+            return Response(serializer.errors)
 
     def delete(self, request, pk=None):
         queryset = Chapter.objects.all()

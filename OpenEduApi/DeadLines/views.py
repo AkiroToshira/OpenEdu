@@ -7,7 +7,7 @@ from .models import Deadlines
 
 from Lessons.models import StudentGroupLesson
 
-from .serializers import DeadlinesSerializer
+from .serializers import DeadlinesSerializer, DeadlinesCreateSerializer
 
 
 class DeadlinesViewSet(viewsets.ViewSet):
@@ -20,7 +20,7 @@ class DeadlinesViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        serializer = DeadlinesSerializer(data=request.data)
+        serializer = DeadlinesCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -28,7 +28,7 @@ class DeadlinesViewSet(viewsets.ViewSet):
             return Response(serializer.errors)
 
     def update(self, request):
-        serializer = DeadlinesSerializer(data=request.data)
+        serializer = DeadlinesCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.update(
                 Deadlines.objects.get(id=request.data.get('id')), serializer.data)

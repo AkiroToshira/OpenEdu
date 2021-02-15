@@ -107,6 +107,19 @@ class ChapterCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ChapterUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Chapter
+        fields = ('name', 'description')
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.description = validated_data.get('description', instance.description)
+        instance.save()
+        return instance
+
+
 class DocumentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:

@@ -14,6 +14,13 @@ class DeadlinesSerializer(serializers.ModelSerializer):
         model = Deadlines
         fields = "__all__"
 
+
+class DeadlinesCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Deadlines
+        fields = ('name', 'description', 'deadline_time', 'lesson', 'type')
+
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
         instance.description = validated_data.get(
