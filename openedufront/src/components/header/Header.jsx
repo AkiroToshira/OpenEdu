@@ -24,7 +24,6 @@ function Header() {
 			  {role.perm === 'Teacher' ?
 				  <li className="nav-link"><NavLink to={'/teacher/classest'}>Предмети</NavLink></li> :
 				  <li className="nav-link"><NavLink to={'/student/classes'}>Предмети</NavLink></li>}
-			  {role.perm === 'Student' ? <li><NavLink to={'/tests'}>Тести</NavLink></li> : ''}
 			  <li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
 			  <li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
 			</ul>

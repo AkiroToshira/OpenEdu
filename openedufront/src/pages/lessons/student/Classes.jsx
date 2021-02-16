@@ -1,13 +1,11 @@
 import '../classes.css'
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Switch, Route, useHistory,} from "react-router-dom";
 
 
-import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
 import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
 import {fetchDeadlines} from "../../../actions/deadlines";
-import {fetchLessonsTeacher} from "../../../actions/lessonsTeacher";
 
 function ClassesStudent() {
   const history = useHistory()
@@ -22,15 +20,20 @@ function ClassesStudent() {
 	dispatch(fetchDeadlines())
   }, [])
 
+
+
   const handleLessonClick = (id) => {
-	dispatch(fetchLessonsStudentDetailed(id))
+	  dispatch(fetchLessonsStudentDetailed(id))
 	  localStorage.setItem("lessonId", JSON.stringify(id))
 	  history.push("/student/class");
   }
 
-  useEffect(() => {
-    console.log(studentLessons.loading)
-  }, [studentLessons.loading])
+
+  const handleTesting = (id) => {
+	localStorage.setItem("test-lesson-id", JSON.stringify(id))
+	history.push("/tests");
+  }
+
 
   if (!studentLessons.loading) {
 	return (<>
@@ -38,10 +41,14 @@ function ClassesStudent() {
 		<div className="subject-title"><span>Предмети</span></div>
 		<div className="inner-container">
 		  {studentLessons.lessons.map((el, i) => {
-			return <a href="#" className="col2" key={el.lesson.id} onClick={() => handleLessonClick(el.lesson.id)}>
-			  <div className="inner-information">
+			return <a className="col2" key={el.lesson.id} >
+			  <div className="inner-information" onClick={() => handleLessonClick(el.lesson.id)}>
 				<span>{el.lesson.name}</span>
 				<span>Teacher</span>
+
+			  </div>
+			  <div className={"do-testing"} onClick={() => handleTesting(el.lesson.id)}>
+				Пройти тестування
 			  </div>
 			</a>
 		  })}

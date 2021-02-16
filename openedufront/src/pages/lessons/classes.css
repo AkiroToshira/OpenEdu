@@ -28,7 +28,8 @@ body {
     background-color: #f5f7f9;
 }
 
-.col2:hover {
+.inner-information:hover {
+    cursor: pointer;
     transform: scale(1.06);
     transition: .3s;
 }
@@ -50,6 +51,7 @@ body {
     text-decoration: none;
     box-shadow: 0 3px 6px rgba(0, 0, 0, .08);
     border: 1px solid #e4e4e4;
+    flex-direction: column;
 }
 
 .icon-container {
@@ -91,17 +93,28 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 15px;
+    position: relative;
 }
 
 .inner-information span {
     margin: 12px 0 0;
     color: #0b0b0b;
-    padding: 13px 13px;
     text-decoration: none;
-    font-size: 16px;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+.do-testing {
+    margin-top: 10px;
+    text-decoration: underline;
+    font-weight: bold;
+    z-index: 100000;
+}
+
+.do-testing:hover {
+    cursor: pointer;
+    color: lightblue;
 }
 
 .main-container {

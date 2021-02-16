@@ -20,16 +20,6 @@ import {fetchLessonsTeacher} from "./actions/lessonsTeacher";
 import {fetchLessonsStudent} from "./actions/lessonsStudent";
 import {fetchSchedule} from "./actions/schedule";
 import {fetchNews} from "./actions/news";
-import profile from "./reducer/profileReducer";
-import auth from "./reducer/auth";
-import message from "./reducer/message";
-import news from "./reducer/newsReducer";
-import schedule from "./reducer/scheduleReducer";
-import lessonsStudent from "./reducer/lessonsStudentReducer";
-import lessonsStudentById from "./reducer/lessonsStudentById";
-import lessonsTeacher from "./reducer/lessonsTeacherReducer";
-import lessonsTeacherById from "./reducer/lessonsTeacherById";
-import deadlines from "./reducer/lessonsStudentDeadlines";
 import Tests from "./pages/tests/Tests";
 
 

@@ -48,7 +48,7 @@ function Lessont() {
 
 		  {/*{% for i in get_chapter %}*/}
 		  {chapters.map(el => {
-			return <div className="col">
+			return <div className="col" key={el.id}>
 			  <div className="title">
 				<span>{el.name} {el.id}</span>
 			  </div>
