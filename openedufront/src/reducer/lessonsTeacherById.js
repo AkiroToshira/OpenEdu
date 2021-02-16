@@ -32,6 +32,47 @@ export default function (state = defaultState, action) {
 		error: action.error,
 		detailed: {},
 	  }
+
+	case "ADD_CHAPTER": {
+	  return {
+		...state,
+		loading: false,
+		error: null,
+		detailed: {
+		  ...state.detailed,
+		  chapters: [
+		  	...state.detailed.chapters,
+			action.payload
+		  ]
+		}
+	  }
+	}
+	case "DELETE_CHAPTER": {
+	  return {
+		...state,
+		loading: false,
+		error: null,
+		detailed: {
+		  ...state.detailed,
+		  chapters: state.detailed.chapters.filter(el => el.id !== action.payload)
+		}
+	  }
+	}
+	case "UPDATE_CHAPTER": {
+	  return {
+		...state,
+		loading: false,
+		error: null,
+		detailed: {
+		  ...state.detailed,
+		  chapters: state.detailed.chapters.map(
+			  (content, i) => content.id === action.payload.id ? action.payload
+				  : content
+		  )
+		}
+	  }
+	}
+
 	default:
 	  return state;
   }

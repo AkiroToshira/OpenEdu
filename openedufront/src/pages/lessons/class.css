@@ -160,6 +160,8 @@ div.teacher-img {
 }
 
 
+
+
 .redaction a {
     width: 80px;
     color: #0b0b0b;
@@ -171,10 +173,12 @@ div.teacher-img {
 }
 
 .redaction a:first-child:hover {
+    cursor: pointer;
     color: #bf1f1f;
 }
 .redaction a:last-child:hover {
     color: rgb(30, 156, 132);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px) {
