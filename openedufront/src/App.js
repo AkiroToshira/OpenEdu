@@ -21,7 +21,8 @@ import {fetchLessonsStudent} from "./actions/lessonsStudent";
 import {fetchSchedule} from "./actions/schedule";
 import {fetchNews} from "./actions/news";
 import Tests from "./pages/tests/Tests";
-import Grades from "./pages/grades/Grades";
+import Grades from "./pages/student_grades/Grades";
+import TeacherGrades from "./pages/teacher_grades/TeacherGrades";
 
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
 		  {/* ОЦІНКИ */}
 		  <Route path='/students-grades'>
 			<Grades/>
+		  </Route>
+		  <Route path='/teacher-grades'>
+			<TeacherGrades/>
 		  </Route>
 		  {/*TEACHER*/}
 		  <Route path='/teacher/classest'>
