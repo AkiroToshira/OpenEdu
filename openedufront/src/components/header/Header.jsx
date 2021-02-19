@@ -25,6 +25,9 @@ function Header() {
 				  <li className="nav-link"><NavLink to={'/teacher/classest'}>Предмети</NavLink></li> :
 				  <li className="nav-link"><NavLink to={'/student/classes'}>Предмети</NavLink></li>}
 			  <li className="nav-link"><NavLink to={'/schedule'}>Розклад</NavLink></li>
+			  {role.perm === 'Student' ?
+				  <li className="nav-link"><NavLink to={'/students-grades'}>Оцінки</NavLink></li> :
+				  <li className="nav-link"><NavLink to={'/teacher-grades'}>Оцінки</NavLink></li>}
 			  <li className="nav-link"><NavLink to={'/'}>Новини</NavLink></li>
 			</ul>
 			<div className="wrapper-buttons">

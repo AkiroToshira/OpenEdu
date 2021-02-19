@@ -1,0 +1,36 @@
+.grades_wrapper {
+    min-height: 500px;
+}
+
+.grade_element {
+    overflow-x: scroll;
+    min-width: 70vw;
+    max-width: 80vw;
+    margin: 40px auto;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.grade_element::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.grade_element {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.grade_title {
+    font-size: 25px;
+    text-transform: uppercase;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.expand_details {
+    display: none;
+}
