@@ -1,5 +1,78 @@
-.teacher_grades_table {
-    min-height: 500px;
-    margin-top: 50px;
-    display: none;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+
+body {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f7f9;
+}
+
+thead tr th {
+  font-weight: 600;
+  border: none;
+  background: #f5f7f9;
+  font-size: 18px;
+  box-shadow: none;
+}
+
+table, th, td {
+  /* border: 1px solid #ccc; */
+  padding: 20px;
+  width: 890px;
+}
+
+table {
+    border-collapse: collapse;
+    border: none;
+    margin: 0 auto;
+}
+
+tbody {
+  box-shadow: 0 2px 3px rgb(0 0 0 / 8%);
+  border-radius: 10px;
+}
+
+td {
+  border-left: none;
+  border-right: none;
+}
+
+tr {
+  box-shadow: none;
+}
+
+td:first-child {
+  /* padding: 10px 10px 10px 5px; */
+  text-align: center;
+  font-weight: 500;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* td:hover {
+  background-color: #f2f2f2;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+} */
+
+tr td:last-child {
+  border-right: none;
+}
+
+tr:nth-child(even) {background-color: #f6f7f9;}
+
+
+td:not(:first-child) {
+  text-align: center;
+  /* border: 1px solid #ccc; */
+  /* background: #f6f7f9; */
+}
+
+.gradebook_container {
+  /* background: white; */
+  width: fit-content;
+  /* padding: 20px; */
+  margin: 0 auto;
 }

@@ -47,7 +47,7 @@
 }
 
 .col-teacher-info > div {
-    margin: 15px 20px 1px 20px;
+    margin: 15px 20px 1px 20px !important;
 
 }
 
@@ -82,8 +82,13 @@ div.teacher-img {
 }
 
 .title span {
-    font-size: 1.2em;
-    color: #55687b;
+    /* font-size: 1.2em; */
+    color: #000000;
+}
+
+.subject_description {
+  font-size: 17px;
+  font-weight:  lighter;
 }
 
 .title {

@@ -66,15 +66,18 @@ export default function TeacherGrades() {
 		})}
 	  </div>
 	  {loadingState && msg}
-	  <div className="teacher_grades_table" style={{'display': `${show ? 'block' : 'none'}`}}>
+	  <div className="teacher_grades_table" style={{'display': `${show ? 'block' : 'none'}`}}  class="gradebook_container">
 		<div className="grade_element">
 		  <table>
+      <thead>
 			<tr>
 			  {getData !== null && <th>{getData.group.group.name}</th>}
 			  {getData && getData.columns.map((el, i) => {
 				return <th>{el.date}</th>
 			  })}
 			</tr>
+      </thead>
+      <tbody>
 			{getData && [...new Array(getData.columns[0].grades.length)].map((item, i) => {
 			  return <tr>
 				<td>{getData.columns[0].grades[i].user.first_name} {getData.columns[0].grades[i].user.middle_name}</td>
@@ -83,6 +86,7 @@ export default function TeacherGrades() {
 				})}
 			  </tr>
 			})}
+      </tbody>
 		  </table>
 		</div>
 
@@ -90,4 +94,3 @@ export default function TeacherGrades() {
 	  </div>
   }
 }
-

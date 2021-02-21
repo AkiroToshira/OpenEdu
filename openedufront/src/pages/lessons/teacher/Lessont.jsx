@@ -75,13 +75,15 @@ function Lessont() {
 			<div className="title">
 			  <span>
 				{lessonsTeacherById.detailed.name}
-				<hr/>
+        </span>
+        <hr />
+        <span className="subject_description">
 				{lessonsTeacherById.detailed.description}
 			  </span>
 			</div>
 			{/*<div className="teacher-info"><p>{{get_lesson.description}}</p></div>*/}
 			<div className="whois">
-			  <span>Групи:</span>
+			  {/*<span>Групи:</span>*/}
 			  {/*{% for i in get_group %}*/}
 			  {/*<span>{{i}}</span>*/}
 			  {/*{% endfor %}*/}
@@ -112,4 +114,3 @@ function Lessont() {
 }
 
 export default Lessont
-
