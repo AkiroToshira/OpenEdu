@@ -52,7 +52,7 @@ function Classest() {
 
 	  <div className="inner-container">
 		{state.lessons.map((el) => {
-		  return <a href="#" className="col2" key={el.id} onClick={() => handleLessonClick(el.id)}>
+		  return <a className="col2" key={el.id} onClick={() => handleLessonClick(el.id)}>
 			<div className="inner-information">
 			  <span>{el.name}</span>
 			</div>

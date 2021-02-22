@@ -14,6 +14,9 @@ import lessonsTeacher from './lessonsTeacherReducer'
 import lessonsStudentById from './lessonsStudentById'
 import deadlines from './lessonsStudentDeadlines'
 import lessonsTeacherById from './lessonsTeacherById'
+import teacherGrades from './teacherGradesReducer'
+import gradesLessons from './gradesLessonReducer'
+
 
 const rootReducer = combineReducers({
   profile,
@@ -26,6 +29,8 @@ const rootReducer = combineReducers({
   lessonsTeacher,
   lessonsTeacherById,
   deadlines,
+  teacherGrades,
+  gradesLessons,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
