@@ -41,17 +41,22 @@ export const deleteDeadlines = (id) => async (dispatch, getState) => {
   }
 }
 
-export const addDeadlines = (lesson, name, description, deadline_time, type) => async (dispatch, getState) => {
+export const addDeadlines = ({lesson, name, description, deadline_time, type}) => async (dispatch, getState) => {
   try {
+
 	const detailed = await axios.post(`${url}/deadlines/create`, {lesson, name, description, deadline_time, type}, {
 	  headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
-	},)
+	})
+	dispatch({
+	  type: FETCH_DEADLINES,
+	})
 	dispatch({
 	  type: ADD_DEADLINES,
 	  payload: detailed.data,
 	})
+
   } catch (e) {
 	dispatch({
 	  type: FETCH_DEADLINES_FAIL,
@@ -61,9 +66,8 @@ export const addDeadlines = (lesson, name, description, deadline_time, type) => 
 }
 
 
-export const updateDeadlines = (lesson,name, description, deadline_time, type, id) => async (dispatch, getState) => {
+export const updateDeadlines = ({lesson,name, description, deadline_time, type, id}) => async (dispatch, getState) => {
   try {
-
 	const getLessonId = await axios.get(`${url}/gradebook/gradebooklist/`,  {headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }})
@@ -73,6 +77,9 @@ export const updateDeadlines = (lesson,name, description, deadline_time, type, i
 	  headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
+	})
+	dispatch({
+	  type: FETCH_DEADLINES,
 	})
 	dispatch({
 	  type: "UPDATE_DEADLINES",

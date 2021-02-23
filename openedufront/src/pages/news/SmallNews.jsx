@@ -13,7 +13,7 @@ function SmallNews() {
 
   if (!smallNews.loading) {
 	return <section className="small-news">
-	  <h1 className="upcoming-news">Найсвіжіні Новини</h1>
+	  <h1 className="upcoming-news">Найсвіжіші Новини</h1>
 	  <div className="small-news-list">
 		{smallNews.data.smallNews.map((el, i) => <OneNews data={smallNews.data.smallNews[i]} key={i}/>)}
 	  </div>
