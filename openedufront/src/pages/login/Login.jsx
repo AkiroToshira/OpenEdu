@@ -9,19 +9,7 @@ import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../actions/auth";
 
-import {motion} from 'framer-motion'
 
-const modal = {
-  hidden: {
-	y: "-100vh",
-	opacity: 0,
-  },
-  visible: {
-	y: "200px",
-	opacity: 1,
-	transition: {delay: 0.5}
-  }
-}
 
 function Login() {
   const dispatch = useDispatch()
@@ -44,16 +32,9 @@ function Login() {
 	}
 	e.preventDefault();
   }
-  const variants = {
-	hidden: { opacity: 0 },
-	visible: { opacity: 1 },
-  }
+
   return (
 	  <div className="login">
-		<motion.div className="error-pop-up" variants={modal}>
-		  {error}
-		</motion.div>
-
 		<div className="skew-block"/>
 		<div className="skew-block-bottom"/>
 		<form className="login-form" onSubmit={handleSubmit}>

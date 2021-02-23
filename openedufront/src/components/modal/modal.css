@@ -24,6 +24,51 @@
     z-index: 1000;
 }
 
+.my-modal-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  width: 40%;
+  text-align: left;
+}
+
+.creation_date_expand {
+  /* background-color: #ccc; */
+  font-size: 15px;
+  width: 90%;
+  word-wrap: break-word;
+}
+
+.name_expand {
+  font-size: 35px;
+  width: 90%;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
+
+.description_expand {
+  width: 90%;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  word-wrap: break-word;
+}
+
+
+
+.img-new-container {
+  width: 60%;
+}
+
+.img-new-container img{
+  width: 100%;
+}
+
+
 /* BIG MODAL */
 
 
