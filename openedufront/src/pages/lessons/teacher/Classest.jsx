@@ -84,7 +84,7 @@ function Classest() {
 		}}/>
 	  </SmallModal>
 	  <div className="inner-container">
-		{state.lessons.map((el) => {
+		{state && state.lessons && state.lessons.map((el) => {
 		  return <a className="col2" key={el.id} onClick={() => handleLessonClick(el.id)}>
 			<div className="inner-information">
 			  <span>{el.name}</span>
