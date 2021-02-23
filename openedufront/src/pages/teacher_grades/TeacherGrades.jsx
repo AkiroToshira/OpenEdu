@@ -27,7 +27,6 @@ export default function TeacherGrades() {
   }
 
   const changeGradeValue = async (id, col) => {
-    alert(id)
 	let value = prompt("value: ")
 	dispatch(updateGrade(id, value, col))
   }

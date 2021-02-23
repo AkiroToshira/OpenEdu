@@ -1,0 +1,32 @@
+/* COMMON MODAL*/
+.my-modal-backdrop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 999;
+}
+
+.my-modal-content-wrapper {
+    position: fixed;
+    max-width: 70vw;
+    height: 500px;
+    background-color: #f5f7f9;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 25px 30px;
+    border-radius: 7px;
+    z-index: 1000;
+}
+
+/* BIG MODAL */
+
+
+
+/* SMALL MODAL */
+
