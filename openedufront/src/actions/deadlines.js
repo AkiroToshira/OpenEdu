@@ -43,14 +43,10 @@ export const deleteDeadlines = (id) => async (dispatch, getState) => {
 
 export const addDeadlines = ({lesson, name, description, deadline_time, type}) => async (dispatch, getState) => {
   try {
-
 	const detailed = await axios.post(`${url}/deadlines/create`, {lesson, name, description, deadline_time, type}, {
 	  headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
-	})
-	dispatch({
-	  type: FETCH_DEADLINES,
 	})
 	dispatch({
 	  type: ADD_DEADLINES,
@@ -77,9 +73,6 @@ export const updateDeadlines = ({lesson,name, description, deadline_time, type, 
 	  headers: {
 		"Authorization": "JWT " + getState().auth.token.access,
 	  }
-	})
-	dispatch({
-	  type: FETCH_DEADLINES,
 	})
 	dispatch({
 	  type: "UPDATE_DEADLINES",

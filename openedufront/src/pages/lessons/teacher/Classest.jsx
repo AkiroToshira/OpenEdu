@@ -5,10 +5,8 @@ import {useHistory} from "react-router-dom";
 import {addDeadlines, deleteDeadlines, fetchDeadlines, updateDeadlines} from "../../../actions/deadlines";
 import {fetchLessonsTeacherDetailed} from "../../../actions/lessonsTeacherByid";
 import {AiOutlineDelete, AiOutlineEdit} from "react-icons/all";
-import {url} from "../../../helpers/utils";
 import SmallModal from "../../../components/modal/smallModal";
 import {fetchGradesLessons} from "../../../actions/displayGradesLessons";
-import gradesLessons from "../../../reducer/gradesLessonReducer";
 
 function Classest() {
   const history = useHistory()
@@ -67,13 +65,13 @@ function Classest() {
 		<input type="text" placeholder="name" onChange={(e) => setDeadline({...deadline, name: e.target.value})}/>
 		<select onChange={(e) => setDeadline({...deadline, type: e.target.value})}>
 		  <option value="Lab">Lab</option>
-		  <option value="Lab 1">Lab 1</option>
-		  <option value="KR">KR</option>
+		  <option value="Task">Task</option>
+		  <option value="Test">Test</option>
 		</select>
 
 		{upd && <select onChange={(e) => setDeadline({...deadline, lesson: Number(e.target.value)})}>
 		  {deadlineLessons.lessons.map((el) => {
-			return <option value={el.id} key={el.lesson.id}>{el.lesson.name}</option>
+			return <option value={el.id} key={el.lesson.id}>{el.lesson.name} - {el.group.name}</option>
 		  })}
 
 		</select>}
