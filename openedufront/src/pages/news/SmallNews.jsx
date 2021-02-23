@@ -27,7 +27,7 @@ function SmallNews() {
           {[1, 2, 3, 4, 5].map((el) => {
             return (
               <div className={"small-news-skeleton one-news"} key={el}>
-                <div className="news-skew" />s
+                <div className="news-skew" />
               </div>
             );
           })}

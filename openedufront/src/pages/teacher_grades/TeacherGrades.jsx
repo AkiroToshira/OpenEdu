@@ -43,6 +43,7 @@ export default function TeacherGrades() {
 		  return <a className="col2" onClick={() => handleFetchingData(el.id)}>
 			<div className="inner-information">
 			  <span>{el.lesson.name}</span>
+			  <a href={`http://127.0.0.1:5000/simple/${el.id}`} style={{"marginTop": "10px"}} target={"_blank"}>звіт</a>
 			</div>
 		  </a>
 		})}
