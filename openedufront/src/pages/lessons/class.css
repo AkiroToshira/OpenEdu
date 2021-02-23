@@ -195,3 +195,33 @@ div.teacher-img {
         flex-wrap: wrap;
     }
 }
+
+.chapter-input-name {
+    padding: 10px;
+    margin: 0;
+    border: none;
+    /* border-bottom: 2px solid rgb(30, 156, 132); */
+    outline: none;
+    font-size: 18px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.chapter-input-description {
+    padding: 10px;
+    margin: 0;
+    border: none;
+    /* border-bottom: 2px solid rgb(30, 156, 132); */
+    outline: none;
+    font-size: 18px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.submit-add, .submit-upd {
+    border: 1px solid rgb(30, 156, 132);
+    background-color: white;
+    color: black;
+}
+
+
+.small-modal {
+    height: 100px;
+}

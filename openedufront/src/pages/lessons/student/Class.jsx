@@ -28,9 +28,6 @@ function ClassStudent() {
 			  <div className="description">
 				<span>{el.description}</span>
 			  </div>
-			  <div className="title pdf">
-				скачування ще в розробці^^
-			  </div>
 			</div>
 		  })}
 		</div>

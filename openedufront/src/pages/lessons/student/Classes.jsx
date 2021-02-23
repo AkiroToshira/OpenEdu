@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route, useHistory,} from "react-router-
 
 import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
 import {fetchDeadlines} from "../../../actions/deadlines";
+import {fetchLessonsStudent} from "../../../actions/lessonsStudent";
 
 function ClassesStudent() {
   const history = useHistory()
@@ -18,6 +19,8 @@ function ClassesStudent() {
 
   useEffect(() => {
 	dispatch(fetchDeadlines())
+	dispatch(fetchLessonsStudent())
+
   }, [])
 
 

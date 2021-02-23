@@ -50,7 +50,9 @@ export default function Tests() {
 	},).then((res) => {
 	  setResult(res.data.score)
 	  setAnswers([])
-	  localStorage.setItem('my-grade', JSON.stringify(res.data.score))
+	  if(JSON.parse(localStorage.getItem('my-grade')) < res.data.score) {
+		localStorage.setItem('my-grade', JSON.stringify(res.data.score))
+	  }
 	})
   }
 

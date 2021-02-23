@@ -8,12 +8,13 @@ export const fetchLessonsStudent = () => async (dispatch, getState) => {
 	type: FETCH_LESSONS_STUDENT,
   })
 	try {
+    console.log('ds')
 	  const lesson = await axios.get(`${url}/lessons/student`, {
 		headers: {
 		  "Authorization": "JWT " + getState().auth.token.access,
 		}
 	  })
-
+	console.log(lesson)
 	  dispatch({
 		type: FETCH_LESSONS_STUDENT_SUCCESS,
 		payload: lesson.data,

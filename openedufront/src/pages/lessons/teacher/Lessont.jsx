@@ -50,12 +50,16 @@ function Lessont() {
 
   if (!lessonsTeacherById.loading) {
 	return <>
-	  <SmallModal ref={smallRef}>
-		<input type={"name"} placeholder={"name"} onChange={(e) => setName(e.target.value)}/>
-		<input type={"description"} placeholder={"name"} onChange={(e) => setDescription(e.target.value)}/>
-		{!upd && <input type={"submit"} value={"Додавання"} onClick={(e) => handleAddChapter(e)}/>}
-		{upd && <input type={"submit"} value={"редагувати"} onClick={(e) => handleUpdateChapter(e)}/>}
-	  </SmallModal>
+	  <div className="modal-chapter">
+		<SmallModal ref={smallRef}>
+		  <input type={"name"} className={"chapter-input-name"} placeholder={"name"}
+				 onChange={(e) => setName(e.target.value)}/>
+		  <textarea type={"description"} className={"chapter-input-description"} placeholder={"description"}
+				 onChange={(e) => setDescription(e.target.value)}/>
+		  {!upd && <input type={"submit"} value={"Додавання"} className={"submit-add"} onClick={(e) => handleAddChapter(e)}/>}
+		  {upd && <input type={"submit"} className={"submit-upd"} value={"редагувати"} onClick={(e) => handleUpdateChapter(e)}/>}
+		</SmallModal>
+	  </div>
 	  <div className="container">
 		<div className="first-section">
 

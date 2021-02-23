@@ -68,6 +68,8 @@ function OneNews(el) {
             <span className="name_expand">{smallNewsById.name.toUpperCase()}</span>
             <span className="description_expand">{smallNewsById.description.toUpperCase()}</span>
           </div>
+          <div className="right-photo">
+          </div>
         </BigModal>
       )}
       <div className="wrapper-img-date">

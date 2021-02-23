@@ -18,15 +18,15 @@ function BigNews() {
 
 
   useEffect(async () => {
-    try {
+	try {
 	  const response = await axios.get(`${url}/news/${news.data.mainNews.id}`, {
 		headers: {
 		  "Authorization": "JWT " + auth.token.access,
 		}
 	  })
 	  await setNewsById(response.data)
-	} catch(e) {
-      console.log(e)
+	} catch (e) {
+	  console.log(e)
 	}
   }, [news.data.mainNews])
 
@@ -38,14 +38,13 @@ function BigNews() {
 	return (
 		<section className="intro">
 		  <BigModal ref={modalRef}>
-      <div className="popup-container">
-			   <div className="creation_date_expand">{creation_date_expand}</div>
-			      <div className="name_expand">{name_expand.toUpperCase()}</div>
-			         <div className="description_expand"><p>{description_expand.toUpperCase()}</p></div>
-      </div>
-      <div className="img-new-container">
-        <img src="" alt="#"/>
-      </div>
+			<div className="popup-container">
+			  <div className="creation_date_expand">{creation_date_expand}</div>
+			  <div className="name_expand">{name_expand.toUpperCase()}</div>
+			  <div className="description_expand"><p>{description_expand.toUpperCase()}</p></div>
+			</div>
+			<div className="right-photo">
+			</div>
 		  </BigModal>
 
 		  <div className="left-text">
@@ -59,12 +58,11 @@ function BigNews() {
 			  <p className="every-week">Свіжі новини</p>
 			</div>
 		  </div>
-		  <div className="right-photo"/>
+		  <div className="right-photo">
+		  </div>
 		</section>
 	);
-  }
-else
-  {
+  } else {
 	return (
 		<div className={"big-news-skeleton"}>
 		  <div className="news-skew"/>
