@@ -62,29 +62,35 @@ function Classest() {
 	<div className="main-container">
 	  <div className="subject-title"><span>Предмети</span></div>
 	  <SmallModal ref={smallRef}>
-		<input type="text" placeholder="name" onChange={(e) => setDeadline({...deadline, name: e.target.value})}/>
-		<select onChange={(e) => setDeadline({...deadline, type: e.target.value})}>
+    <div className="subject-creation-container">
+    <label for="name" className="name">Name</label>
+		<input type="text" id="name" onChange={(e) => setDeadline({...deadline, name: e.target.value})}/>
+    <label for="name" className="type">Type</label>
+		<select id="type" onChange={(e) => setDeadline({...deadline, type: e.target.value})} className="sub-select-name">
 		  <option value="Lab">Lab</option>
 		  <option value="Task">Task</option>
 		  <option value="Test">Test</option>
 		</select>
-
-		{upd && <select onChange={(e) => setDeadline({...deadline, lesson: Number(e.target.value)})}>
+    <label for="subject" className="subject-selector">Subject</label>
+		{upd && <select id="subject" onChange={(e) => setDeadline({...deadline, lesson: Number(e.target.value)})} className="sub-select">
 		  {deadlineLessons.lessons.map((el) => {
 			return <option value={el.id} key={el.lesson.id}>{el.lesson.name} - {el.group.name}</option>
 		  })}
 
 		</select>}
-		<textarea type="description" placeholder="description"
+    <label for="description" className="subject-desc">Description</label>
+		<textarea type="description" id="description"
 				  onChange={(e) => setDeadline({...deadline, description: e.target.value})}/>
-		<input type="date" placeholder="deadline_time"
+    <label for="date" className="subject-date">Date</label>
+		<input type="date" id="date" placeholder="deadline_time"
 			   onChange={(e) => setDeadline({...deadline, deadline_time: e.target.value})}/>
 		<input type="submit" onClick={(e) => {
 		  handleDeadlineAddSubmit(e)
 		}}/>
+    </div>
 	  </SmallModal>
 	  <div className="inner-container">
-		{state.lessons.map((el) => {
+		{state && state.lessons && state.lessons.map((el) => {
 		  return <a className="col2" key={el.id} onClick={() => handleLessonClick(el.id)}>
 			<div className="inner-information">
 			  <span>{el.name}</span>
@@ -136,6 +142,3 @@ function Classest() {
 }
 
 export default Classest
-
-
-

@@ -38,9 +38,14 @@ function BigNews() {
 	return (
 		<section className="intro">
 		  <BigModal ref={modalRef}>
-			<span>{creation_date_expand}</span>
-			<span>{name_expand}</span>
-			<span>{description_expand}</span>
+      <div className="popup-container">
+			   <div className="creation_date_expand">{creation_date_expand}</div>
+			      <div className="name_expand">{name_expand.toUpperCase()}</div>
+			         <div className="description_expand"><p>{description_expand.toUpperCase()}</p></div>
+      </div>
+      <div className="img-new-container">
+        <img src="" alt="#"/>
+      </div>
 		  </BigModal>
 
 		  <div className="left-text">

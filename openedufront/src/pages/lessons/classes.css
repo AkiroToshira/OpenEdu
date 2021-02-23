@@ -122,7 +122,6 @@ body {
   font-size: 30px;
   color: #131628;
   transition: all 0.2s ease;
-
 }
 
 .do-testing i:hover {
@@ -208,7 +207,7 @@ tr td:first-child {
   box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 10%);
 }
 
-.teacher_header th{
+.teacher_header th {
   text-align: center !important;
 }
 
@@ -518,4 +517,134 @@ tbody .add-deadline {
   th {
     padding: 0px;
   }
+}
+
+.subject-creation-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  grid-template-areas:
+    "name type"
+    "input select"
+    "subject-title desc-title"
+    "subject desc"
+    "subject-date desc"
+    "date desc"
+    ". submit";
+  padding: 10px;
+  font-size: 18px;
+}
+
+.subject-creation-container .name {
+  grid-area: name;
+}
+
+.subject-creation-container .type {
+  grid-area: type;
+}
+
+.subject-creation-container .subject-desc {
+  grid-area: desc-title;
+}
+
+.subject-creation-container .subject-date {
+  grid-area: subject-date;
+}
+
+.subject-creation-container .subject-selector {
+  grid-area: subject-title;
+}
+
+.subject-creation-container input[type="name"] {
+  grid-area: input;
+}
+
+#subject {
+  padding: 10px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
+}
+
+.subject-creation-container input {
+  padding: 10px;
+  margin: 0;
+  border: none;
+  /* border-bottom: 2px solid rgb(30, 156, 132); */
+  outline: none;
+  font-size: 18px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
+}
+
+.subject-creation-container input:hover,
+.subject-creation-container select:hover,
+.subject-creation-container textarea:hover {
+  cursor: pointer;
+}
+
+.subject-creation-container select,
+.subject-creation-container textarea {
+  box-shadow: 0 3px 6px rgb(0 0 0 / 8%);
+  outline: none;
+  border: none;
+  padding: 10px;
+  /* border-bottom: 2px solid rgb(30, 156, 132); */
+}
+.subject-creation-container input,
+.subject-creation-container select,
+.subject-creation-container textarea {
+  border: 2px solid rgb(30, 156, 132);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+.subject-creation-container input:focus,
+.subject-creation-container select:focus,
+.subject-creation-container textarea:focus {
+  border: 2px solid #344;
+}
+
+.subject-creation-container input[type="submit"] {
+  background: rgb(30, 156, 132);
+  color: white;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid rgb(30, 156, 132);
+}
+
+.subject-creation-container input[type="submit"]:hover {
+  border: 1px solid rgb(30, 156, 132);
+  background-color: white;
+  color: black;
+  /* border-bottom: 1px solid rgb(30, 156, 132); */
+}
+
+.subject-creation-container .sub-select-name {
+  grid-area: select;
+}
+
+.subject-creation-container input[type=text] {
+  border-top-left-radius: 10px;
+}
+
+.subject-creation-container .sub-select {
+  grid-area: subject;
+}
+
+.subject-creation-container textarea[type="description"] {
+  resize: none;
+  grid-area: desc;
+}
+
+#type {
+  border-top-right-radius: 10px;
+}
+#description {
+  border-bottom-right-radius: 10px;
+}
+
+.subject-creation-container input[type="date"] {
+  border-bottom-left-radius: 10px;
+  grid-area: date;
+}
+
+.subject-creation-container input[type="submit"] {
+  grid-area: submit;
 }
