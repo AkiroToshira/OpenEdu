@@ -13,7 +13,6 @@ function Schedule() {
   const dispatch = useDispatch()
   const schedule = useSelector(state => state.schedule)
 
-
   // if (!schedule.loading) {
   return (<div className="schedual">
 		<div className="schedual_title">
@@ -49,11 +48,13 @@ function Schedule() {
 function ScheduleBlock({schedule, index}) {
   let days = Object.keys(schedule)
   let weekDay = schedule[days[index]]
+  const week = ["Понеділок","Вівторок","Середа","Четвер","П'ятниця"]
+
   return <>
 	<div className="schedual_block">
 	  <div className="schedual_block_title">
 		<div className="schedual_block_title_wrapper">
-		  Понеділок
+		  {week[index]}
 		  <div className="schedual_block_title_undeline">
 		  </div>
 		</div>
