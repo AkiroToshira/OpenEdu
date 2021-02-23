@@ -48,10 +48,11 @@ function ClassesStudent() {
 
 			  </div>
 			  <div className={"do-testing"} onClick={() => handleTesting(el.lesson.id)}>
-				Пройти тестування
-			  </div>
+        <i class="fas fa-poll-h"></i>
+        </div>
 			</a>
 		  })}
+
 
 		</div>
 	  </div>
@@ -64,7 +65,7 @@ function ClassesStudent() {
 		  <div className="deadline-container">
 			<table className="content-table">
 			  <thead>
-			  <tr>
+			  <tr className="teacher_header">
 				<th>Назва предмату</th>
 				<th>Назва задачі</th>
 				<th>Дедлайн</th>
@@ -75,7 +76,7 @@ function ClassesStudent() {
 			  {/*{% for x in get_deadlines %}*/}
 			  {deadlines.deadlines.map(el => {
 			    return (
-					<tr key={el.id}>
+					<tr key={el.id} className="tr-info">
 
 					  <td>{el.name}</td>
 					  <td>{el.type}</td>
