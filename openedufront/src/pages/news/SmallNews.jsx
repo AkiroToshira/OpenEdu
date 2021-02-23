@@ -1,6 +1,9 @@
 import {manageDate, manageText, manageTitle} from "../../helpers/manage";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import BigModal from "../../components/modal/bigModal";
+import axios from "axios";
+import {url} from "../../helpers/utils";
 
 
 function SmallNews() {
@@ -10,7 +13,7 @@ function SmallNews() {
 
   if (!smallNews.loading) {
 	return <section className="small-news">
-	  <h1 className="upcoming-news">Найсвіжіні Новини</h1>
+	  <h1 className="upcoming-news">Найсвіжіші Новини</h1>
 	  <div className="small-news-list">
 		{smallNews.data.smallNews.map((el, i) => <OneNews data={smallNews.data.smallNews[i]} key={i}/>)}
 	  </div>
@@ -32,14 +35,32 @@ function SmallNews() {
 }
 
 function OneNews(el) {
-  const {creation_date, name, mini_description} = el.data
-  const [showPopup, setShowPopup] = useState(false);
+  const [smallNewsById, setSmallNewsById] = useState(null)
 
+  const news = useSelector((state) => state.news);
+  const auth = useSelector((state) => state.auth);
 
-  const openSmallNews = () => {
-	setShowPopup(true);
+  const {creation_date, name, mini_description, id} = el.data
+
+  const modalRef = useRef()
+
+  const handleSmallNewsById = async (id) => {
+	await axios.get(`${url}/news/${id}`, {
+	  headers: {
+		"Authorization": "JWT " + auth.token.access,
+	  }
+	}).then(res => {
+	setSmallNewsById(res.data)
+	})
   }
+
+
   return <div className="one-news">
+	{smallNewsById && <BigModal ref={modalRef}>
+	  <span>{smallNewsById.creation_date}</span>
+	  <span>{smallNewsById.name}</span>
+	  <span>{smallNewsById.description}</span>
+	</BigModal>}
 	<div className="wrapper-img-date">
 	  <div className="small-news-date">
 		<span className="date">{manageDate(creation_date)[0]}</span>
@@ -52,7 +73,10 @@ function OneNews(el) {
 	  <div
 		  className="small-news-description">{manageText(mini_description)}
 	  </div>
-	  <div className="small-news-check-detailed" onClick={openSmallNews}>Більше про новину</div>
+	  <div className="small-news-check-detailed" onClick={() => {
+		handleSmallNewsById(id).then(() => modalRef.current.open())
+	  }}>Більше про новину
+	  </div>
 	</div>
   </div>
 }
