@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style>
+          table {
+            /* width: 100%; */
+            border-spacing: 0;
+          }
+          thead tr th {
+            font-size: 18px;
+            /* width: 10px; */
+          }
+          thead tr th {
+            text-align: center;
+            font-weight: 400;
+            color: #000;
+            padding: 0 20px;
+          }
+          thead tr {
+            box-shadow: none;
+          }
+          tbody tr td {
+            text-align: center;
+          }
+          tbody tr td,th {
+            border: 1px solid black;
+          }
+          td, th {
+            text-align: left;
+            font-size: 18px;
+          }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th style="border-bottom: none;">№</th>
+          <th style="border-bottom: none;"></th>
+          <th style="border-bottom: none;">№ залікової</th>
+          <th>ПК</th>
+          <th>ЕК</th>
+          <th colspan="2">Семестрова оцінка</th>
+        </tr>
+        <tr>
+          <th style="border-top: none">з/п</th>
+          <th style="border-top: none">Прізвище, ініціали</th>
+          <th style="border-top: none">книжки</th>
+          <th>&lt;{{lesson.max_grade}}&gt;</th>
+          <th>&lt;{{lesson.exam_grade}}&gt;</th>
+          <th>&lt;100&gt;</th>
+          <th>&lt;5&gt;</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for i in users %}
+          <td>1.</td>
+          <td> {{ i.name }} </td>
+          <td>{{ i.credit_book_number }}</td>
+          <td>{{ i.grade }}</td>
+          <td>{{ i.exam }}</td>
+          <td>{{ i.sum }}</td>
+          <td>{{ i.text_grade }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'Tests',
     'GradeBook',
     'Schedule',
-    'DeadLines'
+    'DeadLines',
+    'TransferDbToFlask',
 ]
 
 MIDDLEWARE = [
@@ -83,16 +84,16 @@ WSGI_APPLICATION = 'OpenEduApi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
+#        'NAME': 'OpenEdu',
 #        'USER': 'postgres',
-#        'PASSWORD': 'postgres',
-#        'HOST': 'db',
+#        'PASSWORD': 'santa2002',
+#        'HOST': 'localhost',
 #        'PORT': 5432,
 #    }
-#}
+# }
 
 DATABASES = {
 

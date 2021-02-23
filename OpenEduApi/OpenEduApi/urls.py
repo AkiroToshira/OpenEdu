@@ -11,6 +11,7 @@ urlpatterns = [
     path('deadlines/', include('DeadLines.urls')),
     path('gradebook/', include('GradeBook.urls')),
     path('tests/', include('Tests.urls')),
+    path('gradecount/', include('TransferDbToFlask.urls')),
 
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

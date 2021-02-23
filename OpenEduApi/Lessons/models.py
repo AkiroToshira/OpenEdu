@@ -8,6 +8,8 @@ class Lesson(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=30, blank=True)
     lesson_moderator = models.ManyToManyField(User, related_name='LessonModerator', blank=True)
+    max_grade = models.IntegerField(default=0)
+    exam_grade = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

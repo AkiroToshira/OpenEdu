@@ -32,14 +32,22 @@ class ColumnsGradeBookSerializer(serializers.ModelSerializer):
         fields = ('date', 'grades')
 
 
+class ExamGradeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ExamGrade
+        fields = "__all__"
+
+
 class TeacherGradeBookSerializer(serializers.ModelSerializer):
 
     columns = ColumnsGradeBookSerializer(many=True, read_only=True)
     group = TeacherStudentGroupListSerializer(read_only=True)
+    exam = ExamGradeSerializer(many=True, read_only=True)
 
     class Meta:
         model = GradeBook
-        fields = ('id', 'group', 'columns')
+        fields = ('id', 'group', 'columns', 'exam')
 
 
 class StudentGradeBookSerializer(serializers.ModelSerializer):
@@ -55,6 +63,7 @@ class StudentLessonGradeBookSerializer(serializers.ModelSerializer):
 
     gradebook = StudentGradeBookSerializer(read_only=True)
     lesson = TeacherLessonListSerializer(read_only=True)
+
     class Meta:
         model = StudentGroupLesson
         fields = ('lesson', 'gradebook',)

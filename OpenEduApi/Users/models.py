@@ -44,6 +44,12 @@ class Group(models.Model):
         return self.name
 
 
+class Groups(models.Model):
+    name = models.CharField(max_length=20)
+    year = models.PositiveIntegerField(default=1)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+
 class Profile(models.Model):
     """"Доповнення моделі User, за дпопомогою каскадного створення додаткової таблиці"""
     PERMISSION_CHOISE = (
