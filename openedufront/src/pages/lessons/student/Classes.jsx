@@ -45,7 +45,6 @@ function ClassesStudent() {
 			  <div className="inner-information" onClick={() => handleLessonClick(el.lesson.id)}>
 				<span>{el.lesson.name}</span>
 				<span>Teacher</span>
-
 			  </div>
 			  <div className={"do-testing"} onClick={() => handleTesting(el.lesson.id)}>
         <i class="fas fa-poll-h"></i>
