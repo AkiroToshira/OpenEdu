@@ -77,7 +77,6 @@ export const updateChapter= (lesson,name, description, id) => async (dispatch, g
 	  }
 
 	})
-	console.log(detailed)
 	dispatch({
 	  type: "UPDATE_CHAPTER",
 	  payload: {lesson, name, description, id},

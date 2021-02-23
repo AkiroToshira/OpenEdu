@@ -1,20 +1,24 @@
 import '../class.css'
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {fetchLessonsTeacher} from "../../../actions/lessonsTeacher";
-import {fetchLessonsStudentDetailed} from "../../../actions/lessonsStudentByid";
+import {useEffect, useRef, useState} from "react";
 import {
   addChapter,
   deleteChapter,
   fetchLessonsTeacherDetailed,
   updateChapter
 } from "../../../actions/lessonsTeacherByid";
+import SmallModal from "../../../components/modal/smallModal";
 
 
 function Lessont() {
   const dispatch = useDispatch()
   let lessonsTeacherById = useSelector(state => state.lessonsTeacherById)
   let chapters = lessonsTeacherById.detailed.chapters
+  const smallRef = useRef()
+
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [upd, setUpd] = useState(false)
 
 
   useEffect(() => {
@@ -22,27 +26,36 @@ function Lessont() {
 	dispatch(fetchLessonsTeacherDetailed(id))
   }, [])
 
-  const handleAddChapter = () => {
+  const handleAddChapter = (e) => {
+	e.preventDefault()
 	let lesson = JSON.parse(localStorage.getItem('lessonId'))
-	let name = prompt("name ")
-	let description = prompt("description ")
 	dispatch(addChapter(name, description, lesson))
+	smallRef.current.end()
   }
 
   const handleDeleteChapter = (id) => {
 	dispatch(deleteChapter(id))
   }
 
-  const handleUpdateChapter = (id) => {
+  const handleUpdateChapter = (e) => {
+	e.preventDefault()
 	let lesson = JSON.parse(localStorage.getItem('lessonId'))
-	let name = prompt("name ")
-	let description = prompt("description ")
-    dispatch(updateChapter(lesson,name, description, id))
+	let id = JSON.parse(localStorage.getItem('reg-id'))
+	dispatch(updateChapter(lesson, name, description, id))
+	smallRef.current.end()
+	setUpd(false)
+
+
   }
 
   if (!lessonsTeacherById.loading) {
 	return <>
-
+	  <SmallModal ref={smallRef}>
+		<input type={"name"} placeholder={"name"} onChange={(e) => setName(e.target.value)}/>
+		<input type={"description"} placeholder={"name"} onChange={(e) => setDescription(e.target.value)}/>
+		{!upd && <input type={"submit"} value={"Додавання"} onClick={(e) => handleAddChapter(e)}/>}
+		{upd && <input type={"submit"} value={"редагувати"} onClick={(e) => handleUpdateChapter(e)}/>}
+	  </SmallModal>
 	  <div className="container">
 		<div className="first-section">
 
@@ -50,7 +63,7 @@ function Lessont() {
 		  {chapters.map(el => {
 			return <div className="col" key={el.id}>
 			  <div className="title">
-				<span>{el.name} {el.id}</span>
+				<span>{el.name}</span>
 			  </div>
 			  <div className="description">
 				<span>{el.description}</span>
@@ -61,7 +74,11 @@ function Lessont() {
 			  </div>
 			  <div className="redaction">
 				<a onClick={() => handleDeleteChapter(el.id)}>Видалити</a>
-				<a onClick={() => handleUpdateChapter(el.id)}>
+				<a onClick={() => {
+				  setUpd(true)
+				  localStorage.setItem('reg-id', JSON.stringify(el.id))
+				  smallRef.current.add()
+				}}>
 				  <span>Редактувати</span>
 				</a>
 			  </div>
@@ -76,8 +93,8 @@ function Lessont() {
 			  <span>
 				{lessonsTeacherById.detailed.name}
         </span>
-        <hr />
-        <span className="subject_description">
+			  <hr/>
+			  <span className="subject_description">
 				{lessonsTeacherById.detailed.description}
 			  </span>
 			</div>
@@ -90,11 +107,12 @@ function Lessont() {
 			</div>
 		  </div>
 		  <div className="col col-teacher-info add-new-chapter">
-			<span className="collapsible" onClick={(e) => handleAddChapter(e)}>Додати</span>
+			<span className="collapsible" onClick={(e) => {
+			  smallRef.current.add()
+			}}>Додати</span>
 			<div className="content">
 			  <form encType="multipart/form-data" action="" method="post">
-				{/*{% csrf_token %}*/}
-				{/*{{form.as_p}}*/}
+
 				<div className="modal-footer">
 				  <button type="submit" name="button">Add</button>
 				</div>
