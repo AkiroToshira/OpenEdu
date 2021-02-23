@@ -52,11 +52,8 @@ export const fetchTeacherGradesLessons = (id) => async (dispatch, getState) => {
 }
 
 export const updateGrade = (id, value, col) => async (dispatch, getState) => {
-  dispatch({
-	type: FETCH_TEACHER_GRADES,
-  })
   try {
-	let grade = await axios.put(`${url}/gradebook/teacher/grade/`, {
+    await axios.put(`${url}/gradebook/teacher/grade/`, {
 	  id,
 	  value
 	}, {
