@@ -15,3 +15,5 @@ class Deadlines(models.Model):
     deadline_time = models.DateField(blank=True)
     lesson = models.ForeignKey(StudentGroupLesson, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name

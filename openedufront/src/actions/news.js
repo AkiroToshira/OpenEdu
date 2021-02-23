@@ -7,7 +7,6 @@ export const newsLogout = () => ({
   type: "LOGOUT",
 })
 
-
 export const fetchNews = () => async (dispatch, getState) => {
   dispatch({
 	type: FETCH_NEWS,

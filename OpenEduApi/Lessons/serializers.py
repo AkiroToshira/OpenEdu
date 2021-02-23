@@ -48,6 +48,12 @@ class LessonDetailSerializer(serializers.ModelSerializer):
         model = Lesson
         fields = ['id', 'name', 'description', 'lesson_moderator', 'chapters']
 
+class LessonDetailSerializer2(serializers.ModelSerializer):
+    """"Інформація про предмет при створенні та редагуванні"""
+
+    class Meta:
+        model = Lesson
+        fields = ['name', 'description']
 
 class StudentLessonListSerializer(serializers.ModelSerializer):
     """"Вивід предметів учня з списку StudentGroupLesson"""

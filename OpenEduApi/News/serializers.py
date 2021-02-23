@@ -17,3 +17,11 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'name', 'creation_date', 'description', 'img')
+
+class ArticleSerializer(serializers.Serializer):
+
+    name = serializers.CharField(max_length=120)
+    description = serializers.CharField()
+
+    def create(self, validated_data):
+        return Article.objects.create(**validated_data)

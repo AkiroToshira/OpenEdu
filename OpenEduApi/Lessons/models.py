@@ -9,10 +9,15 @@ class Lesson(models.Model):
     description = models.TextField(max_length=30, blank=True)
     lesson_moderator = models.ManyToManyField(User, related_name='LessonModerator', blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class LessonTeacher(models.Model):
     TYPE_CHOICE = (
         ('Lessons', 'L'),
+
+
         ('Practical ', 'P')
     )
     type = models.CharField(max_length=10, choices=TYPE_CHOICE)

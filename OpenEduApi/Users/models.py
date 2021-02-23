@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 class Institute(models.Model):
     """"Інститут"""
     name = models.CharField(max_length=30)
@@ -59,7 +58,11 @@ class Profile(models.Model):
     credit_book_number = models.CharField(max_length=8, blank=True)
     img = models.ImageField(upload_to='profile_img', blank=True, default='profile_img/profile_photo.jpg')
 
-    def get_full_name(self):
+
+    def __str__(self):
+        return "{} | {} | {}".format(self.user, self.middle_name,self.account_permission)
+
+def get_full_name(self):
         return self.middle_name
 
 

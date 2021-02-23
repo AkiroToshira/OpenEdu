@@ -25,8 +25,15 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
 
-        fields = ['name', 'departament', 'year', 'curator']
+        fields = ['id','name', 'departament', 'year', 'curator']
 
+class GroupSerializer2(serializers.ModelSerializer):
+    """"Серіалайзер для створення групи"""
+
+    class Meta:
+        model = Group
+
+        fields = ['name', 'departament', 'year', 'curator']
 
 class ProfileSerializer(serializers.ModelSerializer):
     """"Вивід додаткових данних про користувача"""

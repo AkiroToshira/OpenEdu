@@ -4,11 +4,42 @@ from django.shortcuts import get_object_or_404
 
 from .serializers import *
 
-from Users.models import Group
+from Users.models import Group,Profile
+from .models import *
 
 
 class StudentLessonListViewSet(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
+
+    def create(self,request):
+        """Створення предмету"""
+        serializer = LessonDetailSerializer2(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+    def update(self, request,pk):
+        """Редагування предмету за айді"""
+        serializer = LessonDetailSerializer2(data=request.data)
+        temp = Lesson.objects.get(id=pk)
+        if serializer.is_valid():
+            serializer.update(temp, serializer.data)
+            return Response('Lesson updated successfully. New one {}'.format(serializer.data))
+        else:
+            return Response(serializer.errors)
+
+
+    def delete(self, request,pk):
+        """Видалення предмету за айді"""
+        serializer = LessonDetailSerializer2(data=request.data)
+        temp = Lesson.objects.get(id=pk)
+        if serializer.is_valid():
+            temp.delete()
+            return Response('Lesson {} deleted successfully'.format(serializer.data))
+        else:
+            return Response(serializer.errors)
 
     def list(self, request):
         """"Вивід списку предметів студента"""
@@ -112,3 +143,63 @@ class DocumentViewSet(viewsets.ViewSet):
         document = get_object_or_404(queryset, pk=request.data.get('id'))
         document.delete()
         return Response('Deleted')
+
+class AdminViewSet(viewsets.ViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def add_moderator(self, request, pk):
+        """Додавання модераторів(id в body) до предмету(id в url)"""
+        queryset = Lesson.objects.all()
+        lesson = get_object_or_404(queryset,pk=pk)
+        lesson.lesson_moderator.add(request.data.get('id'))
+        queryset2 = Profile.objects.all()
+        user = get_object_or_404(queryset2, pk=request.data.get('id'))
+        lesson.save()
+
+        return Response('Moderator {} has been successfully added to lesson {}'.format(user.user,lesson.name))
+
+    def remove_moderator(self,request, pk):
+        """Видалення модератора(id в body) від предмету(id в url)"""
+        queryset = Lesson.objects.all()
+        lesson = get_object_or_404(queryset, pk=pk)
+        lesson.lesson_moderator.remove(request.data.get('id'))
+        queryset2 = Profile.objects.all()
+        user = get_object_or_404(queryset2, pk=request.data.get('id'))
+        lesson.save()
+
+        return Response('Moderator {} has been successfully removed from the lesson {}'.format(user.user, lesson.name))
+
+"""
+    def add_group(self, request, pk=None):
+        Додавання групи(id в body) до предмету(id в url)
+        queryset = Lesson.objects.all()
+        lesson1 = get_object_or_404(queryset,pk=pk)
+
+        queryset2 = Group.objects.all()
+        group = get_object_or_404(queryset2, pk=request.data.get('id'))
+
+        lesson = StudentGroupLesson()
+        lesson.group= group
+        lesson.lesson=lesson1
+        lesson.save()
+
+        return Response('Group {} has been successfully added to lesson {}'.format(group.name,lesson1.name))
+
+
+    def remove_group(self,request, pk=None):
+        Видалення групи(id в body) від предмету(id в url)
+        queryset = Lesson.objects.all()
+        lesson1 = get_object_or_404(queryset, pk=pk)
+
+        queryset2 = Group.objects.all()
+        group = get_object_or_404(queryset2, pk=request.data.get('id'))
+
+        lesson1.
+        .remove(request.data.get('id'))
+        lesson = StudentGroupLesson()
+        lesson.group = group
+        lesson.lesson = lesson1
+        lesson.save()
+
+        return Response('Group {} has been successfully deleted from lesson {}'.format(group.name, lesson1.name))
+"""

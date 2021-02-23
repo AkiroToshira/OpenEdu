@@ -8,3 +8,6 @@ class Article(models.Model):
     mini_description = models.CharField(max_length=500)
     description = models.TextField(max_length=5000)
     img = models.ImageField(upload_to='article', blank=True)
+
+    def __str__(self):
+        return self.name
