@@ -15,6 +15,23 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #f5f7f9;
 }
+.modal-content h1 {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.modal-content h1 span{
+  display: flex;
+  /*align-items: center;*/
+}
+
+.modal-content h1 span:hover{
+  cursor: pointer;
+  transition: 0.5s;
+  color: rgb(30, 156, 132);;
+  /*align-items: center;*/
+}
 
 .tests_aside::-webkit-scrollbar,
 .tests_main::-webkit-scrollbar {
@@ -289,6 +306,8 @@ body {
   grid-auto-rows: minmax(80px, auto);
   grid-template-columns: repeat(1, minmax(50px, 1fr));
   grid-gap: 10px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .answer {
@@ -304,9 +323,6 @@ body {
     align-items: center;
 }
 
-.answer input[type=checkbox]{
-    display: none;
-}
 
 .answer input[type=checkbox]:checked + .whatever_answer{
     border-left: 10px solid green;

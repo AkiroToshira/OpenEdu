@@ -34,9 +34,7 @@ export const fetchTests = (id) => async (dispatch, getState) => {
 
 
 export const fetchTestsQuestions = (id) => async (dispatch, getState) => {
-  dispatch({
-	type: FETCH_TESTS,
-  })
+
   try {
 	const questions = await axios.get(`${url}/tests/${id}`, {
 	  headers: {

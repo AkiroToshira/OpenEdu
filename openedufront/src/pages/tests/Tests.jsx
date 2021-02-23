@@ -6,13 +6,15 @@ import {useQuery} from 'react-query';
 
 import {useHistory} from "react-router-dom";
 import {fetchTests, fetchTestsQuestions} from "../../actions/tests";
+import {AiFillCloseCircle} from "react-icons/all";
 
 
 export default function Tests() {
   const history = useHistory()
   const dispatch = useDispatch()
+  const auth = useSelector(state => state.auth)
   const tests = useSelector(state => state.tests)
-  const [result, setResult] = useState(0)
+  const [result, setResult] = useState(JSON.parse(localStorage.getItem('my-grade')) ?? 0)
   const [selectId, setSelectId] = useState(-1)
 
   const lessonId = JSON.parse(localStorage.getItem('test-lesson-id'))
@@ -22,34 +24,34 @@ export default function Tests() {
 	dispatch(fetchTests(lessonId))
   }, [])
 
-  //
+
   const [close, setClose] = useState(true)
   const [modalId, setModalId] = useState(-1)
+  const [answers, setAnswers] = useState([])
+
 
   const openModal = (id) => {
 	setClose(p => !p)
 	setModalId(id)
   }
 
-  // const handleSubmit = async () => {
-  // console.log(answers)
-  // await axios.post(`http://127.0.0.1:8000/tests/count/${lessonId}`, {"answers": answers.join(' ')}, {
-  //   headers: {
-  // 	"Authorization": "JWT " + state.auth.token.access,
-  //   }
-  // },).then((res) => {
-  //   setResult(res.data.score)
-  //   setAnswers([])
-  // })
-  // }
-  //
+
   const handleQuestions = (id, i) => {
 	dispatch(fetchTestsQuestions(id))
 	setSelectId(i)
   }
 
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+	let count = await axios.post(`http://127.0.0.1:8000/tests/count/${lessonId}`, {"answers": answers.join(' ')}, {
+	  headers: {
+		"Authorization": "JWT " + auth.token.access,
+	  }
+	},).then((res) => {
+	  setResult(res.data.score)
+	  setAnswers([])
+	  localStorage.setItem('my-grade', JSON.stringify(res.data.score))
+	})
   }
 
   if (!tests.loading) {
@@ -95,7 +97,7 @@ export default function Tests() {
 			  <div class="modal-content">
 
 				<h1>{tests.questions.questions && tests.questions.questions[modalId] && tests.questions.questions[modalId].text}<span
-					onClick={() => openModal()}>X</span></h1>
+					onClick={() => openModal()}><AiFillCloseCircle/></span></h1>
 				<div>
 				  <div class="answers_container">
 					{tests.questions.questions && tests.questions.questions[modalId] && tests.questions.questions[modalId].answers.map((el, i) => {
@@ -107,14 +109,11 @@ export default function Tests() {
 							id={el.text}
 							className="check"
 							onChange={(e) => {
-							  // if (e.target.checked) {
-								// let arr = []
-								// arr.push(el.id)
-								// setAnswers(arr)
-							  // } else {
-								// setAnswers(p => p.pop())
-							  // }
-							  // console.log(answers)
+							  if (e.target.checked) {
+								  setAnswers([...answers, el.id])
+							  } else {
+								setAnswers(lastItems=>lastItems.filter((item, i) => item !== el.id))
+							  }
 							}}
 						/>
 						<label className="whatever" htmlFor={el.text}><span>{el.text}</span></label>
